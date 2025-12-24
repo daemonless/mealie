@@ -1,0 +1,39 @@
+#!/bin/sh
+# Mealie configuration setup
+
+PUID=${PUID:-911}
+PGID=${PGID:-911}
+
+echo "Setting up Mealie with PUID=$PUID PGID=$PGID"
+
+# Modify mealie user/group to match PUID/PGID
+pw groupmod mealie -g "$PGID" 2>/dev/null || true
+
+# Create required directories
+mkdir -p /app/data /var/db/postgres/data17 /var/run/postgresql
+
+# Set ownership
+chown -R bsd:bsd /var/db/postgres /var/run/postgresql
+chown -R bsd:bsd /app/data /opt/mealie
+
+# Create database and user if PostgreSQL is already initialized
+PGDATA="/var/db/postgres/data17"
+if [ -f "$PGDATA/PG_VERSION" ]; then
+    # Start PostgreSQL temporarily to create database
+    /usr/local/bin/s6-setuidgid postgres /usr/local/bin/pg_ctl -D $PGDATA -w start 2>/dev/null
+
+    # Create mealie database and user if they don't exist
+    /usr/local/bin/s6-setuidgid postgres /usr/local/bin/psql -c "SELECT 1 FROM pg_database WHERE datname='mealie'" 2>/dev/null | grep -q 1 || \
+        /usr/local/bin/s6-setuidgid postgres /usr/local/bin/createdb mealie 2>/dev/null
+
+    /usr/local/bin/s6-setuidgid postgres /usr/local/bin/psql -c "SELECT 1 FROM pg_roles WHERE rolname='mealie'" 2>/dev/null | grep -q 1 || \
+        /usr/local/bin/s6-setuidgid postgres /usr/local/bin/createuser mealie 2>/dev/null
+
+    /usr/local/bin/s6-setuidgid postgres /usr/local/bin/psql -c "GRANT ALL PRIVILEGES ON DATABASE mealie TO mealie" 2>/dev/null
+    /usr/local/bin/s6-setuidgid postgres /usr/local/bin/psql -d mealie -c "GRANT ALL ON SCHEMA public TO mealie" 2>/dev/null
+
+    # Stop PostgreSQL (s6 will start it properly)
+    /usr/local/bin/s6-setuidgid postgres /usr/local/bin/pg_ctl -D $PGDATA -w stop 2>/dev/null
+fi
+
+echo "Mealie configuration complete"

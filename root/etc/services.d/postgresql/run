@@ -1,0 +1,18 @@
+#!/bin/sh
+# PostgreSQL s6 service for Mealie
+
+PGDATA="/var/db/postgres/data17"
+
+# Initialize database if needed
+if [ ! -f "$PGDATA/PG_VERSION" ]; then
+    echo "Initializing PostgreSQL database..."
+    chown -R postgres:postgres /var/db/postgres /var/run/postgresql
+    /usr/local/bin/s6-setuidgid bsd /usr/local/bin/initdb -D $PGDATA -E UTF8 --locale=C
+
+    # Configure for local connections
+    echo "host all all 127.0.0.1/32 trust" >> "$PGDATA/pg_hba.conf"
+    echo "local all all trust" >> "$PGDATA/pg_hba.conf"
+fi
+
+echo "Starting PostgreSQL..."
+exec /usr/local/bin/s6-setuidgid bsd /usr/local/bin/postgres -D $PGDATA

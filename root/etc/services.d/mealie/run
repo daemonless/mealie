@@ -1,0 +1,22 @@
+#!/bin/sh
+# Mealie s6 service
+
+# Wait for PostgreSQL to be ready
+echo "Waiting for PostgreSQL..."
+until /usr/local/bin/pg_isready -q 2>/dev/null; do
+    sleep 2
+done
+echo "PostgreSQL is ready"
+
+# Run database migrations (alembic.ini is in mealie/alembic/ in v3.x)
+echo "Running database migrations..."
+cd /app/mealie/alembic
+/opt/mealie/bin/python -m alembic upgrade head
+
+export PATH="/usr/local/bin:/usr/bin:/bin"
+
+# Signal readiness when the port is responsive
+s6-ready-when fetch -qo /dev/null http://localhost:9000/
+
+cd /app/mealie
+exec /usr/local/bin/s6-setuidgid bsd /usr/local/bin/python3 -m gunicorn mealie.app:app --bind 0.0.0.0:9000 --workers 4 --worker-class uvicorn.workers.UvicornWorker --timeout 120
