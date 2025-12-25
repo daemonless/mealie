@@ -4,32 +4,32 @@ FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
 # Install build dependencies - Python 3.12 with build tools for pip compilation
 RUN pkg update && \
     pkg install -y \
-        coreutils \
-        python312 \
-        py312-wheel \
-        py312-setuptools \
-        rust \
-        gcc \
-        gmake \
-        cmake \
-        pkgconf \
-        libffi \
-        webp \
-        libxslt \
-        libxml2 \
-        libjpeg-turbo \
-        libheif \
-        openjpeg \
-        lcms2 \
-        freetype2 \
-        harfbuzz \
-        openldap26-client \
-        postgresql17-client \
-        node24 \
-        npm-node24 \
-        yarn-node24 \
-        git \
-        ca_root_nss && \
+    coreutils \
+    python312 \
+    py312-wheel \
+    py312-setuptools \
+    rust \
+    gcc \
+    gmake \
+    cmake \
+    pkgconf \
+    libffi \
+    webp \
+    libxslt \
+    libxml2 \
+    libjpeg-turbo \
+    libheif \
+    openjpeg \
+    lcms2 \
+    freetype2 \
+    harfbuzz \
+    openldap26-client \
+    postgresql17-client \
+    node24 \
+    npm-node24 \
+    yarn-node24 \
+    git \
+    ca_root_nss && \
     ln -sf /usr/local/bin/greadlink /usr/bin/readlink && \
     ln -sf /usr/local/bin/gdirname /usr/bin/dirname && \
     ln -sf /usr/local/bin/gcc14 /usr/local/bin/cc
@@ -45,7 +45,7 @@ ENV PYTHONUNBUFFERED=1 \
 # Download Mealie v3.7.x
 ARG MEALIE_VERSION=v3.7.0
 RUN fetch -qo /tmp/mealie.tar.gz \
-        "https://github.com/mealie-recipes/mealie/archive/refs/tags/${MEALIE_VERSION}.tar.gz" && \
+    "https://github.com/mealie-recipes/mealie/archive/refs/tags/${MEALIE_VERSION}.tar.gz" && \
     mkdir -p /app && \
     tar -xzf /tmp/mealie.tar.gz -C /app --strip-components=1 && \
     rm /tmp/mealie.tar.gz
@@ -64,53 +64,53 @@ RUN python3.12 -m ensurepip --upgrade && \
     python3.12 -m venv /opt/mealie && \
     /opt/mealie/bin/pip install --upgrade pip wheel setuptools && \
     /opt/mealie/bin/pip install \
-        # Core web framework
-        fastapi \
-        uvicorn[standard] \
-        # Database
-        sqlalchemy \
-        alembic \
-        psycopg2-binary \
-        # Data validation
-        pydantic \
-        pydantic-settings \
-        # Image processing
-        pillow \
-        pillow-heif \
-        # Web scraping
-        lxml \
-        beautifulsoup4 \
-        recipe-scrapers \
-        extruct \
-        html2text \
-        # HTTP clients
-        requests \
-        httpx \
-        aiofiles \
-        # Security
-        bcrypt \
-        pyjwt \
-        authlib \
-        python-ldap \
-        # Utilities
-        python-dotenv \
-        python-slugify \
-        python-dateutil \
-        pyyaml \
-        orjson \
-        jinja2 \
-        appdirs \
-        apprise \
-        pyhumps \
-        tzdata \
-        isodate \
-        text-unidecode \
-        paho-mqtt \
-        aniso8601 \
-        itsdangerous \
-        nltk \
-        regex \
-        openai && \
+    # Core web framework
+    fastapi \
+    uvicorn[standard] \
+    # Database
+    sqlalchemy \
+    alembic \
+    psycopg2-binary \
+    # Data validation
+    pydantic \
+    pydantic-settings \
+    # Image processing
+    pillow \
+    pillow-heif \
+    # Web scraping
+    lxml \
+    beautifulsoup4 \
+    recipe-scrapers \
+    extruct \
+    html2text \
+    # HTTP clients
+    requests \
+    httpx \
+    aiofiles \
+    # Security
+    bcrypt \
+    pyjwt \
+    authlib \
+    python-ldap \
+    # Utilities
+    python-dotenv \
+    python-slugify \
+    python-dateutil \
+    pyyaml \
+    orjson \
+    jinja2 \
+    appdirs \
+    apprise \
+    pyhumps \
+    tzdata \
+    isodate \
+    text-unidecode \
+    paho-mqtt \
+    aniso8601 \
+    itsdangerous \
+    nltk \
+    regex \
+    openai && \
     /opt/mealie/bin/pip install --no-deps /app
 
 # Download NLTK data for ingredient parsing
@@ -122,36 +122,28 @@ FROM ghcr.io/daemonless/base:${BASE_VERSION}
 ARG MEALIE_VERSION=v3.7.0
 
 ARG FREEBSD_ARCH=amd64
+ARG PACKAGES="python312 libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg lcms2 freetype2 harfbuzz openldap26-client postgresql17-server postgresql17-client ca_root_nss"
+
 LABEL org.opencontainers.image.title="mealie" \
-      org.opencontainers.image.description="Mealie Recipe Manager on FreeBSD with PostgreSQL" \
-      org.opencontainers.image.source="https://github.com/daemonless/mealie" \
-      org.opencontainers.image.url="https://mealie.io/" \
-      org.opencontainers.image.documentation="https://docs.mealie.io/" \
-      org.opencontainers.image.licenses="AGPL-3.0-only" \
-      org.opencontainers.image.vendor="daemonless" \
-      org.opencontainers.image.authors="daemonless" \
-      io.daemonless.port="9000" \
-      io.daemonless.arch="${FREEBSD_ARCH}" \
-      io.daemonless.wip="true"
+    org.opencontainers.image.description="Mealie Recipe Manager on FreeBSD with PostgreSQL" \
+    org.opencontainers.image.source="https://github.com/daemonless/mealie" \
+    org.opencontainers.image.url="https://mealie.io/" \
+    org.opencontainers.image.documentation="https://docs.mealie.io/" \
+    org.opencontainers.image.licenses="AGPL-3.0-only" \
+    org.opencontainers.image.vendor="daemonless" \
+    org.opencontainers.image.authors="daemonless" \
+    io.daemonless.port="9000" \
+    io.daemonless.arch="${FREEBSD_ARCH}" \
+    io.daemonless.wip="true" \
+    io.daemonless.category="Utilities" \
+    io.daemonless.upstream-mode="github" \
+    io.daemonless.upstream-repo="mealie-recipes/mealie" \
+    io.daemonless.packages="${PACKAGES}"
 
 # Install runtime dependencies (no Python packages - all in venv)
 RUN pkg update && \
     pkg install -y \
-        python312 \
-        libffi \
-        webp \
-        libxslt \
-        libxml2 \
-        libjpeg-turbo \
-        libheif \
-        openjpeg \
-        lcms2 \
-        freetype2 \
-        harfbuzz \
-        openldap26-client \
-        postgresql17-server \
-        postgresql17-client \
-        ca_root_nss && \
+    ${PACKAGES} && \
     pkg clean -ay && \
     rm -rf /var/cache/pkg/* /var/db/pkg/repos/*
 
