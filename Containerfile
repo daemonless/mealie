@@ -124,7 +124,7 @@ ARG MEALIE_VERSION=v3.7.0
 ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="python312 libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg lcms2 freetype2 harfbuzz openldap26-client postgresql17-server postgresql17-client ca_root_nss"
 
-LABEL org.opencontainers.image.title="mealie" \
+LABEL org.opencontainers.image.title="Mealie" \
     org.opencontainers.image.description="Mealie Recipe Manager on FreeBSD with PostgreSQL" \
     org.opencontainers.image.source="https://github.com/daemonless/mealie" \
     org.opencontainers.image.url="https://mealie.io/" \
