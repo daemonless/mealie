@@ -13,7 +13,7 @@ RUN pkg update && \
     rust gmake cmake pkgconf \
     libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg \
     lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
-    node24 npm-node24 yarn-node24 git ca_root_nss && \
+    node24 npm-node24 yarn-node24 git-lite ca_root_nss && \
     pkg clean -ay
 
 # Bootstrap pip for python 3.12 (py312-pip doesn't exist yet)
