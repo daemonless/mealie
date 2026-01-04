@@ -3,45 +3,28 @@ ARG MEALIE_VERSION=v3.9.2
 FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
 ARG MEALIE_VERSION
 
-# Install build dependencies
+# Install build dependencies (including py312-pip from pkg to avoid ports deps)
 RUN pkg update && \
     pkg install -y \
     FreeBSD-clibs-dev FreeBSD-runtime-dev FreeBSD-libexecinfo-dev \
     FreeBSD-bmake FreeBSD-clang FreeBSD-clang-dev FreeBSD-toolchain \
     FreeBSD-utilities-dev FreeBSD-zlib-dev FreeBSD-audit-dev \
-    python312 py312-sqlite3 rust gmake cmake pkgconf \
+    python312 py312-pip py312-setuptools py312-wheel py312-sqlite3 \
+    rust gmake cmake pkgconf maturin \
     libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg \
     lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
-    node24 npm-node24 yarn-node24 git ca_root_nss
+    node24 npm-node24 yarn-node24 git ca_root_nss && \
+    pkg clean -ay
 
-# Pre-configure make.conf for ports build (avoid interactive prompts)
-RUN echo 'DEFAULT_VERSIONS+=ssl=openssl python=3.12' >> /etc/make.conf
-
-# Sparse checkout only needed ports (saves ~4GB vs full tree)
-RUN git clone --depth 1 --filter=blob:none --sparse \
-      https://git.freebsd.org/ports.git /usr/ports && \
-    cd /usr/ports && \
-    git sparse-checkout set \
-      Mk Templates Keywords \
-      devel/py-pip devel/py-orjson devel/py-pydantic-core devel/py-pydantic2 \
-      devel/py-setuptools devel/py-setuptools-rust devel/py-wheel devel/py-maturin \
-      devel/py-hatchling devel/py-hatch-vcs devel/py-hatch-fancy-pypi-readme \
-      devel/py-typing-extensions devel/py-annotated-types \
-      lang/python312
-
-ENV DEFAULT_VERSIONS="python=3.12" \
-    CFLAGS="-I/usr/local/include -I/usr/local/include/libxml2" \
+ENV CFLAGS="-I/usr/local/include -I/usr/local/include/libxml2" \
     LDFLAGS="-L/usr/local/lib -L/usr/lib -L/lib" \
     LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib" \
     RUSTFLAGS="-C link-arg=-L/usr/lib -C link-arg=-L/lib"
 
-# Build only Rust-based packages from ports (avoid conflicts, pip handles the rest)
-# Clean up ports tree + rust/cargo cache after to free disk space
-RUN cd /usr/ports/devel/py-pip && make -DBATCH FLAVOR=py312 install clean && \
-    cd /usr/ports/devel/py-orjson && make -DBATCH FLAVOR=py312 install clean && \
-    cd /usr/ports/devel/py-pydantic-core && make -DBATCH FLAVOR=py312 install clean && \
-    cd /usr/ports/devel/py-pydantic2 && make -DBATCH FLAVOR=py312 install clean && \
-    rm -rf /usr/ports /var/db/ports /root/.cargo /root/.cache /usr/local/share/.cache
+# Build Rust-based packages with pip (orjson, pydantic-core need Rust)
+# These aren't available as py312 packages yet
+RUN pip install --no-cache-dir orjson pydantic-core pydantic && \
+    rm -rf /root/.cargo /root/.cache
 
 # Download Mealie
 RUN fetch -qo /tmp/mealie.tar.gz \
