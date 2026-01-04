@@ -1,0 +1,120 @@
+ARG BASE_VERSION=15
+ARG MEALIE_VERSION=v3.9.2
+FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
+ARG MEALIE_VERSION
+
+# Install build dependencies
+RUN pkg update && \
+    pkg install -y \
+    FreeBSD-clibs-dev FreeBSD-runtime-dev FreeBSD-libexecinfo-dev \
+    FreeBSD-bmake FreeBSD-clang FreeBSD-clang-dev FreeBSD-toolchain \
+    FreeBSD-utilities-dev FreeBSD-zlib-dev FreeBSD-audit-dev \
+    python312 py312-sqlite3 rust gmake cmake pkgconf \
+    libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg \
+    lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
+    node24 npm-node24 yarn-node24 git ca_root_nss
+
+# Fetch ports tree
+RUN fetch -qo /tmp/ports.tar.zst https://download.freebsd.org/ports/ports/ports.tar.zst && \
+    tar -xf /tmp/ports.tar.zst -C /usr && rm /tmp/ports.tar.zst
+
+ENV DEFAULT_VERSIONS="python=3.12" \
+    CFLAGS="-I/usr/local/include -I/usr/local/include/libxml2" \
+    LDFLAGS="-L/usr/local/lib -L/usr/lib -L/lib" \
+    LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib" \
+    RUSTFLAGS="-C link-arg=-L/usr/lib -C link-arg=-L/lib"
+
+# Build only Rust-based packages from ports (avoid conflicts, pip handles the rest)
+RUN cd /usr/ports/devel/py-pip && make -DBATCH FLAVOR=py312 install clean && \
+    cd /usr/ports/devel/py-orjson && make -DBATCH FLAVOR=py312 install clean && \
+    cd /usr/ports/devel/py-pydantic-core && make -DBATCH FLAVOR=py312 install clean && \
+    cd /usr/ports/devel/py-pydantic2 && make -DBATCH FLAVOR=py312 install clean
+
+# Download Mealie
+RUN fetch -qo /tmp/mealie.tar.gz \
+    "https://github.com/mealie-recipes/mealie/archive/refs/tags/${MEALIE_VERSION}.tar.gz" && \
+    mkdir -p /app && tar -xzf /tmp/mealie.tar.gz -C /app --strip-components=1 && \
+    rm /tmp/mealie.tar.gz
+
+WORKDIR /app
+
+# Build frontend
+RUN cd /app/frontend && \
+    sed -i '' 's/"sass-embedded":.*/"sass": "^1.85.0",/' package.json && \
+    yarn install && yarn generate
+
+# Create venv, copy ports packages, pip install the rest
+RUN rm -rf /usr/local/lib/python3.12/site-packages/html5lib* && \
+    python3.12 -m venv /opt/mealie && \
+    cp -a /usr/local/lib/python3.12/site-packages/* /opt/mealie/lib/python3.12/site-packages/ && \
+    /opt/mealie/bin/pip install --no-cache-dir \
+    fastapi uvicorn[standard] sqlalchemy alembic psycopg2-binary \
+    pydantic-settings pillow pillow-heif lxml beautifulsoup4 \
+    recipe-scrapers extruct html2text requests httpx aiofiles \
+    bcrypt pyjwt authlib python-ldap python-dotenv python-slugify \
+    python-dateutil pyyaml jinja2 appdirs apprise pyhumps tzdata \
+    isodate text-unidecode paho-mqtt aniso8601 itsdangerous nltk \
+    regex openai typing_extensions click gunicorn python-multipart \
+    rapidfuzz ingredient-parser-nlp && \
+    /opt/mealie/bin/pip install --no-deps --no-cache-dir /app
+
+# Download NLTK data
+RUN mkdir -p /nltk_data && \
+    /opt/mealie/bin/python -c "import nltk; nltk.download('averaged_perceptron_tagger_eng', download_dir='/nltk_data')"
+
+# Production image
+ARG BASE_VERSION
+FROM ghcr.io/daemonless/base:${BASE_VERSION}
+ARG MEALIE_VERSION
+
+ARG FREEBSD_ARCH=amd64
+ARG PACKAGES="python312 py312-sqlite3 libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv ca_root_nss"
+ARG UPSTREAM_URL="https://api.github.com/repos/mealie-recipes/mealie/releases/latest"
+ARG UPSTREAM_JQ=".tag_name"
+ARG HEALTHCHECK_ENDPOINT="http://localhost:9000/api/app/about"
+
+ENV HEALTHCHECK_URL="${HEALTHCHECK_ENDPOINT}"
+
+LABEL org.opencontainers.image.title="Mealie" \
+    org.opencontainers.image.description="Mealie Recipe Manager on FreeBSD" \
+    org.opencontainers.image.source="https://github.com/daemonless/mealie" \
+    org.opencontainers.image.url="https://mealie.io/" \
+    org.opencontainers.image.documentation="https://docs.mealie.io/" \
+    org.opencontainers.image.licenses="AGPL-3.0-only" \
+    org.opencontainers.image.vendor="daemonless" \
+    org.opencontainers.image.authors="daemonless" \
+    io.daemonless.port="9000" \
+    io.daemonless.arch="${FREEBSD_ARCH}" \
+    io.daemonless.category="Utilities" \
+    io.daemonless.upstream-url="${UPSTREAM_URL}" \
+    io.daemonless.upstream-jq="${UPSTREAM_JQ}" \
+    io.daemonless.healthcheck-url="${HEALTHCHECK_ENDPOINT}" \
+    io.daemonless.packages="${PACKAGES}"
+
+RUN pkg update && pkg install -y ${PACKAGES} && \
+    pkg clean -ay && rm -rf /var/cache/pkg/* /var/db/pkg/repos/*
+
+COPY --from=builder --chown=bsd:bsd /opt/mealie /opt/mealie
+COPY --from=builder --chown=bsd:bsd /nltk_data /nltk_data
+COPY --from=builder --chown=bsd:bsd /app/frontend/.output /app/frontend/.output
+COPY --from=builder --chown=bsd:bsd /app/mealie /app/mealie
+
+RUN mkdir -p /app/data /run/secrets && \
+    echo "${MEALIE_VERSION}" > /app/version && \
+    ln -s /app/frontend/.output/public /app/mealie/frontend && \
+    chown -R bsd:bsd /app /run/secrets
+
+COPY root/ /
+RUN chmod +x /etc/services.d/*/run /etc/cont-init.d/* 2>/dev/null || true
+
+ENV MEALIE_HOME="/app" \
+    PYTHONPATH=/app \
+    NLTK_DATA=/nltk_data \
+    VENV_PATH="/opt/mealie" \
+    PATH="/opt/mealie/bin:$PATH" \
+    PRODUCTION=true \
+    TESTING=false \
+    APP_PORT=9000
+
+EXPOSE 9000
+VOLUME /app/data
