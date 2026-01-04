@@ -14,6 +14,9 @@ RUN pkg update && \
     lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
     node24 npm-node24 yarn-node24 git ca_root_nss
 
+# Pre-configure make.conf for ports build (avoid interactive prompts)
+RUN echo 'DEFAULT_VERSIONS+=ssl=openssl python=3.12' >> /etc/make.conf
+
 # Sparse checkout only needed ports (saves ~4GB vs full tree)
 RUN git clone --depth 1 --filter=blob:none --sparse \
       https://git.freebsd.org/ports.git /usr/ports && \
