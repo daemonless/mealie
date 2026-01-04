@@ -3,18 +3,22 @@ ARG MEALIE_VERSION=v3.9.2
 FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
 ARG MEALIE_VERSION
 
-# Install build dependencies (including py312-pip from pkg to avoid ports deps)
+# Install build dependencies
 RUN pkg update && \
     pkg install -y \
     FreeBSD-clibs-dev FreeBSD-runtime-dev FreeBSD-libexecinfo-dev \
     FreeBSD-bmake FreeBSD-clang FreeBSD-clang-dev FreeBSD-toolchain \
     FreeBSD-utilities-dev FreeBSD-zlib-dev FreeBSD-audit-dev \
-    python312 py312-pip py312-setuptools py312-wheel py312-sqlite3 \
-    rust gmake cmake pkgconf maturin \
+    python312 py312-sqlite3 \
+    rust gmake cmake pkgconf \
     libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg \
     lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
     node24 npm-node24 yarn-node24 git ca_root_nss && \
     pkg clean -ay
+
+# Bootstrap pip for python 3.12 (py312-pip doesn't exist yet)
+RUN python3.12 -m ensurepip --upgrade && \
+    python3.12 -m pip install --no-cache-dir --upgrade pip setuptools wheel
 
 ENV CFLAGS="-I/usr/local/include -I/usr/local/include/libxml2" \
     LDFLAGS="-L/usr/local/lib -L/usr/lib -L/lib" \
