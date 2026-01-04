@@ -14,9 +14,17 @@ RUN pkg update && \
     lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
     node24 npm-node24 yarn-node24 git ca_root_nss
 
-# Fetch ports tree
-RUN fetch -qo /tmp/ports.tar.zst https://download.freebsd.org/ports/ports/ports.tar.zst && \
-    tar -xf /tmp/ports.tar.zst -C /usr && rm /tmp/ports.tar.zst
+# Sparse checkout only needed ports (saves ~4GB vs full tree)
+RUN git clone --depth 1 --filter=blob:none --sparse \
+      https://git.freebsd.org/ports.git /usr/ports && \
+    cd /usr/ports && \
+    git sparse-checkout set \
+      Mk Templates Keywords \
+      devel/py-pip devel/py-orjson devel/py-pydantic-core devel/py-pydantic2 \
+      devel/py-setuptools devel/py-setuptools-rust devel/py-wheel devel/py-maturin \
+      devel/py-hatchling devel/py-hatch-vcs devel/py-hatch-fancy-pypi-readme \
+      devel/py-typing-extensions devel/py-annotated-types \
+      lang/python312
 
 ENV DEFAULT_VERSIONS="python=3.12" \
     CFLAGS="-I/usr/local/include -I/usr/local/include/libxml2" \
@@ -25,10 +33,12 @@ ENV DEFAULT_VERSIONS="python=3.12" \
     RUSTFLAGS="-C link-arg=-L/usr/lib -C link-arg=-L/lib"
 
 # Build only Rust-based packages from ports (avoid conflicts, pip handles the rest)
+# Clean up ports tree + rust/cargo cache after to free disk space
 RUN cd /usr/ports/devel/py-pip && make -DBATCH FLAVOR=py312 install clean && \
     cd /usr/ports/devel/py-orjson && make -DBATCH FLAVOR=py312 install clean && \
     cd /usr/ports/devel/py-pydantic-core && make -DBATCH FLAVOR=py312 install clean && \
-    cd /usr/ports/devel/py-pydantic2 && make -DBATCH FLAVOR=py312 install clean
+    cd /usr/ports/devel/py-pydantic2 && make -DBATCH FLAVOR=py312 install clean && \
+    rm -rf /usr/ports /var/db/ports /root/.cargo /root/.cache /usr/local/share/.cache
 
 # Download Mealie
 RUN fetch -qo /tmp/mealie.tar.gz \
@@ -38,10 +48,11 @@ RUN fetch -qo /tmp/mealie.tar.gz \
 
 WORKDIR /app
 
-# Build frontend
+# Build frontend, then clean up node_modules + yarn cache to free disk space
 RUN cd /app/frontend && \
     sed -i '' 's/"sass-embedded":.*/"sass": "^1.85.0",/' package.json && \
-    yarn install && yarn generate
+    yarn install && yarn generate && \
+    rm -rf node_modules .yarn /root/.cache/yarn /root/.npm /usr/local/share/.cache
 
 # Create venv, copy ports packages, pip install the rest
 RUN rm -rf /usr/local/lib/python3.12/site-packages/html5lib* && \
