@@ -1,0 +1,42 @@
+name: mealie
+
+x-daemonless:
+  title: "Mealie"
+  icon: ":material-food:"
+  category: "Utilities"
+  description: "Self-hosted recipe manager and meal planner on FreeBSD."
+  upstream_url: "https://github.com/mealie-recipes/mealie"
+  web_url: "https://mealie.io/"
+  freshports_url: ""
+  user: "bsd"
+  mlock: false
+  upstream_binary: true
+  
+  docs:
+    env:
+      PUID: "User ID for the application process"
+      PGID: "Group ID for the application process"
+      TZ: "Timezone for the container"
+      BASE_URL: "The base URL for the application (e.g. https://mealie.example.com)"
+    volumes:
+      /config: "Data directory (database, images)"
+    ports:
+      9000: "Web UI"
+
+services:
+  mealie:
+    image: ghcr.io/daemonless/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+    
+    environment:
+      - BASE_URL=http://localhost:9000
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+
+    volumes:
+      - /path/to/containers/mealie:/config
+
+    ports:
+      - "9000:9000"

@@ -1,58 +1,17 @@
 # Mealie
 
-**Self-hosted recipe manager and meal planner.**
+Self-hosted recipe manager and meal planner on FreeBSD.
 
-Mealie is a self-hosted recipe manager and meal planner with a focus on providing a pleasant user experience for the whole family. It features:
-- **Recipe Imports:** Easily import recipes from the web by URL.
-- **Meal Planning:** Drag-and-drop meal planner.
-- **Shopping Lists:** Auto-generated shopping lists from your meal plan.
-- **AI Integration:** Use LLMs (Gemini, ChatGPT) to parse ingredients and instructions.
+| | |
+|---|---|
+| **Port** | 9000 |
+| **Registry** | `ghcr.io/daemonless/mealie` |
+| **Source** | [https://github.com/mealie-recipes/mealie](https://github.com/mealie-recipes/mealie) |
+| **Website** | [https://mealie.io/](https://mealie.io/) |
 
-## Quick Start - SQLite (Default)
+## Deployment
 
-```bash
-podman run -d --name mealie \
-  -p 9000:9000 \
-  -v mealie-data:/app/data \
-  ghcr.io/daemonless/mealie:latest
-```
-
-Access at: http://localhost:9000
-Default login: `changeme@example.com` / `MyPassword`
-
-## Quick Start - PostgreSQL
-
-> **Requires [patched ocijail](https://github.com/daemonless/daemonless#ocijail-patch)** for SysV IPC support
-
-```bash
-# Create network
-podman network create mealie-net
-
-# Start PostgreSQL
-podman run -d --name mealie-postgres \
-  --network mealie-net \
-  -e POSTGRES_USER=mealie \
-  -e POSTGRES_PASSWORD=mealie \
-  -e POSTGRES_DB=mealie \
-  --annotation 'org.freebsd.jail.allow.sysvipc=true' \
-  -v mealie-postgres:/var/lib/postgresql/data \
-  ghcr.io/daemonless/postgres:17
-
-# Start Mealie
-podman run -d --name mealie \
-  --network mealie-net \
-  -p 9000:9000 \
-  -e DB_ENGINE=postgres \
-  -e POSTGRES_USER=mealie \
-  -e POSTGRES_PASSWORD=mealie \
-  -e POSTGRES_SERVER=mealie-postgres \
-  -e POSTGRES_PORT=5432 \
-  -e POSTGRES_DB=mealie \
-  -v mealie-data:/app/data \
-  ghcr.io/daemonless/mealie:latest
-```
-
-## podman-compose - SQLite
+### Podman Compose
 
 ```yaml
 services:
@@ -60,106 +19,50 @@ services:
     image: ghcr.io/daemonless/mealie:latest
     container_name: mealie
     environment:
-      - TZ=America/New_York
-      - BASE_URL=https://mealie.example.com
-
-      # --- AI Integration (Select One) ---
-
-      # Option 1: Google Gemini (Free Tier Available)
-      # - OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
-      # - OPENAI_API_KEY=your_gemini_api_key
-      # - OPENAI_MODEL=gemini-2.5-flash
-      # - OPENAI_ENABLE_IMAGE_SERVICES=true
-
-      # Option 2: OpenAI (ChatGPT)
-      # - OPENAI_BASE_URL=https://api.openai.com/v1
-      # - OPENAI_API_KEY=your_openai_api_key
-      # - OPENAI_MODEL=gpt-4o-mini
-      # - OPENAI_ENABLE_IMAGE_SERVICES=true
-
+      - BASE_URL=http://localhost:9000
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
     volumes:
-      - mealie-data:/app/data
+      - /path/to/containers/mealie:/config
     ports:
       - 9000:9000
     restart: unless-stopped
-
-volumes:
-  mealie-data:
 ```
 
-## podman-compose - PostgreSQL
+### Podman CLI
 
-> **Requires [patched ocijail](https://github.com/daemonless/daemonless#ocijail-patch)** for SysV IPC support
+```bash
+podman run -d --name mealie \
+  -p 9000:9000 \
+  -e BASE_URL=http://localhost:9000 \
+  -e PUID=@PUID@ \
+  -e PGID=@PGID@ \
+  -e TZ=@TZ@ \
+  -v /path/to/containers/mealie:/config \ 
+  ghcr.io/daemonless/mealie:latest
+```
+Access at: `http://localhost:9000`
+
+### Ansible
 
 ```yaml
-services:
-  mealie:
+- name: Deploy mealie
+  containers.podman.podman_container:
+    name: mealie
     image: ghcr.io/daemonless/mealie:latest
-    container_name: mealie
-    depends_on:
-      - postgres
-    environment:
-      - TZ=America/New_York
-      - BASE_URL=https://mealie.example.com
-      - DB_ENGINE=postgres
-      - POSTGRES_USER=mealie
-      - POSTGRES_PASSWORD=mealie
-      - POSTGRES_SERVER=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=mealie
-
-      # See AI Integration options above in the SQLite example
-
-    volumes:
-      - mealie-data:/app/data
+    state: started
+    restart_policy: always
+    env:
+      BASE_URL: "http://localhost:9000"
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "UTC"
     ports:
-      - 9000:9000
-    restart: unless-stopped
-
-  postgres:
-    image: ghcr.io/daemonless/postgres:17
-    container_name: mealie-postgres
-    annotations:
-      org.freebsd.jail.allow.sysvipc: "true"
-    environment:
-      - POSTGRES_USER=mealie
-      - POSTGRES_PASSWORD=mealie
-      - POSTGRES_DB=mealie
+      - "9000:9000"
     volumes:
-      - mealie-postgres:/var/lib/postgresql/data
-    restart: unless-stopped
-
-volumes:
-  mealie-data:
-  mealie-postgres:
+      - "/path/to/containers/mealie:/config"
 ```
-
-## AI Integration
-
-Mealie uses OpenAI-compatible APIs to automatically parse ingredients and instructions from imported URLs. You can use either Google Gemini or the official OpenAI API.
-
-### Option 1: Google Gemini
-
-Google's Gemini models are fast and offer a generous free tier.
-Get an API key from [Google AI Studio](https://aistudio.google.com/api-keys).
-| Variable | Value |
-|----------|-------|
-| `OPENAI_BASE_URL` | `https://generativelanguage.googleapis.com/v1beta/openai/` |
-| `OPENAI_API_KEY` | `your-google-api-key` |
-| `OPENAI_MODEL` | `gemini-2.5-flash` or `gemini-3-flash` |
-| `OPENAI_ENABLE_IMAGE_SERVICES` | `true` |
-
-### Option 2: OpenAI (ChatGPT)
-
-Standard OpenAI integration.
-Get an API key from [OpenAI Platform](https://platform.openai.com/api-keys).
-
-| Variable | Value |
-|----------|-------|
-| `OPENAI_BASE_URL` | `https://api.openai.com/v1` (Default) |
-| `OPENAI_API_KEY` | `your-openai-api-key` |
-| `OPENAI_MODEL` | `gpt-4o-mini` or `gpt-4o` |
-| `OPENAI_ENABLE_IMAGE_SERVICES` | `true` |
 
 ## Configuration
 
@@ -167,57 +70,24 @@ Get an API key from [OpenAI Platform](https://platform.openai.com/api-keys).
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `TZ` | `UTC` | Timezone |
-| `BASE_URL` | - | Public URL for the instance |
-| `DB_ENGINE` | `sqlite` | Database engine (`sqlite` or `postgres`) |
-| `ALLOW_SIGNUP` | `true` | Enable/disable user registration |
+| `BASE_URL` | `http://localhost:9000` | The base URL for the application (e.g. https://mealie.example.com) |
+| `PUID` | `1000` | User ID for the application process |
+| `PGID` | `1000` | Group ID for the application process |
+| `TZ` | `UTC` | Timezone for the container |
 
-### PostgreSQL Configuration
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `POSTGRES_USER` | - | Database user |
-| `POSTGRES_PASSWORD` | - | Database password |
-| `POSTGRES_SERVER` | - | Database hostname |
-| `POSTGRES_PORT` | `5432` | Database port |
-| `POSTGRES_DB` | - | Database name |
-
-## Volumes
+### Volumes
 
 | Path | Description |
 |------|-------------|
-| `/app/data` | Application data (recipes, images, SQLite DB) |
+| `/config` | Data directory (database, images) |
 
-## Ports
+### Ports
 
-| Port | Description |
-|------|-------------|
-| 9000 | Web UI |
+| Port | Protocol | Description |
+|------|----------|-------------|
+| `9000` | TCP | Web UI |
 
 ## Notes
 
-- **User:** `bsd` (UID/GID 1000)
-- **PostgreSQL:** Requires `--annotation 'org.freebsd.jail.allow.sysvipc=true'`
-- **DNS:** Requires `dnsname` CNI plugin for container name resolution (see [networking guide](https://daemonless.io/guides/networking/#option-2-dns-resolution-cni-dnsname))
-
-## Migrating from Linux
-
-**SQLite:** No issues, just copy your data.
-
-**PostgreSQL:** You cannot copy the postgres data directory between Linux and FreeBSD due to locale incompatibilities. Use `pg_dump`/`pg_restore` instead:
-
-```bash
-# On Linux
-podman exec mealie-postgres pg_dump -U mealie mealie > mealie.sql
-
-# On FreeBSD (start fresh postgres first, then restore)
-cat mealie.sql | podman exec -i mealie-postgres psql -U mealie -d mealie
-```
-
-See [daemonless/postgres README](https://github.com/daemonless/postgres#migrating-from-linux) for details.
-
-## Links
-
-- [Mealie Website](https://mealie.io/)
-- [Mealie Documentation](https://docs.mealie.io/)
-- [GitHub](https://github.com/mealie-recipes/mealie)
+- **User:** `bsd` (UID/GID set via PUID/PGID)
+- **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD)

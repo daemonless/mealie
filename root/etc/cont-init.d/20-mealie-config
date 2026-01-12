@@ -18,9 +18,9 @@ done
 echo "Setting up Mealie..."
 
 # Create required directories
-mkdir -p /app/data
+mkdir -p /config
 
 # Set ownership (bsd:bsd is UID/GID 1000:1000)
-chown -R bsd:bsd /app/data
+chown -R bsd:bsd /config
 
 echo "Mealie configuration complete"

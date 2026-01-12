@@ -72,22 +72,33 @@ ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="python312 py312-sqlite3 libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv ca_root_nss"
 ARG UPSTREAM_URL="https://api.github.com/repos/mealie-recipes/mealie/releases/latest"
 ARG UPSTREAM_JQ=".tag_name"
+{%- if ports %}
+ARG HEALTHCHECK_ENDPOINT="http://localhost:{{ ports[0].port }}/api/app/about"
+{%- else %}
 ARG HEALTHCHECK_ENDPOINT="http://localhost:9000/api/app/about"
+{%- endif %}
 
 ENV HEALTHCHECK_URL="${HEALTHCHECK_ENDPOINT}"
 
 # --- Metadata (Injected by Generator) ---
-LABEL org.opencontainers.image.title="Mealie" \
-      org.opencontainers.image.description="Self-hosted recipe manager and meal planner on FreeBSD." \
-      org.opencontainers.image.source="https://github.com/daemonless/mealie" \
-      org.opencontainers.image.url="https://mealie.io/" \
+LABEL org.opencontainers.image.title="{{ title }}" \
+      org.opencontainers.image.description="{{ description }}" \
+      org.opencontainers.image.source="{{ repo_url }}" \
+      org.opencontainers.image.url="{{ web_url }}" \
       org.opencontainers.image.documentation="https://docs.mealie.io/" \
       org.opencontainers.image.licenses="AGPL-3.0-only" \
       org.opencontainers.image.vendor="daemonless" \
       org.opencontainers.image.authors="daemonless" \
-      io.daemonless.category="Utilities" \
-      io.daemonless.port="9000" \
-      io.daemonless.volumes="/config" \
+      io.daemonless.category="{{ category }}" \
+{%- if ports %}
+      io.daemonless.port="{{ ports[0].port }}" \
+{%- endif %}
+{%- if volumes %}
+      io.daemonless.volumes="{{ volumes | map(attribute='path') | join(',') }}" \
+{%- endif %}
+{%- if mlock %}
+      org.freebsd.jail.allow.mlock="required" \
+{%- endif %}
       io.daemonless.arch="${FREEBSD_ARCH}" \
       io.daemonless.upstream-url="${UPSTREAM_URL}" \
       io.daemonless.upstream-jq="${UPSTREAM_JQ}" \
@@ -121,7 +132,12 @@ ENV MEALIE_HOME="/app" \
     APP_PORT=9000
 
 # --- Expose (Injected by Generator) ---
-EXPOSE 9000
+{%- if ports %}
+EXPOSE {{ ports | map(attribute='port') | join(' ') }}
+{%- endif %}
 
 # --- Volumes (Injected by Generator) ---
-VOLUME /config
+{%- if volumes %}
+VOLUME {{ volumes | map(attribute='path') | join(' ') }}
+{%- endif %}
+
