@@ -55,9 +55,9 @@ Access at: `http://localhost:9000`
     restart_policy: always
     env:
       BASE_URL: "http://localhost:9000"
-      PUID: "1000"
-      PGID: "1000"
-      TZ: "UTC"
+      PUID: "@PUID@"
+      PGID: "@PGID@"
+      TZ: "@TZ@"
     ports:
       - "9000:9000"
     volumes:
@@ -65,7 +65,6 @@ Access at: `http://localhost:9000`
 ```
 
 ## Configuration
-
 ### Environment Variables
 
 | Variable | Default | Description |
@@ -74,13 +73,11 @@ Access at: `http://localhost:9000`
 | `PUID` | `1000` | User ID for the application process |
 | `PGID` | `1000` | Group ID for the application process |
 | `TZ` | `UTC` | Timezone for the container |
-
 ### Volumes
 
 | Path | Description |
 |------|-------------|
 | `/config` | Data directory (database, images) |
-
 ### Ports
 
 | Port | Protocol | Description |
