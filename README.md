@@ -11,6 +11,7 @@ Self-hosted recipe manager and meal planner on FreeBSD.
 |---|---|
 | **Port** | 9000 |
 | **Registry** | `ghcr.io/daemonless/mealie` |
+| **Docs** | [daemonless.io/images/mealie](https://daemonless.io/images/mealie/) |
 | **Source** | [https://github.com/mealie-recipes/mealie](https://github.com/mealie-recipes/mealie) |
 | **Website** | [https://mealie.io/](https://mealie.io/) |
 
