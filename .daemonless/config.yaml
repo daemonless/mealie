@@ -2,3 +2,4 @@ icon: ':material-food:'
 cit:
   mode: screenshot
   port: 9000
+  screenshot_wait: 5
