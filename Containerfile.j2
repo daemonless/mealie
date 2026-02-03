@@ -1,7 +1,5 @@
 ARG BASE_VERSION=15
-ARG MEALIE_VERSION=v3.9.2
 FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
-ARG MEALIE_VERSION
 
 # Install build dependencies
 RUN pkg update && \
@@ -13,8 +11,13 @@ RUN pkg update && \
     rust gmake cmake pkgconf \
     libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg \
     lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
-    node24 npm-node24 yarn-node24 git-lite ca_root_nss && \
+    node24 npm-node24 yarn-node24 git-lite jq ca_root_nss && \
     pkg clean -ay
+
+# Fetch latest version from GitHub API
+RUN MEALIE_VERSION=$(fetch -qo - https://api.github.com/repos/mealie-recipes/mealie/releases/latest | jq -r .tag_name) && \
+    echo "MEALIE_VERSION=${MEALIE_VERSION}" > /tmp/mealie_version && \
+    echo "Building Mealie ${MEALIE_VERSION}"
 
 # Bootstrap pip for python 3.12 (py312-pip doesn't exist yet)
 RUN python3.12 -m ensurepip --upgrade && \
@@ -31,9 +34,11 @@ RUN pip install --no-cache-dir orjson pydantic-core pydantic && \
     rm -rf /root/.cargo /root/.cache
 
 # Download Mealie
-RUN fetch -qo /tmp/mealie.tar.gz \
+RUN . /tmp/mealie_version && \
+    fetch -qo /tmp/mealie.tar.gz \
     "https://github.com/mealie-recipes/mealie/archive/refs/tags/${MEALIE_VERSION}.tar.gz" && \
     mkdir -p /app && tar -xzf /tmp/mealie.tar.gz -C /app --strip-components=1 && \
+    echo "${MEALIE_VERSION}" > /app/version && \
     rm /tmp/mealie.tar.gz
 
 WORKDIR /app
@@ -66,8 +71,6 @@ RUN mkdir -p /nltk_data && \
 # Production image
 ARG BASE_VERSION
 FROM ghcr.io/daemonless/base:${BASE_VERSION}
-ARG MEALIE_VERSION
-
 ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="python312 py312-sqlite3 libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv ca_root_nss"
 ARG UPSTREAM_URL="https://api.github.com/repos/mealie-recipes/mealie/releases/latest"
@@ -112,10 +115,10 @@ COPY --from=builder --chown=bsd:bsd /opt/mealie /opt/mealie
 COPY --from=builder --chown=bsd:bsd /nltk_data /nltk_data
 COPY --from=builder --chown=bsd:bsd /app/frontend/.output /app/frontend/.output
 COPY --from=builder --chown=bsd:bsd /app/mealie /app/mealie
+COPY --from=builder --chown=bsd:bsd /app/version /app/version
 
 RUN mkdir -p /config /run/secrets && \
     ln -s /config /app/data && \
-    echo "${MEALIE_VERSION}" > /app/version && \
     ln -s /app/frontend/.output/public /app/mealie/frontend && \
     chown -R bsd:bsd /app /config /run/secrets
 
