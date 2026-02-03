@@ -1,11 +1,11 @@
 {
   "image": "mealie",
-  "generated": "2026-02-02T14:05:34Z",
+  "generated": "2026-02-03T11:47:35Z",
   "tags": {
     "latest": {
-      "app_version": "v3.9.2",
+      "app_version": "v3.10.1",
       "source": "upstream-binary",
-      "generated": "2026-02-02T14:05:16Z",
+      "generated": "2026-02-03T11:47:19Z",
       "packages": {
         "freebsd": [
           {
@@ -458,11 +458,11 @@
           },
           {
             "name": "libxml2",
-            "version": "2.14.6"
+            "version": "2.15.1"
           },
           {
             "name": "libxslt",
-            "version": "1.1.43_1"
+            "version": "1.1.45"
           },
           {
             "name": "lzo2",
@@ -514,7 +514,7 @@
           },
           {
             "name": "openssl",
-            "version": "3.0.18,1"
+            "version": "3.0.19,1"
           },
           {
             "name": "opus",
