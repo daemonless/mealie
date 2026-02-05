@@ -1,11 +1,11 @@
 {
   "image": "mealie",
-  "generated": "2026-02-03T11:47:35Z",
+  "generated": "2026-02-05T00:23:02Z",
   "tags": {
     "latest": {
-      "app_version": "v3.10.1",
+      "app_version": "v3.10.2",
       "source": "upstream-binary",
-      "generated": "2026-02-03T11:47:19Z",
+      "generated": "2026-02-05T00:22:46Z",
       "packages": {
         "freebsd": [
           {
