@@ -1,12 +1,12 @@
 {
   "image": "mealie",
-  "generated": "2026-02-06T00:49:39Z",
+  "generated": "2026-02-13T12:52:02Z",
   "tags": {
     "latest": {
       "arch": "amd64",
       "app_version": "v3.10.2",
-      "source": "upstream-binary",
-      "generated": "2026-02-06T00:49:23Z",
+      "source": "upstream",
+      "generated": "2026-02-13T12:51:41Z",
       "packages": {
         "freebsd": [
           {
@@ -15,7 +15,7 @@
           },
           {
             "name": "FreeBSD-blocklist",
-            "version": "15.0"
+            "version": "15.0p3"
           },
           {
             "name": "FreeBSD-bzip2-lib",
@@ -523,7 +523,7 @@
           },
           {
             "name": "p11-kit",
-            "version": "0.25.10"
+            "version": "0.26.2"
           },
           {
             "name": "pango",
@@ -567,7 +567,7 @@
           },
           {
             "name": "python311",
-            "version": "3.11.14_1"
+            "version": "3.11.14_2"
           },
           {
             "name": "python312",
@@ -675,10 +675,19 @@
           }
         ],
         "dotnet": [],
+        "go": [],
+        "java": [],
+        "node": [
+          {
+            "name": "MathJax-grunt-cleaner",
+            "version": "0.1.0"
+          }
+        ],
+        "php": [],
         "python": [
           {
             "name": "Authlib",
-            "version": "1.6.6"
+            "version": "1.6.7"
           },
           {
             "name": "Jinja2",
@@ -690,7 +699,7 @@
           },
           {
             "name": "Markdown",
-            "version": "3.10.1"
+            "version": "3.10.2"
           },
           {
             "name": "MarkupSafe",
@@ -722,7 +731,7 @@
           },
           {
             "name": "alembic",
-            "version": "1.18.3"
+            "version": "1.18.4"
           },
           {
             "name": "aniso8601",
@@ -782,7 +791,7 @@
           },
           {
             "name": "cryptography",
-            "version": "46.0.4"
+            "version": "46.0.5"
           },
           {
             "name": "distro",
@@ -798,7 +807,7 @@
           },
           {
             "name": "fastapi",
-            "version": "0.128.2"
+            "version": "0.129.0"
           },
           {
             "name": "flexcache",
@@ -814,7 +823,7 @@
           },
           {
             "name": "gunicorn",
-            "version": "25.0.1"
+            "version": "25.1.0"
           },
           {
             "name": "h11",
@@ -909,10 +918,6 @@
             "version": "10.8.0"
           },
           {
-            "name": "my-test-package",
-            "version": "1.0"
-          },
-          {
             "name": "nltk",
             "version": "3.9.2"
           },
@@ -926,7 +931,7 @@
           },
           {
             "name": "openai",
-            "version": "2.17.0"
+            "version": "2.20.0"
           },
           {
             "name": "orjson",
@@ -942,7 +947,7 @@
           },
           {
             "name": "pillow",
-            "version": "12.1.0"
+            "version": "12.1.1"
           },
           {
             "name": "pillow_heif",
@@ -1022,7 +1027,7 @@
           },
           {
             "name": "rdflib",
-            "version": "7.5.0"
+            "version": "7.6.0"
           },
           {
             "name": "recipe_scrapers",
@@ -1042,7 +1047,7 @@
           },
           {
             "name": "setuptools",
-            "version": "80.10.2"
+            "version": "82.0.0"
           },
           {
             "name": "six",
@@ -1062,7 +1067,7 @@
           },
           {
             "name": "starlette",
-            "version": "0.50.0"
+            "version": "0.52.1"
           },
           {
             "name": "text-unidecode",
@@ -1125,21 +1130,20 @@
             "version": "3.23.0"
           }
         ],
-        "node": [
-          {
-            "name": "MathJax-grunt-cleaner",
-            "version": "0.1.0"
-          }
-        ],
-        "go": []
+        "ruby": [],
+        "rust": []
       },
       "summary": {
         "freebsd": 166,
         "dotnet": 0,
-        "python": 112,
-        "node": 1,
         "go": 0,
-        "total": 279
+        "java": 0,
+        "node": 1,
+        "php": 0,
+        "python": 111,
+        "ruby": 0,
+        "rust": 0,
+        "total": 278
       }
     }
   }
