@@ -153,5 +153,6 @@ See [daemonless/postgres README](https://github.com/daemonless/postgres#migratin
 
 ## Notes
 
+- **Architectures:** amd64
 - **User:** `bsd` (UID/GID set via PUID/PGID)
 - **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD)
