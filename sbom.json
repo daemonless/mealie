@@ -1,12 +1,12 @@
 {
   "image": "mealie",
-  "generated": "2026-02-16T18:55:12Z",
+  "generated": "2026-02-17T17:56:17Z",
   "tags": {
     "latest": {
       "arch": "amd64",
-      "app_version": "v3.10.2",
+      "app_version": "v3.11.0",
       "source": "upstream",
-      "generated": "2026-02-16T18:54:54Z",
+      "generated": "2026-02-17T17:56:02Z",
       "packages": {
         "freebsd": [
           {
@@ -907,7 +907,7 @@
           },
           {
             "name": "mealie",
-            "version": "3.10.2"
+            "version": "3.11.0"
           },
           {
             "name": "mf2py",
@@ -1099,7 +1099,7 @@
           },
           {
             "name": "uvicorn",
-            "version": "0.40.0"
+            "version": "0.41.0"
           },
           {
             "name": "uvloop",
