@@ -5,15 +5,27 @@ Source: dbuild templates
 
 # Mealie
 
+[![Build Status](https://img.shields.io/github/actions/workflow/status/daemonless/mealie/build.yaml?style=flat-square&label=Build&color=green)](https://github.com/daemonless/mealie/actions)
+[![Last Commit](https://img.shields.io/github/last-commit/daemonless/mealie?style=flat-square&label=Last+Commit&color=blue)](https://github.com/daemonless/mealie/commits)
+
 Self-hosted recipe manager and meal planner on FreeBSD.
 
 | | |
 |---|---|
 | **Port** | 9000 |
 | **Registry** | `ghcr.io/daemonless/mealie` |
-| **Docs** | [daemonless.io/images/mealie](https://daemonless.io/images/mealie/) |
 | **Source** | [https://github.com/mealie-recipes/mealie](https://github.com/mealie-recipes/mealie) |
 | **Website** | [https://mealie.io/](https://mealie.io/) |
+
+## Version Tags
+
+| Tag | Description | Best For |
+| :--- | :--- | :--- |
+| `latest` | **Upstream Binary**. Built from official release. | Most users. Matches Linux Docker behavior. |
+
+## Prerequisites
+
+Before deploying, ensure your host environment is ready. See the [Quick Start Guide](https://daemonless.io/guides/quick-start) for host setup instructions.
 
 ## Deployment
 
@@ -30,10 +42,56 @@ services:
       - PGID=1000
       - TZ=UTC
     volumes:
-      - /path/to/containers/mealie:/config
+      - "/path/to/containers/mealie:/config"
     ports:
       - 9000:9000
     restart: unless-stopped
+```
+
+### AppJail Director
+
+**.env**:
+
+```
+DIRECTOR_PROJECT=mealie
+BASE_URL=http://localhost:9000
+PUID=1000
+PGID=1000
+TZ=UTC
+```
+
+**appjail-director.yml**:
+
+```yaml
+options:
+  - virtualnet: ':<random> default'
+  - nat:
+services:
+  mealie:
+    name: mealie
+    options:
+      - container: 'boot args:--pull'
+    oci:
+      user: root
+      environment:
+        - BASE_URL: !ENV '${BASE_URL}'
+        - PUID: !ENV '${PUID}'
+        - PGID: !ENV '${PGID}'
+        - TZ: !ENV '${TZ}'
+    volumes:
+      - mealie: /config
+volumes:
+  mealie:
+    device: '/path/to/containers/mealie'
+```
+
+**Makejail**:
+
+```
+ARG tag=latest
+
+OPTION overwrite=force
+OPTION from=ghcr.io/daemonless/mealie:${tag}
 ```
 
 ### Podman CLI
@@ -42,13 +100,12 @@ services:
 podman run -d --name mealie \
   -p 9000:9000 \
   -e BASE_URL=http://localhost:9000 \
-  -e PUID=@PUID@ \
-  -e PGID=@PGID@ \
-  -e TZ=@TZ@ \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=UTC \
   -v /path/to/containers/mealie:/config \
   ghcr.io/daemonless/mealie:latest
 ```
-Access at: `http://localhost:9000`
 
 ### Ansible
 
@@ -61,16 +118,19 @@ Access at: `http://localhost:9000`
     restart_policy: always
     env:
       BASE_URL: "http://localhost:9000"
-      PUID: "@PUID@"
-      PGID: "@PGID@"
-      TZ: "@TZ@"
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "UTC"
     ports:
       - "9000:9000"
     volumes:
       - "/path/to/containers/mealie:/config"
 ```
 
-## Configuration
+Access at: `http://localhost:9000`
+
+## Parameters
+
 ### Environment Variables
 
 | Variable | Default | Description |
@@ -79,11 +139,13 @@ Access at: `http://localhost:9000`
 | `PUID` | `1000` | User ID for the application process |
 | `PGID` | `1000` | Group ID for the application process |
 | `TZ` | `UTC` | Timezone for the container |
+
 ### Volumes
 
 | Path | Description |
 |------|-------------|
 | `/config` | Data directory (database, images) |
+
 ### Ports
 
 | Port | Protocol | Description |
@@ -151,8 +213,10 @@ cat mealie.sql | podman exec -i mealie-postgres psql -U mealie -d mealie
 See [daemonless/postgres README](https://github.com/daemonless/postgres#migrating-from-linux) for details.
 
 
-## Notes
+**Architectures:** amd64
+**User:** `bsd` (UID/GID via PUID/PGID, defaults to 1000:1000)
+**Base:** FreeBSD 15.0
 
-- **Architectures:** amd64
-- **User:** `bsd` (UID/GID set via PUID/PGID)
-- **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD)
+---
+
+Need help? Join our [Discord](https://discord.gg/Kb9tkhecZT) community.

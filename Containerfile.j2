@@ -61,8 +61,11 @@ RUN rm -rf /usr/local/lib/python3.12/site-packages/html5lib* && \
     python-dateutil pyyaml jinja2 appdirs apprise pyhumps tzdata \
     isodate text-unidecode paho-mqtt aniso8601 itsdangerous nltk \
     regex openai typing_extensions click gunicorn python-multipart \
-    rapidfuzz ingredient-parser-nlp && \
-    /opt/mealie/bin/pip install --no-deps --no-cache-dir /app
+    rapidfuzz ingredient-parser-nlp yt-dlp pint && \
+    /opt/mealie/bin/pip install --no-deps --no-cache-dir /app && \
+    mkdir -p /opt/mealie/lib/python3.12/site-packages/httpx_curl_cffi && \
+    printf 'import httpx\n\nclass AsyncCurlTransport(httpx.AsyncHTTPTransport):\n    """FreeBSD shim: curl_cffi is Linux-only; use standard httpx transport."""\n    def __init__(self, **kwargs):\n        super().__init__(**kwargs)\n' \
+    > /opt/mealie/lib/python3.12/site-packages/httpx_curl_cffi/__init__.py
 
 # Download NLTK data
 RUN mkdir -p /nltk_data && \
