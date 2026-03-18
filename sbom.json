@@ -1,12 +1,12 @@
 {
   "image": "mealie",
-  "generated": "2026-03-07T22:52:16Z",
+  "generated": "2026-03-18T19:16:47Z",
   "tags": {
     "latest": {
       "arch": "amd64",
-      "app_version": "v3.12.0",
+      "app_version": "v3.13.0",
       "source": "upstream",
-      "generated": "2026-03-07T22:52:01Z",
+      "generated": "2026-03-18T19:16:29Z",
       "packages": {
         "freebsd": [
           {
@@ -547,7 +547,7 @@
           },
           {
             "name": "postgresql17-client",
-            "version": "17.7_2"
+            "version": "17.9"
           },
           {
             "name": "py311-boost-libs",
@@ -711,7 +711,7 @@
           },
           {
             "name": "PyJWT",
-            "version": "2.11.0"
+            "version": "2.12.1"
           },
           {
             "name": "PyYAML",
@@ -755,7 +755,7 @@
           },
           {
             "name": "apprise",
-            "version": "1.9.7"
+            "version": "1.9.8"
           },
           {
             "name": "autocommand",
@@ -783,7 +783,7 @@
           },
           {
             "name": "charset-normalizer",
-            "version": "3.4.5"
+            "version": "3.4.6"
           },
           {
             "name": "click",
@@ -907,7 +907,7 @@
           },
           {
             "name": "mealie",
-            "version": "3.12.0"
+            "version": "3.13.0"
           },
           {
             "name": "mf2py",
@@ -931,7 +931,7 @@
           },
           {
             "name": "openai",
-            "version": "2.26.0"
+            "version": "2.29.0"
           },
           {
             "name": "orjson",
@@ -967,7 +967,7 @@
           },
           {
             "name": "pyasn1",
-            "version": "0.6.2"
+            "version": "0.6.3"
           },
           {
             "name": "pyasn1_modules",
@@ -1047,7 +1047,7 @@
           },
           {
             "name": "setuptools",
-            "version": "82.0.0"
+            "version": "82.0.1"
           },
           {
             "name": "six",
@@ -1099,7 +1099,7 @@
           },
           {
             "name": "uvicorn",
-            "version": "0.41.0"
+            "version": "0.42.0"
           },
           {
             "name": "uvloop",
@@ -1126,6 +1126,10 @@
             "version": "0.46.3"
           },
           {
+            "name": "yt-dlp",
+            "version": "2026.3.17"
+          },
+          {
             "name": "zipp",
             "version": "3.23.0"
           }
@@ -1140,10 +1144,10 @@
         "java": 0,
         "node": 1,
         "php": 0,
-        "python": 111,
+        "python": 112,
         "ruby": 0,
         "rust": 0,
-        "total": 278
+        "total": 279
       }
     }
   }
