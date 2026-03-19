@@ -92,7 +92,7 @@ ENV HEALTHCHECK_URL="${HEALTHCHECK_ENDPOINT}"
 
 # --- Metadata (Injected by Generator) ---
 LABEL org.opencontainers.image.title="Mealie" \
-      org.opencontainers.image.description="Self-hosted recipe manager and meal planner on FreeBSD." \
+      org.opencontainers.image.description="Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web." \
       org.opencontainers.image.source="https://github.com/daemonless/mealie" \
       org.opencontainers.image.url="https://mealie.io/" \
       org.opencontainers.image.documentation="https://docs.mealie.io/" \

@@ -4,7 +4,7 @@ x-daemonless:
   title: "Mealie"
   icon: ":material-food:"
   category: "Utilities"
-  description: "Self-hosted recipe manager and meal planner on FreeBSD."
+  description: "Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web."
   upstream_url: "https://github.com/mealie-recipes/mealie"
   web_url: "https://mealie.io/"
   freshports_url: ""
