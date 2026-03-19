@@ -1,12 +1,12 @@
 {
   "image": "mealie",
-  "generated": "2026-03-18T19:16:47Z",
+  "generated": "2026-03-19T09:17:00Z",
   "tags": {
     "latest": {
       "arch": "amd64",
-      "app_version": "v3.13.0",
+      "app_version": "v3.13.1",
       "source": "upstream",
-      "generated": "2026-03-18T19:16:29Z",
+      "generated": "2026-03-19T09:16:44Z",
       "packages": {
         "freebsd": [
           {
@@ -907,7 +907,7 @@
           },
           {
             "name": "mealie",
-            "version": "3.13.0"
+            "version": "3.13.1"
           },
           {
             "name": "mf2py",
