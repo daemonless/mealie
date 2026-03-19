@@ -26,7 +26,9 @@ RUN python3.12 -m ensurepip --upgrade && \
 ENV CFLAGS="-I/usr/local/include -I/usr/local/include/libxml2" \
     LDFLAGS="-L/usr/local/lib -L/usr/lib -L/lib" \
     LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib" \
-    RUSTFLAGS="-C link-arg=-L/usr/lib -C link-arg=-L/lib"
+    RUSTFLAGS="-C link-arg=-L/usr/lib -C link-arg=-L/lib" \
+    CARGO_BUILD_JOBS=2 \
+    CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
 
 # Build Rust-based packages with pip (orjson, pydantic-core need Rust)
 # These aren't available as py312 packages yet
