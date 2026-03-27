@@ -1,12 +1,12 @@
 {
   "image": "mealie",
-  "generated": "2026-03-19T21:51:51Z",
+  "generated": "2026-03-27T20:24:02Z",
   "tags": {
     "latest": {
       "arch": "amd64",
-      "app_version": "v3.13.1",
+      "app_version": "v3.14.0",
       "source": "upstream",
-      "generated": "2026-03-19T21:51:35Z",
+      "generated": "2026-03-27T20:23:43Z",
       "packages": {
         "freebsd": [
           {
@@ -139,7 +139,7 @@
           },
           {
             "name": "aom",
-            "version": "3.13.1"
+            "version": "3.13.2"
           },
           {
             "name": "bash",
@@ -707,7 +707,7 @@
           },
           {
             "name": "Pint",
-            "version": "0.25.2"
+            "version": "0.25.3"
           },
           {
             "name": "PyJWT",
@@ -747,7 +747,7 @@
           },
           {
             "name": "anyio",
-            "version": "4.12.1"
+            "version": "4.13.0"
           },
           {
             "name": "appdirs",
@@ -755,7 +755,7 @@
           },
           {
             "name": "apprise",
-            "version": "1.9.8"
+            "version": "1.9.9"
           },
           {
             "name": "autocommand",
@@ -791,7 +791,7 @@
           },
           {
             "name": "cryptography",
-            "version": "46.0.5"
+            "version": "46.0.6"
           },
           {
             "name": "distro",
@@ -807,7 +807,7 @@
           },
           {
             "name": "fastapi",
-            "version": "0.135.1"
+            "version": "0.135.2"
           },
           {
             "name": "flexcache",
@@ -823,7 +823,7 @@
           },
           {
             "name": "gunicorn",
-            "version": "25.1.0"
+            "version": "25.3.0"
           },
           {
             "name": "h11",
@@ -863,7 +863,7 @@
           },
           {
             "name": "ingredient_parser_nlp",
-            "version": "2.5.0"
+            "version": "2.6.0"
           },
           {
             "name": "isodate",
@@ -907,7 +907,7 @@
           },
           {
             "name": "mealie",
-            "version": "3.13.1"
+            "version": "3.14.0"
           },
           {
             "name": "mf2py",
@@ -919,7 +919,7 @@
           },
           {
             "name": "nltk",
-            "version": "3.9.3"
+            "version": "3.9.4"
           },
           {
             "name": "numpy",
@@ -931,7 +931,7 @@
           },
           {
             "name": "openai",
-            "version": "2.29.0"
+            "version": "2.30.0"
           },
           {
             "name": "orjson",
@@ -1039,7 +1039,7 @@
           },
           {
             "name": "requests",
-            "version": "2.32.5"
+            "version": "2.33.0"
           },
           {
             "name": "requests-oauthlib",
@@ -1067,7 +1067,7 @@
           },
           {
             "name": "starlette",
-            "version": "0.52.1"
+            "version": "1.0.0"
           },
           {
             "name": "text-unidecode",
@@ -1107,7 +1107,7 @@
           },
           {
             "name": "w3lib",
-            "version": "2.4.0"
+            "version": "2.4.1"
           },
           {
             "name": "watchfiles",
