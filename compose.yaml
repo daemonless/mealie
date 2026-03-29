@@ -11,7 +11,7 @@ x-daemonless:
   user: "bsd"
   mlock: false
   upstream_binary: true
-  appjail:
+  appjail: true
   notes: |
     ## Using PostgreSQL
 
