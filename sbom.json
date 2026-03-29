@@ -1,12 +1,12 @@
 {
   "image": "mealie",
-  "generated": "2026-03-28T17:15:51Z",
+  "generated": "2026-03-29T21:36:03Z",
   "tags": {
     "latest": {
       "arch": "amd64",
       "app_version": "v3.14.0",
       "source": "upstream",
-      "generated": "2026-03-28T17:15:37Z",
+      "generated": "2026-03-29T21:35:47Z",
       "packages": {
         "freebsd": [
           {
@@ -1035,7 +1035,7 @@
           },
           {
             "name": "regex",
-            "version": "2026.2.28"
+            "version": "2026.3.32"
           },
           {
             "name": "requests",
