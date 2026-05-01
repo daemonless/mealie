@@ -1,11 +1,11 @@
 {
-  "generated": "2026-04-17T22:17:21Z",
+  "generated": "2026-05-01T00:18:00Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.16.0",
       "arch": "amd64",
-      "generated": "2026-04-17T22:15:58Z",
+      "generated": "2026-05-01T00:16:44Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -87,11 +87,11 @@
           },
           {
             "name": "FreeBSD-openssl",
-            "version": "15.0"
+            "version": "15.0p2"
           },
           {
             "name": "FreeBSD-openssl-lib",
-            "version": "15.0"
+            "version": "15.0p2"
           },
           {
             "name": "FreeBSD-pkg-bootstrap",
@@ -103,7 +103,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0"
+            "version": "15.0p6"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -267,7 +267,7 @@
           },
           {
             "name": "lcms2",
-            "version": "2.18"
+            "version": "2.19"
           },
           {
             "name": "lerc",
@@ -726,7 +726,7 @@
         "python": [
           {
             "name": "Authlib",
-            "version": "1.6.11"
+            "version": "1.7.0"
           },
           {
             "name": "Jinja2",
@@ -734,7 +734,7 @@
           },
           {
             "name": "Mako",
-            "version": "1.3.11"
+            "version": "1.3.12"
           },
           {
             "name": "Markdown",
@@ -794,7 +794,7 @@
           },
           {
             "name": "apprise",
-            "version": "1.9.9"
+            "version": "1.10.0"
           },
           {
             "name": "autocommand",
@@ -814,7 +814,7 @@
           },
           {
             "name": "certifi",
-            "version": "2026.2.25"
+            "version": "2026.4.22"
           },
           {
             "name": "cffi",
@@ -826,11 +826,11 @@
           },
           {
             "name": "click",
-            "version": "8.3.2"
+            "version": "8.3.3"
           },
           {
             "name": "cryptography",
-            "version": "46.0.7"
+            "version": "47.0.0"
           },
           {
             "name": "distro",
@@ -846,7 +846,7 @@
           },
           {
             "name": "fastapi",
-            "version": "0.136.0"
+            "version": "0.136.1"
           },
           {
             "name": "flexcache",
@@ -858,7 +858,7 @@
           },
           {
             "name": "greenlet",
-            "version": "3.4.0"
+            "version": "3.5.0"
           },
           {
             "name": "gunicorn",
@@ -894,7 +894,7 @@
           },
           {
             "name": "idna",
-            "version": "3.11"
+            "version": "3.13"
           },
           {
             "name": "importlib_metadata",
@@ -933,12 +933,16 @@
             "version": "1.5.3"
           },
           {
+            "name": "joserfc",
+            "version": "1.6.4"
+          },
+          {
             "name": "jstyleson",
             "version": "0.0.2"
           },
           {
             "name": "lxml",
-            "version": "6.0.4"
+            "version": "6.1.0"
           },
           {
             "name": "lxml_html_clean",
@@ -970,7 +974,7 @@
           },
           {
             "name": "openai",
-            "version": "2.32.0"
+            "version": "2.33.0"
           },
           {
             "name": "orjson",
@@ -1002,7 +1006,7 @@
           },
           {
             "name": "psycopg2-binary",
-            "version": "2.9.11"
+            "version": "2.9.12"
           },
           {
             "name": "pyasn1",
@@ -1018,15 +1022,15 @@
           },
           {
             "name": "pydantic",
-            "version": "2.13.2"
+            "version": "2.13.3"
           },
           {
             "name": "pydantic-settings",
-            "version": "2.13.1"
+            "version": "2.14.0"
           },
           {
             "name": "pydantic_core",
-            "version": "2.46.2"
+            "version": "2.46.3"
           },
           {
             "name": "pyhumps",
@@ -1058,7 +1062,7 @@
           },
           {
             "name": "python-multipart",
-            "version": "0.0.26"
+            "version": "0.0.27"
           },
           {
             "name": "python-slugify",
@@ -1130,7 +1134,7 @@
           },
           {
             "name": "tzdata",
-            "version": "2026.1"
+            "version": "2026.2"
           },
           {
             "name": "urllib3",
@@ -1138,7 +1142,7 @@
           },
           {
             "name": "uvicorn",
-            "version": "0.44.0"
+            "version": "0.46.0"
           },
           {
             "name": "uvloop",
@@ -1184,10 +1188,10 @@
         "java": 0,
         "node": 1,
         "php": 0,
-        "python": 112,
+        "python": 113,
         "ruby": 0,
         "rust": 0,
-        "total": 289
+        "total": 290
       }
     }
   }
