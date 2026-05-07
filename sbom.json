@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-01T00:18:00Z",
+  "generated": "2026-05-07T14:24:39Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.16.0",
+      "app_version": "v3.17.0",
       "arch": "amd64",
-      "generated": "2026-05-01T00:16:44Z",
+      "generated": "2026-05-07T14:23:14Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -103,7 +103,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p6"
+            "version": "15.0p8"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -131,11 +131,11 @@
           },
           {
             "name": "FreeBSD-zoneinfo",
-            "version": "15.0"
+            "version": "15.0p7"
           },
           {
             "name": "Imath",
-            "version": "3.2.2_2"
+            "version": "3.2.2_3"
           },
           {
             "name": "aom",
@@ -179,7 +179,7 @@
           },
           {
             "name": "expat",
-            "version": "2.7.5"
+            "version": "2.8.0"
           },
           {
             "name": "ffmpeg",
@@ -215,7 +215,7 @@
           },
           {
             "name": "glib",
-            "version": "2.84.4,2"
+            "version": "2.86.4,2"
           },
           {
             "name": "gmp",
@@ -223,7 +223,7 @@
           },
           {
             "name": "gnutls",
-            "version": "3.8.12"
+            "version": "3.8.13"
           },
           {
             "name": "graphite2",
@@ -235,11 +235,11 @@
           },
           {
             "name": "highway",
-            "version": "1.3.0"
+            "version": "1.4.0"
           },
           {
             "name": "hwdata",
-            "version": "0.405,1"
+            "version": "0.406,1"
           },
           {
             "name": "icu",
@@ -271,11 +271,11 @@
           },
           {
             "name": "lerc",
-            "version": "4.0.0"
+            "version": "4.1.0"
           },
           {
             "name": "libX11",
-            "version": "1.8.13,1"
+            "version": "1.8.13_1,1"
           },
           {
             "name": "libXScrnSaver",
@@ -327,7 +327,7 @@
           },
           {
             "name": "libXxf86vm",
-            "version": "1.1.6"
+            "version": "1.1.7"
           },
           {
             "name": "libass",
@@ -371,7 +371,7 @@
           },
           {
             "name": "libgcrypt",
-            "version": "1.12.0_1"
+            "version": "1.12.2"
           },
           {
             "name": "libglvnd",
@@ -379,11 +379,11 @@
           },
           {
             "name": "libgpg-error",
-            "version": "1.59"
+            "version": "1.60"
           },
           {
             "name": "libheif",
-            "version": "1.21.2_2"
+            "version": "1.21.2_3"
           },
           {
             "name": "libiconv",
@@ -392,10 +392,6 @@
           {
             "name": "libidn2",
             "version": "2.3.8"
-          },
-          {
-            "name": "libinotify",
-            "version": "20240724_3"
           },
           {
             "name": "libjpeg-turbo",
@@ -411,7 +407,7 @@
           },
           {
             "name": "libpciaccess",
-            "version": "0.18.1_1"
+            "version": "0.19"
           },
           {
             "name": "libplacebo",
@@ -419,7 +415,7 @@
           },
           {
             "name": "librsvg2-rust",
-            "version": "2.62.0_1"
+            "version": "2.62.0_2"
           },
           {
             "name": "libtasn1",
@@ -439,7 +435,7 @@
           },
           {
             "name": "libunibreak",
-            "version": "6.1,1"
+            "version": "7.0,1"
           },
           {
             "name": "libunistring",
@@ -451,7 +447,7 @@
           },
           {
             "name": "libuv",
-            "version": "1.52.0"
+            "version": "1.52.1"
           },
           {
             "name": "libv4l",
@@ -487,7 +483,7 @@
           },
           {
             "name": "libxml2",
-            "version": "2.15.2"
+            "version": "2.15.3"
           },
           {
             "name": "libxshmfence",
@@ -499,7 +495,7 @@
           },
           {
             "name": "lzo2",
-            "version": "2.10_1"
+            "version": "2.10_2"
           },
           {
             "name": "mesa-libs",
@@ -507,7 +503,7 @@
           },
           {
             "name": "mpc",
-            "version": "1.4.0"
+            "version": "1.4.1"
           },
           {
             "name": "mpdecimal",
@@ -531,7 +527,7 @@
           },
           {
             "name": "openexr",
-            "version": "3.4.9"
+            "version": "3.4.11"
           },
           {
             "name": "openh264",
@@ -543,7 +539,7 @@
           },
           {
             "name": "openjph",
-            "version": "0.26.3"
+            "version": "0.27.0"
           },
           {
             "name": "openldap26-client",
@@ -551,7 +547,7 @@
           },
           {
             "name": "openssl",
-            "version": "3.0.19,1"
+            "version": "3.0.20,1"
           },
           {
             "name": "opus",
@@ -571,15 +567,15 @@
           },
           {
             "name": "pixman",
-            "version": "0.46.2"
+            "version": "0.46.4"
           },
           {
             "name": "pkg",
-            "version": "2.6.2_1"
+            "version": "2.7.5"
           },
           {
             "name": "png",
-            "version": "1.6.57"
+            "version": "1.6.58"
           },
           {
             "name": "postgresql17-client",
@@ -590,12 +586,12 @@
             "version": "1.89.0"
           },
           {
-            "name": "py311-numpy",
-            "version": "1.26.4_12,1"
+            "name": "py311-numpy1",
+            "version": "1.26.4_3"
           },
           {
             "name": "py311-packaging",
-            "version": "26.0"
+            "version": "26.2"
           },
           {
             "name": "py312-sqlite3",
@@ -619,11 +615,11 @@
           },
           {
             "name": "sdl2",
-            "version": "2.32.10"
+            "version": "2.32.10_2"
           },
           {
             "name": "shaderc",
-            "version": "2026.1"
+            "version": "2026.2"
           },
           {
             "name": "shared-mime-info",
@@ -642,34 +638,6 @@
             "version": "1.5.4"
           },
           {
-            "name": "suitesparse-amd",
-            "version": "3.3.4"
-          },
-          {
-            "name": "suitesparse-camd",
-            "version": "3.3.5"
-          },
-          {
-            "name": "suitesparse-ccolamd",
-            "version": "3.3.5"
-          },
-          {
-            "name": "suitesparse-cholmod",
-            "version": "5.3.4"
-          },
-          {
-            "name": "suitesparse-colamd",
-            "version": "3.3.5"
-          },
-          {
-            "name": "suitesparse-config",
-            "version": "7.12.2"
-          },
-          {
-            "name": "suitesparse-umfpack",
-            "version": "6.3.7"
-          },
-          {
             "name": "svt-av1",
             "version": "4.1.0"
           },
@@ -679,11 +647,11 @@
           },
           {
             "name": "vmaf",
-            "version": "3.0.0"
+            "version": "3.1.0"
           },
           {
             "name": "vulkan-loader",
-            "version": "1.4.336"
+            "version": "1.4.349"
           },
           {
             "name": "wayland",
@@ -703,7 +671,7 @@
           },
           {
             "name": "xorgproto",
-            "version": "2024.1"
+            "version": "2025.1"
           },
           {
             "name": "xxhash",
@@ -726,7 +694,7 @@
         "python": [
           {
             "name": "Authlib",
-            "version": "1.7.0"
+            "version": "1.7.2"
           },
           {
             "name": "Jinja2",
@@ -830,7 +798,7 @@
           },
           {
             "name": "cryptography",
-            "version": "47.0.0"
+            "version": "48.0.0"
           },
           {
             "name": "distro",
@@ -862,7 +830,7 @@
           },
           {
             "name": "gunicorn",
-            "version": "25.3.0"
+            "version": "26.0.0"
           },
           {
             "name": "h11",
@@ -934,7 +902,7 @@
           },
           {
             "name": "joserfc",
-            "version": "1.6.4"
+            "version": "1.6.5"
           },
           {
             "name": "jstyleson",
@@ -950,7 +918,7 @@
           },
           {
             "name": "mealie",
-            "version": "3.16.0"
+            "version": "3.17.0"
           },
           {
             "name": "mf2py",
@@ -974,11 +942,11 @@
           },
           {
             "name": "openai",
-            "version": "2.33.0"
+            "version": "2.35.1"
           },
           {
             "name": "orjson",
-            "version": "3.11.8"
+            "version": "3.11.9"
           },
           {
             "name": "packaging",
@@ -1022,7 +990,7 @@
           },
           {
             "name": "pydantic",
-            "version": "2.13.3"
+            "version": "2.13.4"
           },
           {
             "name": "pydantic-settings",
@@ -1030,7 +998,7 @@
           },
           {
             "name": "pydantic_core",
-            "version": "2.46.3"
+            "version": "2.46.4"
           },
           {
             "name": "pyhumps",
@@ -1183,7 +1151,7 @@
       "source": "upstream",
       "summary": {
         "dotnet": 0,
-        "freebsd": 176,
+        "freebsd": 168,
         "go": 0,
         "java": 0,
         "node": 1,
@@ -1191,7 +1159,7 @@
         "python": 113,
         "ruby": 0,
         "rust": 0,
-        "total": 290
+        "total": 282
       }
     }
   }
