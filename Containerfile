@@ -4,7 +4,7 @@
 # Source: Containerfile.j2
 # --------------------------------------------------------------------------
 
-ARG BASE_VERSION=15
+ARG BASE_VERSION=15-latest
 FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
 
 # Install build dependencies
@@ -37,7 +37,7 @@ ENV CFLAGS="-I/usr/local/include -I/usr/local/include/libxml2" \
     CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
 
 # Build Rust-based packages with pip (orjson, pydantic-core need Rust)
-# These aren't available as py312 packages yet
+# These aren't available as py312 packages yet.
 RUN pip install --no-cache-dir orjson pydantic-core pydantic && \
     rm -rf /root/.cargo /root/.cache
 

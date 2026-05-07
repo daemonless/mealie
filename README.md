@@ -10,7 +10,6 @@ Source: dbuild templates
 
 Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web.
 
-
 | | |
 |---|---|
 | **Port** | 9000 |
@@ -127,8 +126,6 @@ podman run -d --name mealie \
     volumes:
       - "/path/to/containers/mealie:/config"
 ```
-
-Access at: `http://localhost:9000`
 
 ## Parameters
 
