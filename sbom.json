@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-07T14:24:39Z",
+  "generated": "2026-05-18T13:21:50Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.17.0",
       "arch": "amd64",
-      "generated": "2026-05-07T14:23:14Z",
+      "generated": "2026-05-18T13:20:30Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -135,11 +135,11 @@
           },
           {
             "name": "Imath",
-            "version": "3.2.2_3"
+            "version": "3.2.2_4"
           },
           {
             "name": "aom",
-            "version": "3.13.3"
+            "version": "3.14.0"
           },
           {
             "name": "bash",
@@ -159,7 +159,7 @@
           },
           {
             "name": "ca_root_nss",
-            "version": "3.117_2"
+            "version": "3.124"
           },
           {
             "name": "cairo",
@@ -179,11 +179,11 @@
           },
           {
             "name": "expat",
-            "version": "2.8.0"
+            "version": "2.8.1"
           },
           {
             "name": "ffmpeg",
-            "version": "8.1,1"
+            "version": "8.1.1,1"
           },
           {
             "name": "fontconfig",
@@ -207,7 +207,7 @@
           },
           {
             "name": "gettext-runtime",
-            "version": "1.0"
+            "version": "1.0_1"
           },
           {
             "name": "giflib",
@@ -239,7 +239,7 @@
           },
           {
             "name": "hwdata",
-            "version": "0.406,1"
+            "version": "0.407,1"
           },
           {
             "name": "icu",
@@ -267,7 +267,7 @@
           },
           {
             "name": "lcms2",
-            "version": "2.19"
+            "version": "2.19.1"
           },
           {
             "name": "lerc",
@@ -291,7 +291,7 @@
           },
           {
             "name": "libXdamage",
-            "version": "1.1.6"
+            "version": "1.1.7"
           },
           {
             "name": "libXdmcp",
@@ -299,7 +299,7 @@
           },
           {
             "name": "libXext",
-            "version": "1.3.6,1"
+            "version": "1.3.7,1"
           },
           {
             "name": "libXfixes",
@@ -347,7 +347,7 @@
           },
           {
             "name": "libdrm",
-            "version": "2.4.131,1"
+            "version": "2.4.133,1"
           },
           {
             "name": "libdvdnav",
@@ -379,7 +379,7 @@
           },
           {
             "name": "libgpg-error",
-            "version": "1.60"
+            "version": "1.61"
           },
           {
             "name": "libheif",
@@ -523,7 +523,7 @@
           },
           {
             "name": "openblas",
-            "version": "0.3.30,2"
+            "version": "0.3.33,2"
           },
           {
             "name": "openexr",
@@ -539,7 +539,7 @@
           },
           {
             "name": "openjph",
-            "version": "0.27.0"
+            "version": "0.27.2"
           },
           {
             "name": "openldap26-client",
@@ -579,15 +579,15 @@
           },
           {
             "name": "postgresql17-client",
-            "version": "17.9"
+            "version": "17.10"
           },
           {
             "name": "py311-boost-libs",
             "version": "1.89.0"
           },
           {
-            "name": "py311-numpy1",
-            "version": "1.26.4_3"
+            "name": "py311-numpy",
+            "version": "2.4.4_3,1"
           },
           {
             "name": "py311-packaging",
@@ -651,7 +651,7 @@
           },
           {
             "name": "vulkan-loader",
-            "version": "1.4.349"
+            "version": "1.4.350.0"
           },
           {
             "name": "wayland",
@@ -686,8 +686,48 @@
         "java": [],
         "node": [
           {
+            "name": "@jupyterlite/app",
+            "version": "0.5.1"
+          },
+          {
+            "name": "@jupyterlite/app-consoles",
+            "version": "0.5.1"
+          },
+          {
+            "name": "@jupyterlite/app-edit",
+            "version": "0.5.1"
+          },
+          {
+            "name": "@jupyterlite/app-lab",
+            "version": "0.5.1"
+          },
+          {
+            "name": "@jupyterlite/app-notebooks",
+            "version": "0.5.1"
+          },
+          {
+            "name": "@jupyterlite/app-repl",
+            "version": "0.5.1"
+          },
+          {
+            "name": "@jupyterlite/app-tree",
+            "version": "0.5.1"
+          },
+          {
+            "name": "@jupyterlite/pyodide-kernel-extension",
+            "version": "0.5.2"
+          },
+          {
             "name": "MathJax-grunt-cleaner",
             "version": "0.1.0"
+          },
+          {
+            "name": "jupyterlab-jupytext",
+            "version": "1.4.5"
+          },
+          {
+            "name": "jupyterlab_pygments",
+            "version": "0.3.0"
           }
         ],
         "php": [],
@@ -794,7 +834,7 @@
           },
           {
             "name": "click",
-            "version": "8.3.3"
+            "version": "8.4.0"
           },
           {
             "name": "cryptography",
@@ -862,7 +902,7 @@
           },
           {
             "name": "idna",
-            "version": "3.13"
+            "version": "3.15"
           },
           {
             "name": "importlib_metadata",
@@ -934,7 +974,7 @@
           },
           {
             "name": "numpy",
-            "version": "1.26.4"
+            "version": "2.4.4"
           },
           {
             "name": "oauthlib",
@@ -942,7 +982,7 @@
           },
           {
             "name": "openai",
-            "version": "2.35.1"
+            "version": "2.37.0"
           },
           {
             "name": "orjson",
@@ -994,7 +1034,7 @@
           },
           {
             "name": "pydantic-settings",
-            "version": "2.14.0"
+            "version": "2.14.1"
           },
           {
             "name": "pydantic_core",
@@ -1026,11 +1066,11 @@
           },
           {
             "name": "python-ldap",
-            "version": "3.4.5"
+            "version": "3.4.6"
           },
           {
             "name": "python-multipart",
-            "version": "0.0.27"
+            "version": "0.0.29"
           },
           {
             "name": "python-slugify",
@@ -1046,11 +1086,11 @@
           },
           {
             "name": "regex",
-            "version": "2026.4.4"
+            "version": "2026.5.9"
           },
           {
             "name": "requests",
-            "version": "2.33.1"
+            "version": "2.34.2"
           },
           {
             "name": "requests-oauthlib",
@@ -1106,11 +1146,11 @@
           },
           {
             "name": "urllib3",
-            "version": "2.6.3"
+            "version": "2.7.0"
           },
           {
             "name": "uvicorn",
-            "version": "0.46.0"
+            "version": "0.47.0"
           },
           {
             "name": "uvloop",
@@ -1122,7 +1162,7 @@
           },
           {
             "name": "watchfiles",
-            "version": "1.1.1"
+            "version": "1.2.0"
           },
           {
             "name": "webencodings",
@@ -1154,12 +1194,12 @@
         "freebsd": 168,
         "go": 0,
         "java": 0,
-        "node": 1,
+        "node": 11,
         "php": 0,
         "python": 113,
         "ruby": 0,
         "rust": 0,
-        "total": 282
+        "total": 292
       }
     }
   }
