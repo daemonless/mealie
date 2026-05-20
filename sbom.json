@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-18T13:21:50Z",
+  "generated": "2026-05-20T17:11:18Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.17.0",
+      "app_version": "v3.18.0",
       "arch": "amd64",
-      "generated": "2026-05-18T13:20:30Z",
+      "generated": "2026-05-20T17:09:39Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -822,7 +822,7 @@
           },
           {
             "name": "certifi",
-            "version": "2026.4.22"
+            "version": "2026.5.20"
           },
           {
             "name": "cffi",
@@ -866,7 +866,7 @@
           },
           {
             "name": "greenlet",
-            "version": "3.5.0"
+            "version": "3.5.1"
           },
           {
             "name": "gunicorn",
@@ -934,7 +934,7 @@
           },
           {
             "name": "jiter",
-            "version": "0.14.0"
+            "version": "0.15.0"
           },
           {
             "name": "joblib",
@@ -950,15 +950,15 @@
           },
           {
             "name": "lxml",
-            "version": "6.1.0"
+            "version": "6.1.1"
           },
           {
             "name": "lxml_html_clean",
-            "version": "0.4.4"
+            "version": "0.4.5"
           },
           {
             "name": "mealie",
-            "version": "3.17.0"
+            "version": "3.18.0"
           },
           {
             "name": "mf2py",
@@ -1066,7 +1066,7 @@
           },
           {
             "name": "python-ldap",
-            "version": "3.4.6"
+            "version": "3.4.7"
           },
           {
             "name": "python-multipart",
