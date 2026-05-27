@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-24T21:07:57Z",
+  "generated": "2026-05-27T17:45:53Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.19.0",
+      "app_version": "v3.19.1",
       "arch": "amd64",
-      "generated": "2026-05-24T21:06:40Z",
+      "generated": "2026-05-27T17:44:34Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -59,7 +59,7 @@
           },
           {
             "name": "FreeBSD-libcasper",
-            "version": "15.0"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-libexecinfo",
@@ -103,7 +103,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p8"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -115,7 +115,7 @@
           },
           {
             "name": "FreeBSD-utilities",
-            "version": "15.0p1"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-xz-lib",
@@ -894,7 +894,7 @@
           },
           {
             "name": "httptools",
-            "version": "0.7.1"
+            "version": "0.8.0"
           },
           {
             "name": "httpx",
@@ -910,7 +910,7 @@
           },
           {
             "name": "ingredient_parser_nlp",
-            "version": "2.6.0"
+            "version": "2.7.0"
           },
           {
             "name": "isodate",
@@ -942,7 +942,7 @@
           },
           {
             "name": "joserfc",
-            "version": "1.6.7"
+            "version": "1.6.8"
           },
           {
             "name": "jstyleson",
@@ -958,7 +958,7 @@
           },
           {
             "name": "mealie",
-            "version": "3.19.0"
+            "version": "3.19.1"
           },
           {
             "name": "mf2py",
@@ -1051,10 +1051,6 @@
           {
             "name": "pyrdfa3",
             "version": "3.6.5"
-          },
-          {
-            "name": "python-crfsuite",
-            "version": "0.9.12"
           },
           {
             "name": "python-dateutil",
@@ -1196,10 +1192,10 @@
         "java": 0,
         "node": 11,
         "php": 0,
-        "python": 113,
+        "python": 112,
         "ruby": 0,
         "rust": 0,
-        "total": 292
+        "total": 291
       }
     }
   }
