@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-29T07:57:04Z",
+  "generated": "2026-06-13T00:16:03Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.19.2",
       "arch": "amd64",
-      "generated": "2026-05-29T07:55:44Z",
+      "generated": "2026-06-13T00:14:43Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -23,7 +23,7 @@
           },
           {
             "name": "FreeBSD-certctl",
-            "version": "15.0"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-clibs",
@@ -43,15 +43,15 @@
           },
           {
             "name": "FreeBSD-fetch",
-            "version": "15.0"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-kerberos-lib",
-            "version": "15.0"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-libarchive",
-            "version": "15.0"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-libbsdstat",
@@ -67,7 +67,7 @@
           },
           {
             "name": "FreeBSD-libldns",
-            "version": "15.0"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-libmagic",
@@ -87,15 +87,15 @@
           },
           {
             "name": "FreeBSD-openssl",
-            "version": "15.0p2"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-openssl-lib",
-            "version": "15.0p2"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-pkg-bootstrap",
-            "version": "15.0"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-rc",
@@ -103,7 +103,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p9"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -115,7 +115,7 @@
           },
           {
             "name": "FreeBSD-utilities",
-            "version": "15.0p9"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-xz-lib",
@@ -123,7 +123,7 @@
           },
           {
             "name": "FreeBSD-zfs-lib",
-            "version": "15.0"
+            "version": "15.0p10"
           },
           {
             "name": "FreeBSD-zlib",
@@ -143,7 +143,7 @@
           },
           {
             "name": "bash",
-            "version": "5.3.9"
+            "version": "5.3.15"
           },
           {
             "name": "binutils",
@@ -359,7 +359,7 @@
           },
           {
             "name": "libedit",
-            "version": "3.1.20251016_1,1"
+            "version": "3.1.20260512,1"
           },
           {
             "name": "libepoll-shim",
@@ -367,7 +367,7 @@
           },
           {
             "name": "libffi",
-            "version": "3.5.1"
+            "version": "3.5.2"
           },
           {
             "name": "libgcrypt",
@@ -383,7 +383,7 @@
           },
           {
             "name": "libheif",
-            "version": "1.21.2_3"
+            "version": "1.22.2"
           },
           {
             "name": "libiconv",
@@ -419,7 +419,7 @@
           },
           {
             "name": "librsvg2-rust",
-            "version": "2.62.0_2"
+            "version": "2.62.2_1"
           },
           {
             "name": "libtasn1",
@@ -531,7 +531,7 @@
           },
           {
             "name": "openexr",
-            "version": "3.4.11"
+            "version": "3.4.12"
           },
           {
             "name": "openh264",
@@ -551,7 +551,7 @@
           },
           {
             "name": "openssl",
-            "version": "3.0.20,1"
+            "version": "3.0.21,1"
           },
           {
             "name": "opus",
@@ -591,7 +591,7 @@
           },
           {
             "name": "py311-numpy",
-            "version": "2.4.6,1"
+            "version": "2.4.6_1,1"
           },
           {
             "name": "py311-packaging",
@@ -623,7 +623,7 @@
           },
           {
             "name": "shaderc",
-            "version": "2026.2"
+            "version": "2026.2_1"
           },
           {
             "name": "shared-mime-info",
@@ -635,11 +635,11 @@
           },
           {
             "name": "sqlite3",
-            "version": "3.50.4_2,1"
+            "version": "3.53.1,1"
           },
           {
             "name": "srt",
-            "version": "1.5.4"
+            "version": "1.5.5"
           },
           {
             "name": "svt-av1",
@@ -806,7 +806,7 @@
           },
           {
             "name": "apprise",
-            "version": "1.10.0"
+            "version": "1.11.0"
           },
           {
             "name": "autocommand",
@@ -822,7 +822,7 @@
           },
           {
             "name": "beautifulsoup4",
-            "version": "4.14.3"
+            "version": "4.15.0"
           },
           {
             "name": "certifi",
@@ -842,7 +842,7 @@
           },
           {
             "name": "cryptography",
-            "version": "48.0.0"
+            "version": "49.0.0"
           },
           {
             "name": "distro",
@@ -906,7 +906,7 @@
           },
           {
             "name": "idna",
-            "version": "3.17"
+            "version": "3.18"
           },
           {
             "name": "importlib_metadata",
@@ -946,7 +946,7 @@
           },
           {
             "name": "joserfc",
-            "version": "1.6.8"
+            "version": "1.7.1"
           },
           {
             "name": "jstyleson",
@@ -986,7 +986,7 @@
           },
           {
             "name": "openai",
-            "version": "2.38.0"
+            "version": "2.41.1"
           },
           {
             "name": "orjson",
@@ -1006,7 +1006,7 @@
           },
           {
             "name": "pillow_heif",
-            "version": "1.3.0"
+            "version": "1.4.0"
           },
           {
             "name": "pip",
@@ -1070,7 +1070,7 @@
           },
           {
             "name": "python-multipart",
-            "version": "0.0.29"
+            "version": "0.0.32"
           },
           {
             "name": "python-slugify",
@@ -1118,7 +1118,7 @@
           },
           {
             "name": "starlette",
-            "version": "1.2.0"
+            "version": "1.3.1"
           },
           {
             "name": "text-unidecode",
@@ -1130,7 +1130,7 @@
           },
           {
             "name": "tqdm",
-            "version": "4.67.3"
+            "version": "4.68.2"
           },
           {
             "name": "typing-inspection",
@@ -1150,7 +1150,7 @@
           },
           {
             "name": "uvicorn",
-            "version": "0.48.0"
+            "version": "0.49.0"
           },
           {
             "name": "uvloop",
@@ -1178,7 +1178,7 @@
           },
           {
             "name": "yt-dlp",
-            "version": "2026.3.17"
+            "version": "2026.6.9"
           },
           {
             "name": "zipp",
