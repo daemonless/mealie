@@ -34,17 +34,17 @@ Before deploying, ensure your host environment is ready. See the [Quick Start Gu
 ```yaml
 services:
   mealie:
-    image: ghcr.io/daemonless/mealie:latest
+    image: "ghcr.io/daemonless/mealie:latest"
     container_name: mealie
     environment:
-      - BASE_URL=http://localhost:9000
-      - PUID=1000
-      - PGID=1000
-      - TZ=UTC
+      - BASE_URL=http://localhost:9000  # The base URL for the application (e.g. https://mealie.example.com)
+      - PUID=1000  # User ID for the application process
+      - PGID=1000  # Group ID for the application process
+      - TZ=UTC  # Timezone for the container
     volumes:
       - "/path/to/containers/mealie:/config"
     ports:
-      - 9000:9000
+      - "9000:9000"
     restart: unless-stopped
 ```
 
@@ -113,7 +113,7 @@ podman run -d --name mealie \
 - name: Deploy mealie
   containers.podman.podman_container:
     name: mealie
-    image: ghcr.io/daemonless/mealie:latest
+    image: "ghcr.io/daemonless/mealie:latest"
     state: started
     restart_policy: always
     env:
@@ -126,6 +126,8 @@ podman run -d --name mealie \
     volumes:
       - "/path/to/containers/mealie:/config"
 ```
+
+Access at: `http://localhost:9000`
 
 ## Parameters
 
@@ -171,7 +173,7 @@ services:
       - POSTGRES_PORT=5432
       - POSTGRES_DB=mealie
     volumes:
-      - @CONTAINER_CONFIG_ROOT@/@MEALIE_CONFIG_PATH@:/config
+      - "@CONTAINER_CONFIG_ROOT@/@MEALIE_CONFIG_PATH@:/config"
     ports:
       - "@MEALIE_PORT@:9000"
     depends_on:
@@ -187,7 +189,7 @@ services:
       - POSTGRES_PASSWORD=changeme
       - POSTGRES_DB=mealie
     volumes:
-      - @CONTAINER_CONFIG_ROOT@/mealie-postgres:/config
+      - "@CONTAINER_CONFIG_ROOT@/mealie-postgres:/config"
     network_mode: host
     restart: unless-stopped
 ```

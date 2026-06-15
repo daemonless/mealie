@@ -34,7 +34,7 @@ x-daemonless:
           - POSTGRES_PORT=5432
           - POSTGRES_DB=mealie
         volumes:
-          - @CONTAINER_CONFIG_ROOT@/@MEALIE_CONFIG_PATH@:/config
+          - "@CONTAINER_CONFIG_ROOT@/@MEALIE_CONFIG_PATH@:/config"
         ports:
           - "@MEALIE_PORT@:9000"
         depends_on:
@@ -50,7 +50,7 @@ x-daemonless:
           - POSTGRES_PASSWORD=changeme
           - POSTGRES_DB=mealie
         volumes:
-          - @CONTAINER_CONFIG_ROOT@/mealie-postgres:/config
+          - "@CONTAINER_CONFIG_ROOT@/mealie-postgres:/config"
         network_mode: host
         restart: unless-stopped
     ```
