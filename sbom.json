@@ -1,11 +1,11 @@
 {
-  "generated": "2026-06-24T14:06:31Z",
+  "generated": "2026-06-24T16:27:23Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.19.2",
+      "app_version": "v3.20.0",
       "arch": "amd64",
-      "generated": "2026-06-24T14:05:09Z",
+      "generated": "2026-06-24T16:26:04Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -986,7 +986,7 @@
           },
           {
             "name": "mealie",
-            "version": "3.19.2"
+            "version": "3.20.0"
           },
           {
             "name": "mf2py",
