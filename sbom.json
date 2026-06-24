@@ -1,11 +1,11 @@
 {
-  "generated": "2026-06-13T00:16:03Z",
+  "generated": "2026-06-24T14:06:31Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.19.2",
       "arch": "amd64",
-      "generated": "2026-06-13T00:14:43Z",
+      "generated": "2026-06-24T14:05:09Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -139,7 +139,7 @@
           },
           {
             "name": "aom",
-            "version": "3.14.0"
+            "version": "3.14.1"
           },
           {
             "name": "bash",
@@ -183,7 +183,7 @@
           },
           {
             "name": "ffmpeg",
-            "version": "8.1.1,1"
+            "version": "8.1.2,1"
           },
           {
             "name": "fontconfig",
@@ -231,7 +231,7 @@
           },
           {
             "name": "harfbuzz",
-            "version": "13.2.1"
+            "version": "14.2.1"
           },
           {
             "name": "highway",
@@ -239,7 +239,7 @@
           },
           {
             "name": "hwdata",
-            "version": "0.407,1"
+            "version": "0.408,1"
           },
           {
             "name": "icu",
@@ -346,6 +346,10 @@
             "version": "1.25"
           },
           {
+            "name": "libdisplay-info",
+            "version": "0.3.0"
+          },
+          {
             "name": "libdrm",
             "version": "2.4.133,1"
           },
@@ -419,7 +423,7 @@
           },
           {
             "name": "librsvg2-rust",
-            "version": "2.62.2_1"
+            "version": "2.62.3"
           },
           {
             "name": "libtasn1",
@@ -498,12 +502,20 @@
             "version": "1.1.45"
           },
           {
+            "name": "llvm19",
+            "version": "19.1.7_3"
+          },
+          {
+            "name": "lua53",
+            "version": "5.3.6_1"
+          },
+          {
             "name": "lzo2",
             "version": "2.10_2"
           },
           {
             "name": "mesa-libs",
-            "version": "24.1.7_1"
+            "version": "26.0.6"
           },
           {
             "name": "mpc",
@@ -531,7 +543,7 @@
           },
           {
             "name": "openexr",
-            "version": "3.4.12"
+            "version": "3.4.13"
           },
           {
             "name": "openh264",
@@ -563,11 +575,15 @@
           },
           {
             "name": "pango",
-            "version": "1.56.4_1"
+            "version": "1.57.1"
           },
           {
             "name": "pcre2",
             "version": "10.47_1"
+          },
+          {
+            "name": "perl5",
+            "version": "5.42.2"
           },
           {
             "name": "pixman",
@@ -603,11 +619,11 @@
           },
           {
             "name": "python311",
-            "version": "3.11.15_2"
+            "version": "3.11.15_4"
           },
           {
             "name": "python312",
-            "version": "3.12.13_2"
+            "version": "3.12.13_3"
           },
           {
             "name": "readline",
@@ -634,6 +650,14 @@
             "version": "2.14.5.1"
           },
           {
+            "name": "spirv-llvm-translator-llvm19",
+            "version": "19.1.19"
+          },
+          {
+            "name": "spirv-tools",
+            "version": "2026.2"
+          },
+          {
             "name": "sqlite3",
             "version": "3.53.1,1"
           },
@@ -655,7 +679,7 @@
           },
           {
             "name": "vulkan-loader",
-            "version": "1.4.350.0"
+            "version": "1.4.354"
           },
           {
             "name": "wayland",
@@ -774,7 +798,7 @@
           },
           {
             "name": "SQLAlchemy",
-            "version": "2.0.50"
+            "version": "2.0.51"
           },
           {
             "name": "aiofiles",
@@ -798,7 +822,7 @@
           },
           {
             "name": "anyio",
-            "version": "4.13.0"
+            "version": "4.14.0"
           },
           {
             "name": "appdirs",
@@ -826,7 +850,7 @@
           },
           {
             "name": "certifi",
-            "version": "2026.5.20"
+            "version": "2026.6.17"
           },
           {
             "name": "cffi",
@@ -858,7 +882,7 @@
           },
           {
             "name": "fastapi",
-            "version": "0.136.3"
+            "version": "0.138.0"
           },
           {
             "name": "flexcache",
@@ -870,7 +894,7 @@
           },
           {
             "name": "greenlet",
-            "version": "3.5.1"
+            "version": "3.5.2"
           },
           {
             "name": "gunicorn",
@@ -986,7 +1010,7 @@
           },
           {
             "name": "openai",
-            "version": "2.41.1"
+            "version": "2.43.0"
           },
           {
             "name": "orjson",
@@ -1038,7 +1062,7 @@
           },
           {
             "name": "pydantic-settings",
-            "version": "2.14.1"
+            "version": "2.14.2"
           },
           {
             "name": "pydantic_core",
@@ -1130,7 +1154,7 @@
           },
           {
             "name": "tqdm",
-            "version": "4.68.2"
+            "version": "4.68.3"
           },
           {
             "name": "typing-inspection",
@@ -1191,7 +1215,7 @@
       "source": "upstream",
       "summary": {
         "dotnet": 0,
-        "freebsd": 169,
+        "freebsd": 175,
         "go": 0,
         "java": 0,
         "node": 11,
@@ -1199,7 +1223,7 @@
         "python": 112,
         "ruby": 0,
         "rust": 0,
-        "total": 292
+        "total": 298
       }
     }
   }
