@@ -4,7 +4,7 @@
 # Source: Containerfile.j2
 # --------------------------------------------------------------------------
 
-ARG BASE_VERSION=15-latest
+ARG BASE_VERSION=15.1-latest
 FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
 
 # Install build dependencies

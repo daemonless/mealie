@@ -18,13 +18,11 @@ Intuitive self-hosted recipe management app designed to be the best recipe manag
 | **Website** | [https://mealie.io/](https://mealie.io/) |
 
 ## Version Tags
-
 | Tag | Description | Best For |
 | :--- | :--- | :--- |
 | `latest` | **Upstream Binary**. Built from official release. | Most users. Matches Linux Docker behavior. |
 
 ## Prerequisites
-
 Before deploying, ensure your host environment is ready. See the [Quick Start Guide](https://daemonless.io/guides/quick-start) for host setup instructions.
 
 ## Deployment
@@ -49,10 +47,11 @@ services:
 ```
 
 ### AppJail Director
-
 **.env**:
 
 ```
+# .env
+
 DIRECTOR_PROJECT=mealie
 BASE_URL=http://localhost:9000
 PUID=1000
@@ -63,6 +62,8 @@ TZ=UTC
 **appjail-director.yml**:
 
 ```yaml
+# appjail-director.yml
+
 options:
   - virtualnet: ':<random> default'
   - nat:
@@ -71,6 +72,7 @@ services:
     name: mealie
     options:
       - container: 'boot args:--pull'
+      - expose: '9000:9000 proto:tcp' \
     oci:
       user: root
       environment:
@@ -88,11 +90,14 @@ volumes:
 **Makejail**:
 
 ```
+# Makejail
+
 ARG tag=latest
 
 OPTION overwrite=force
 OPTION from=ghcr.io/daemonless/mealie:${tag}
 ```
+**Note**: Exposing ports in AppJail means that your service can be reached from remote hosts. If that is not your intention, do not expose the ports and communicate with the service using the IPv4 address assigned by the virtual network.
 
 ### Podman CLI
 
@@ -106,6 +111,24 @@ podman run -d --name mealie \
   -v /path/to/containers/mealie:/config \
   ghcr.io/daemonless/mealie:latest
 ```
+
+### AppJail
+
+```bash
+appjail oci run -Pd \
+  -o overwrite=force \
+  -o container="args:--pull" \
+  -o virtualnet=":<random> default" \
+  -o nat \
+  -o expose="9000:9000 proto:tcp" \
+  -e BASE_URL=http://localhost:9000 \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=UTC \
+  -o fstab="/path/to/containers/mealie /config <pseudofs>" \
+  ghcr.io/daemonless/mealie:latest mealie
+```
+**Note**: Exposing ports in AppJail means that your service can be reached from remote hosts. If that is not your intention, do not expose the ports and communicate with the service using the IPv4 address assigned by the virtual network.
 
 ### Ansible
 
@@ -215,7 +238,7 @@ See [daemonless/postgres README](https://github.com/daemonless/postgres#migratin
 
 **Architectures:** amd64
 **User:** `bsd` (UID/GID via PUID/PGID, defaults to 1000:1000)
-**Base:** FreeBSD 15.0
+**Base:** FreeBSD 15.1-latest
 
 ---
 
