@@ -89,7 +89,7 @@ services:
     image: ghcr.io/daemonless/mealie:latest
     container_name: mealie
     restart: unless-stopped
-    
+
     environment:
       - BASE_URL=http://localhost:9000
       - PUID=1000

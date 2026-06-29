@@ -13,7 +13,18 @@ RUN pkg update && \
     FreeBSD-clibs-dev FreeBSD-runtime-dev FreeBSD-libexecinfo-dev \
     FreeBSD-bmake FreeBSD-clang FreeBSD-clang-dev FreeBSD-toolchain \
     FreeBSD-utilities-dev FreeBSD-zlib-dev FreeBSD-audit-dev \
-    python312 py312-sqlite3 \
+    python312 py312-pip py312-setuptools py312-wheel py312-sqlite3 \
+    py312-Jinja2 py312-pyyaml py312-aiofiles py312-alembic py312-apprise \
+    py312-bcrypt py312-beautifulsoup py312-extruct py312-fastapi \
+    py312-greenlet py312-html2text py312-httpx py312-joblib py312-lxml py312-mako \
+    py312-openai py312-orjson py312-pillow py312-pillow-heif \
+    py312-psycopg2 py312-pydantic2 py312-pydantic-core \
+    py312-pydantic-settings py312-python-dateutil py312-python-dotenv \
+    py312-python-ldap py312-python-multipart py312-python-slugify \
+    py312-regex py312-requests py312-sqlalchemy20 py312-tzdata py312-isodate \
+    py312-text-unidecode py312-rapidfuzz py312-authlib \
+    py312-pyjwt py312-typing-extensions py312-itsdangerous py312-uvicorn \
+    py312-yt-dlp py312-pint \
     rust gmake cmake pkgconf \
     libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg \
     lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
@@ -25,21 +36,12 @@ RUN MEALIE_VERSION=$(fetch -qo - https://api.github.com/repos/mealie-recipes/mea
     echo "MEALIE_VERSION=${MEALIE_VERSION}" > /tmp/mealie_version && \
     echo "Building Mealie ${MEALIE_VERSION}"
 
-# Bootstrap pip for python 3.12 (py312-pip doesn't exist yet)
-RUN python3.12 -m ensurepip --upgrade && \
-    python3.12 -m pip install --no-cache-dir --upgrade pip setuptools wheel
-
 ENV CFLAGS="-I/usr/local/include -I/usr/local/include/libxml2" \
     LDFLAGS="-L/usr/local/lib -L/usr/lib -L/lib" \
     LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib" \
     RUSTFLAGS="-C link-arg=-L/usr/lib -C link-arg=-L/lib" \
     CARGO_BUILD_JOBS=2 \
     CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16
-
-# Build Rust-based packages with pip (orjson, pydantic-core need Rust)
-# These aren't available as py312 packages yet.
-RUN pip install --no-cache-dir orjson pydantic-core pydantic && \
-    rm -rf /root/.cargo /root/.cache
 
 # Download Mealie
 RUN . /tmp/mealie_version && \
@@ -57,19 +59,14 @@ RUN cd /app/frontend && \
     yarn install && yarn generate && \
     rm -rf node_modules .yarn /root/.cache/yarn /root/.npm /usr/local/share/.cache
 
-# Create venv, copy ports packages, pip install the rest
+# Create venv, copy ports packages, pip install only packages that are missing
+# from FreeBSD ports or where the port currently lags Mealie's pinned version.
 RUN rm -rf /usr/local/lib/python3.12/site-packages/html5lib* && \
     python3.12 -m venv /opt/mealie && \
     cp -a /usr/local/lib/python3.12/site-packages/* /opt/mealie/lib/python3.12/site-packages/ && \
     /opt/mealie/bin/pip install --no-cache-dir \
-    fastapi uvicorn[standard] sqlalchemy alembic psycopg2-binary \
-    pydantic-settings pillow pillow-heif lxml beautifulsoup4 \
-    recipe-scrapers extruct html2text requests httpx aiofiles \
-    bcrypt pyjwt authlib python-ldap python-dotenv python-slugify \
-    python-dateutil pyyaml jinja2 appdirs apprise pyhumps tzdata \
-    isodate text-unidecode paho-mqtt aniso8601 itsdangerous nltk \
-    regex openai typing_extensions click gunicorn python-multipart \
-    rapidfuzz ingredient-parser-nlp yt-dlp pint && \
+    recipe-scrapers==15.11.0 paho-mqtt==1.6.1 pyhumps==3.8.0 \
+    ingredient-parser-nlp==2.7.0 && \
     /opt/mealie/bin/pip install --no-deps --no-cache-dir /app && \
     mkdir -p /opt/mealie/lib/python3.12/site-packages/httpx_curl_cffi && \
     printf 'import httpx\n\nclass AsyncCurlTransport(httpx.AsyncHTTPTransport):\n    """FreeBSD shim: curl_cffi is Linux-only; use standard httpx transport."""\n    def __init__(self, **kwargs):\n        super().__init__(**kwargs)\n' \
@@ -83,7 +80,7 @@ RUN mkdir -p /nltk_data && \
 ARG BASE_VERSION
 FROM ghcr.io/daemonless/base:${BASE_VERSION}
 ARG FREEBSD_ARCH=amd64
-ARG PACKAGES="python312 py312-sqlite3 libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv ca_root_nss"
+ARG PACKAGES="python312 py312-sqlite3 libffi webp tiff libxslt libxml2 libxcb libjpeg-turbo libheif libimagequant libavif openjpeg lcms2 freetype2 libraqm harfbuzz openldap26-client postgresql17-client openssl libuv ca_root_nss"
 ARG UPSTREAM_URL="https://api.github.com/repos/mealie-recipes/mealie/releases/latest"
 ARG UPSTREAM_JQ=".tag_name"
 ARG HEALTHCHECK_ENDPOINT="http://localhost:9000/api/app/about"
