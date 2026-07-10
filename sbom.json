@@ -1,11 +1,11 @@
 {
-  "generated": "2026-06-29T23:31:35Z",
+  "generated": "2026-07-10T22:47:41Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.20.1",
       "arch": "amd64",
-      "generated": "2026-06-29T23:30:17Z",
+      "generated": "2026-07-10T22:46:25Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -27,11 +27,11 @@
           },
           {
             "name": "FreeBSD-clibs",
-            "version": "15.1"
+            "version": "15.1p1"
           },
           {
             "name": "FreeBSD-clibs-lib32",
-            "version": "15.1"
+            "version": "15.1p1"
           },
           {
             "name": "FreeBSD-ctf-lib",
@@ -107,7 +107,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.1"
+            "version": "15.1p1"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -119,7 +119,7 @@
           },
           {
             "name": "FreeBSD-utilities",
-            "version": "15.1"
+            "version": "15.1p1"
           },
           {
             "name": "FreeBSD-xz-lib",
@@ -127,7 +127,7 @@
           },
           {
             "name": "FreeBSD-zfs-lib",
-            "version": "15.1"
+            "version": "15.1p1"
           },
           {
             "name": "FreeBSD-zlib",
@@ -147,7 +147,7 @@
           },
           {
             "name": "aom",
-            "version": "3.14.1"
+            "version": "3.14.1_1"
           },
           {
             "name": "bash",
@@ -175,7 +175,7 @@
           },
           {
             "name": "cyrus-sasl",
-            "version": "2.1.28_5"
+            "version": "2.1.28_6"
           },
           {
             "name": "dav1d",
@@ -187,11 +187,11 @@
           },
           {
             "name": "expat",
-            "version": "2.8.1"
+            "version": "2.8.2"
           },
           {
             "name": "ffmpeg",
-            "version": "8.1.2,1"
+            "version": "8.1.2_1,1"
           },
           {
             "name": "fontconfig",
@@ -235,7 +235,7 @@
           },
           {
             "name": "graphite2",
-            "version": "1.3.14"
+            "version": "1.3.15"
           },
           {
             "name": "harfbuzz",
@@ -247,7 +247,7 @@
           },
           {
             "name": "hwdata",
-            "version": "0.408,1"
+            "version": "0.409,1"
           },
           {
             "name": "icu",
@@ -267,7 +267,7 @@
           },
           {
             "name": "jq",
-            "version": "1.8.1"
+            "version": "1.8.2"
           },
           {
             "name": "lame",
@@ -399,7 +399,7 @@
           },
           {
             "name": "libheif",
-            "version": "1.22.2"
+            "version": "1.22.2_1"
           },
           {
             "name": "libiconv",
@@ -419,7 +419,7 @@
           },
           {
             "name": "libjxl",
-            "version": "0.11.2"
+            "version": "0.12.0"
           },
           {
             "name": "liblz4",
@@ -483,7 +483,7 @@
           },
           {
             "name": "libva",
-            "version": "2.23.0"
+            "version": "2.24.1"
           },
           {
             "name": "libvdpau",
@@ -539,7 +539,7 @@
           },
           {
             "name": "mesa-libs",
-            "version": "26.0.6"
+            "version": "26.1.3"
           },
           {
             "name": "mpc",
@@ -567,7 +567,7 @@
           },
           {
             "name": "openexr",
-            "version": "3.4.13"
+            "version": "3.4.13_1"
           },
           {
             "name": "openh264",
@@ -579,7 +579,7 @@
           },
           {
             "name": "openjph",
-            "version": "0.27.3"
+            "version": "0.30.1"
           },
           {
             "name": "openldap26-client",
@@ -671,7 +671,7 @@
           },
           {
             "name": "spirv-llvm-translator-llvm19",
-            "version": "19.1.19"
+            "version": "19.1.20"
           },
           {
             "name": "spirv-tools",
@@ -679,7 +679,7 @@
           },
           {
             "name": "sqlite3",
-            "version": "3.53.1,1"
+            "version": "3.53.3,1"
           },
           {
             "name": "srt",
@@ -699,11 +699,11 @@
           },
           {
             "name": "vulkan-loader",
-            "version": "1.4.354"
+            "version": "1.4.356"
           },
           {
             "name": "wayland",
-            "version": "1.24.0_2"
+            "version": "1.25.0"
           },
           {
             "name": "webp",
@@ -715,7 +715,7 @@
           },
           {
             "name": "xkeyboard-config",
-            "version": "2.41_4"
+            "version": "2.48"
           },
           {
             "name": "xorgproto",
@@ -785,10 +785,6 @@
             "version": "3.1.6"
           },
           {
-            "name": "Mako",
-            "version": "1.3.5"
-          },
-          {
             "name": "PyYAML",
             "version": "6.0.3"
           },
@@ -802,7 +798,7 @@
           },
           {
             "name": "alembic",
-            "version": "1.15.2"
+            "version": "1.16.0"
           },
           {
             "name": "annotated-doc",
@@ -814,7 +810,7 @@
           },
           {
             "name": "anyio",
-            "version": "4.13.0"
+            "version": "4.14.1"
           },
           {
             "name": "apprise",
@@ -833,12 +829,8 @@
             "version": "5.0.0"
           },
           {
-            "name": "beaker",
-            "version": "1.13.0"
-          },
-          {
             "name": "beautifulsoup4",
-            "version": "4.13.4"
+            "version": "4.15.0"
           },
           {
             "name": "blinker",
@@ -854,7 +846,7 @@
           },
           {
             "name": "certifi",
-            "version": "2026.5.20"
+            "version": "2026.6.17"
           },
           {
             "name": "cffi",
@@ -870,7 +862,11 @@
           },
           {
             "name": "cryptography",
-            "version": "48.0.0"
+            "version": "48.0.1"
+          },
+          {
+            "name": "defusedxml",
+            "version": "0.7.1"
           },
           {
             "name": "distro",
@@ -886,7 +882,7 @@
           },
           {
             "name": "fastapi",
-            "version": "0.136.1"
+            "version": "0.139.0"
           },
           {
             "name": "flexcache",
@@ -902,7 +898,7 @@
           },
           {
             "name": "greenlet",
-            "version": "3.5.1"
+            "version": "3.5.3"
           },
           {
             "name": "h11",
@@ -914,7 +910,7 @@
           },
           {
             "name": "hpack",
-            "version": "4.1.0"
+            "version": "4.2.0"
           },
           {
             "name": "html-text",
@@ -933,8 +929,16 @@
             "version": "1.0.9"
           },
           {
+            "name": "httpcore2",
+            "version": "2.5.0"
+          },
+          {
             "name": "httpx",
             "version": "0.28.1"
+          },
+          {
+            "name": "httpx2",
+            "version": "2.5.0"
           },
           {
             "name": "hyperframe",
@@ -942,15 +946,7 @@
           },
           {
             "name": "idna",
-            "version": "3.16"
-          },
-          {
-            "name": "importlib-metadata",
-            "version": "8.7.0"
-          },
-          {
-            "name": "importlib-resources",
-            "version": "6.5.2"
+            "version": "3.18"
           },
           {
             "name": "ingredient_parser_nlp",
@@ -966,7 +962,7 @@
           },
           {
             "name": "jiter",
-            "version": "0.15.0"
+            "version": "0.16.0"
           },
           {
             "name": "joblib",
@@ -974,7 +970,7 @@
           },
           {
             "name": "joserfc",
-            "version": "1.6.5"
+            "version": "1.7.2"
           },
           {
             "name": "jstyleson",
@@ -987,6 +983,10 @@
           {
             "name": "lxml-html-clean",
             "version": "0.4.1"
+          },
+          {
+            "name": "mako",
+            "version": "1.3.12"
           },
           {
             "name": "markdown",
@@ -1006,11 +1006,11 @@
           },
           {
             "name": "mutagen",
-            "version": "1.47.0"
+            "version": "1.48.1"
           },
           {
             "name": "nltk",
-            "version": "3.9.4"
+            "version": "3.10.0"
           },
           {
             "name": "numexpr",
@@ -1054,7 +1054,7 @@
           },
           {
             "name": "pillow-heif",
-            "version": "1.3.0"
+            "version": "1.4.0"
           },
           {
             "name": "pint",
@@ -1066,7 +1066,7 @@
           },
           {
             "name": "platformdirs",
-            "version": "4.9.2"
+            "version": "4.10.0"
           },
           {
             "name": "pyasn1",
@@ -1130,7 +1130,7 @@
           },
           {
             "name": "python-multipart",
-            "version": "0.0.29"
+            "version": "0.0.32"
           },
           {
             "name": "python-slugify",
@@ -1182,7 +1182,7 @@
           },
           {
             "name": "sqlalchemy",
-            "version": "2.0.50"
+            "version": "2.0.51"
           },
           {
             "name": "sqlite3",
@@ -1190,7 +1190,7 @@
           },
           {
             "name": "starlette",
-            "version": "1.1.0"
+            "version": "1.3.1"
           },
           {
             "name": "text-unidecode",
@@ -1202,7 +1202,7 @@
           },
           {
             "name": "tqdm",
-            "version": "4.67.3"
+            "version": "4.68.3"
           },
           {
             "name": "truststore",
@@ -1226,7 +1226,7 @@
           },
           {
             "name": "uvicorn",
-            "version": "0.48.0"
+            "version": "0.49.0"
           },
           {
             "name": "w3lib",
@@ -1247,10 +1247,6 @@
           {
             "name": "yt-dlp-ejs",
             "version": "0.8.0"
-          },
-          {
-            "name": "zipp",
-            "version": "3.21.0"
           }
         ],
         "ruby": [],
@@ -1264,10 +1260,10 @@
         "java": 0,
         "node": 11,
         "php": 0,
-        "python": 118,
+        "python": 117,
         "ruby": 0,
         "rust": 0,
-        "total": 309
+        "total": 308
       }
     }
   }
