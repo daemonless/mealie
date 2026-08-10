@@ -20,7 +20,7 @@ Intuitive self-hosted recipe management app designed to be the best recipe manag
 ## Version Tags
 | Tag | Description | Best For |
 | :--- | :--- | :--- |
-| `latest` | **Upstream Binary**. Built from official release. | Most users. Matches Linux Docker behavior. |
+| `latest` | **Upstream Binary**. Built from official release. | Most users — recommended. |
 
 ## Prerequisites
 Before deploying, ensure your host environment is ready. See the [Quick Start Guide](https://daemonless.io/guides/quick-start) for host setup instructions.
@@ -72,7 +72,7 @@ services:
     name: mealie
     options:
       - container: 'boot args:--pull'
-      - expose: '9000:9000 proto:tcp' \
+      - expose: '9000:9000 proto:tcp'
     oci:
       user: root
       environment:
@@ -238,7 +238,7 @@ See [daemonless/postgres README](https://github.com/daemonless/postgres#migratin
 
 **Architectures:** amd64
 **User:** `bsd` (UID/GID via PUID/PGID, defaults to 1000:1000)
-**Base:** FreeBSD 15.1-latest
+**Base:** FreeBSD 15.1
 
 ---
 
