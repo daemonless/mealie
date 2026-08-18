@@ -1,11 +1,11 @@
 {
-  "generated": "2026-08-10T10:40:09Z",
+  "generated": "2026-08-18T15:40:29Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.22.0",
+      "app_version": "v3.23.1",
       "arch": "amd64",
-      "generated": "2026-08-10T10:36:27Z",
+      "generated": "2026-08-18T15:37:56Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -281,7 +281,7 @@
               "BSL"
             ],
             "name": "boost-libs",
-            "version": "1.89.0_3"
+            "version": "1.91.0"
           },
           {
             "licenses": [
@@ -295,7 +295,7 @@
               "MPL20"
             ],
             "name": "ca_root_nss",
-            "version": "3.125"
+            "version": "3.126.1"
           },
           {
             "licenses": [
@@ -339,7 +339,7 @@
               "LGPL3+"
             ],
             "name": "ffmpeg",
-            "version": "8.1.2_1,1"
+            "version": "8.1.2_2,1"
           },
           {
             "licenses": [
@@ -369,7 +369,7 @@
               "GPLv3RLE"
             ],
             "name": "gcc14",
-            "version": "14.2.0_6"
+            "version": "14.2.0_7"
           },
           {
             "licenses": [
@@ -897,7 +897,7 @@
               "GPLv2"
             ],
             "name": "libx264",
-            "version": "0.164.3095"
+            "version": "0.165.3223_1"
           },
           {
             "licenses": [
@@ -972,7 +972,7 @@
               "MIT"
             ],
             "name": "mesa-libs",
-            "version": "26.1.5_2"
+            "version": "26.1.7"
           },
           {
             "licenses": [
@@ -1022,14 +1022,14 @@
               "BSD3CLAUSE"
             ],
             "name": "openblas",
-            "version": "0.3.33,2"
+            "version": "0.3.34_1,2"
           },
           {
             "licenses": [
               "BSD3CLAUSE"
             ],
             "name": "openexr",
-            "version": "3.4.13_1"
+            "version": "3.4.14"
           },
           {
             "licenses": [
@@ -1057,7 +1057,7 @@
               "OPENLDAP"
             ],
             "name": "openldap26-client",
-            "version": "2.6.13"
+            "version": "2.6.14"
           },
           {
             "licenses": [
@@ -1114,7 +1114,7 @@
               "BSD2CLAUSE"
             ],
             "name": "pkg",
-            "version": "2.8.1_1"
+            "version": "2.8.4"
           },
           {
             "licenses": [
@@ -1135,7 +1135,7 @@
               "BSL"
             ],
             "name": "py312-boost-libs",
-            "version": "1.89.0"
+            "version": "1.91.0"
           },
           {
             "licenses": [
@@ -1157,14 +1157,14 @@
               "PSFL"
             ],
             "name": "py312-sqlite3",
-            "version": "3.12.13_10"
+            "version": "3.12.14_10"
           },
           {
             "licenses": [
               "PSFL"
             ],
             "name": "python312",
-            "version": "3.12.13_3"
+            "version": "3.12.14"
           },
           {
             "licenses": [
@@ -1220,7 +1220,7 @@
               "APACHE20"
             ],
             "name": "spirv-tools",
-            "version": "2026.3.r1"
+            "version": "2026.3"
           },
           {
             "licenses": [
@@ -1566,7 +1566,7 @@
           {
             "name": "httpcore2",
             "purl": "",
-            "version": "2.5.0"
+            "version": "2.9.1"
           },
           {
             "name": "httpx",
@@ -1576,7 +1576,7 @@
           {
             "name": "httpx2",
             "purl": "",
-            "version": "2.5.0"
+            "version": "2.9.1"
           },
           {
             "name": "hyperframe",
@@ -1651,7 +1651,7 @@
           {
             "name": "mealie",
             "purl": "",
-            "version": "3.22.0"
+            "version": "3.23.1"
           },
           {
             "name": "mf2py",
@@ -1666,7 +1666,7 @@
           {
             "name": "nltk",
             "purl": "",
-            "version": "3.10.2"
+            "version": "3.10.3"
           },
           {
             "name": "numexpr",
@@ -1691,7 +1691,7 @@
           {
             "name": "openai",
             "purl": "",
-            "version": "2.46.0"
+            "version": "2.53.0"
           },
           {
             "name": "orjson",
@@ -1841,7 +1841,7 @@
           {
             "name": "regex",
             "purl": "",
-            "version": "2026.5.9"
+            "version": "2026.7.19"
           },
           {
             "name": "requests",
@@ -1886,7 +1886,7 @@
           {
             "name": "sqlite3",
             "purl": "",
-            "version": "3.12.13"
+            "version": "3.12.14"
           },
           {
             "name": "starlette",
@@ -1901,7 +1901,7 @@
           {
             "name": "tkinter",
             "purl": "",
-            "version": "3.12.13"
+            "version": "3.12.14"
           },
           {
             "name": "tqdm",
@@ -1956,7 +1956,7 @@
           {
             "name": "wheel",
             "purl": "",
-            "version": "0.47.0"
+            "version": "0.48.0"
           },
           {
             "name": "yt-dlp-ejs",
