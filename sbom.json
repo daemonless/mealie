@@ -1,11 +1,11 @@
 {
-  "generated": "2026-08-24T17:09:39Z",
+  "generated": "2026-09-03T08:52:22Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.24.0",
+      "app_version": "v3.25.0",
       "arch": "amd64",
-      "generated": "2026-08-24T17:06:41Z",
+      "generated": "2026-09-03T08:50:05Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -161,7 +161,7 @@
               "BSD2CLAUSE"
             ],
             "name": "FreeBSD-openssl-lib",
-            "version": "15.1"
+            "version": "15.1p3"
           },
           {
             "licenses": [
@@ -189,7 +189,7 @@
               "BSD2CLAUSE"
             ],
             "name": "FreeBSD-runtime",
-            "version": "15.1p2"
+            "version": "15.1p3"
           },
           {
             "licenses": [
@@ -252,14 +252,14 @@
               "BSD3CLAUSE"
             ],
             "name": "Imath",
-            "version": "3.2.2_5"
+            "version": "3.2.3"
           },
           {
             "licenses": [
               "BSD2CLAUSE"
             ],
             "name": "aom",
-            "version": "3.14.1_1"
+            "version": "3.15.0"
           },
           {
             "licenses": [
@@ -339,7 +339,7 @@
               "LGPL3+"
             ],
             "name": "ffmpeg",
-            "version": "8.1.2_2,1"
+            "version": "8.1.2_3,1"
           },
           {
             "licenses": [
@@ -621,7 +621,7 @@
               "LGPL21"
             ],
             "name": "libbluray",
-            "version": "1.4.1,1"
+            "version": "1.5.0,1"
           },
           {
             "licenses": [
@@ -663,7 +663,7 @@
               "GPLv2"
             ],
             "name": "libdvdread",
-            "version": "7.0.0"
+            "version": "7.1.1"
           },
           {
             "licenses": [
@@ -890,7 +890,7 @@
               "BSD3CLAUSE"
             ],
             "name": "libvpx",
-            "version": "1.16.0"
+            "version": "1.17.0"
           },
           {
             "licenses": [
@@ -1029,7 +1029,7 @@
               "BSD3CLAUSE"
             ],
             "name": "openexr",
-            "version": "3.4.14"
+            "version": "3.4.15"
           },
           {
             "licenses": [
@@ -1064,7 +1064,7 @@
               "APACHE20"
             ],
             "name": "openssl",
-            "version": "3.0.21,1"
+            "version": "3.0.22,1"
           },
           {
             "licenses": [
@@ -1227,7 +1227,7 @@
               "PD"
             ],
             "name": "sqlite3",
-            "version": "3.53.3,1"
+            "version": "3.53.4,1"
           },
           {
             "licenses": [
@@ -1384,11 +1384,6 @@
             "version": "3.1.6"
           },
           {
-            "name": "PyYAML",
-            "purl": "",
-            "version": "6.0.3"
-          },
-          {
             "name": "RapidFuzz",
             "purl": "",
             "version": "3.14.5"
@@ -1401,7 +1396,7 @@
           {
             "name": "alembic",
             "purl": "",
-            "version": "1.16.2"
+            "version": "1.16.3"
           },
           {
             "name": "annotated-doc",
@@ -1461,17 +1456,17 @@
           {
             "name": "certifi",
             "purl": "",
-            "version": "2026.6.17"
+            "version": "2026.7.22"
           },
           {
             "name": "cffi",
             "purl": "",
-            "version": "2.1.0"
+            "version": "2.1.1"
           },
           {
             "name": "charset-normalizer",
             "purl": "",
-            "version": "3.4.9"
+            "version": "3.5.1"
           },
           {
             "name": "click",
@@ -1481,7 +1476,7 @@
           {
             "name": "cryptography",
             "purl": "",
-            "version": "48.0.1"
+            "version": "49.0.0"
           },
           {
             "name": "defusedxml",
@@ -1631,7 +1626,7 @@
           {
             "name": "lxml-html-clean",
             "purl": "",
-            "version": "0.4.1"
+            "version": "0.4.5"
           },
           {
             "name": "mako",
@@ -1641,7 +1636,7 @@
           {
             "name": "markdown",
             "purl": "",
-            "version": "3.10.2"
+            "version": "3.10.3"
           },
           {
             "name": "markupsafe",
@@ -1651,7 +1646,7 @@
           {
             "name": "mealie",
             "purl": "",
-            "version": "3.24.0"
+            "version": "3.25.0"
           },
           {
             "name": "mf2py",
@@ -1671,7 +1666,7 @@
           {
             "name": "numexpr",
             "purl": "",
-            "version": "2.14.1"
+            "version": "2.14.2"
           },
           {
             "name": "numpy",
@@ -1686,7 +1681,7 @@
           {
             "name": "olefile",
             "purl": "",
-            "version": "0.46"
+            "version": "0.47"
           },
           {
             "name": "openai",
@@ -1829,6 +1824,11 @@
             "version": "2026.3"
           },
           {
+            "name": "pyyaml",
+            "purl": "",
+            "version": "6.0.3"
+          },
+          {
             "name": "rdflib",
             "purl": "",
             "version": "7.6.0"
@@ -1881,7 +1881,7 @@
           {
             "name": "sqlalchemy",
             "purl": "",
-            "version": "2.0.51"
+            "version": "2.0.52"
           },
           {
             "name": "sqlite3",
