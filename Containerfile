@@ -56,6 +56,7 @@ WORKDIR /app
 # Build frontend, then clean up node_modules + yarn cache to free disk space
 RUN cd /app/frontend && \
     sed -i '' 's/"sass-embedded":.*/"sass": "^1.85.0",/' package.json && \
+    sed -i '' 's/"vuetify": "[^"]*"/"vuetify": "4.1.11"/' package.json && \
     yarn install && yarn generate && \
     rm -rf node_modules .yarn /root/.cache/yarn /root/.npm /usr/local/share/.cache
 
