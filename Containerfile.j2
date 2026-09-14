@@ -62,10 +62,24 @@ RUN rm -rf /usr/local/lib/python3.12/site-packages/html5lib* && \
     /opt/mealie/bin/pip install --no-cache-dir \
     recipe-scrapers==15.11.0 paho-mqtt==1.6.1 pyhumps==3.8.0 \
     ingredient-parser-nlp==2.7.0 && \
-    /opt/mealie/bin/pip install --no-deps --no-cache-dir /app && \
-    mkdir -p /opt/mealie/lib/python3.12/site-packages/httpx_curl_cffi && \
-    printf 'import httpx\n\nclass AsyncCurlTransport(httpx.AsyncHTTPTransport):\n    """FreeBSD shim: curl_cffi is Linux-only; use standard httpx transport."""\n    def __init__(self, **kwargs):\n        super().__init__(**kwargs)\n' \
-    > /opt/mealie/lib/python3.12/site-packages/httpx_curl_cffi/__init__.py
+    /opt/mealie/bin/pip install --no-deps --no-cache-dir /app
+
+# curl_cffi (mealie.pkgs.safehttp) publishes no FreeBSD wheel, but upstream does
+# ship a FreeBSD libcurl-impersonate, so the sdist builds once the patch adds the
+# libs.json row and the libc++ link flag. Version-pinned so an upstream reshuffle
+# fails the build instead of silently dropping impersonation.
+# --upgrade: the ports setuptools the venv inherits rejects PEP 639 licenses.
+ARG CURL_CFFI_VERSION=0.16.3
+COPY patches/ /tmp/patches/
+RUN fetch -qo /tmp/curl_cffi.tar.gz \
+      "https://files.pythonhosted.org/packages/source/c/curl_cffi/curl_cffi-${CURL_CFFI_VERSION}.tar.gz" && \
+    tar -C /tmp -xzf /tmp/curl_cffi.tar.gz && \
+    cd /tmp/curl_cffi-${CURL_CFFI_VERSION} && \
+    patch -p1 < /tmp/patches/curl_cffi-${CURL_CFFI_VERSION}-freebsd.patch && \
+    /opt/mealie/bin/pip install --no-cache-dir --upgrade cffi setuptools wheel && \
+    /opt/mealie/bin/pip install --no-cache-dir --no-build-isolation . && \
+    /opt/mealie/bin/pip install --no-cache-dir httpx-curl-cffi==0.1.5 && \
+    cd / && rm -rf /tmp/curl_cffi* /tmp/patches
 
 # Download NLTK data
 RUN mkdir -p /nltk_data && \

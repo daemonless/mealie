@@ -1,0 +1,43 @@
+--- a/libs.json
++++ b/libs.json
+@@ -1,5 +1,23 @@
+ [
+     {
++        "system": "FreeBSD",
++        "machine": "amd64",
++        "pointer_size": 64,
++        "sysname": "freebsd",
++        "link_type": "static",
++        "obj_name": "libcurl-impersonate.a",
++        "arch": "x86_64"
++    },
++    {
++        "system": "FreeBSD",
++        "machine": "arm64",
++        "pointer_size": 64,
++        "sysname": "freebsd",
++        "link_type": "static",
++        "obj_name": "libcurl-impersonate.a",
++        "arch": "aarch64"
++    },
++    {
+         "system": "Windows",
+         "machine": "AMD64",
+         "pointer_size": 64,
+--- a/scripts/build.py
++++ b/scripts/build.py
+@@ -206,6 +206,14 @@
+             static_libs[0],
+             "-Wl,--no-whole-archive",
+         ]
++    elif system == "FreeBSD":
++        # BoringSSL in the archive needs libc++ after it (__gxx_personality_v0).
++        extra_link_args = [
++            "-Wl,--whole-archive",
++            static_libs[0],
++            "-Wl,--no-whole-archive",
++            "-lc++",
++        ]
+ 
+ libraries = get_curl_libraries()
+ 
