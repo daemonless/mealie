@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-04T07:15:26Z",
+  "generated": "2026-09-14T14:24:27Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.25.1",
+      "app_version": "v3.26.0",
       "arch": "amd64",
-      "generated": "2026-09-04T07:12:37Z",
+      "generated": "2026-09-14T14:22:04Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -295,7 +295,7 @@
               "MPL20"
             ],
             "name": "ca_root_nss",
-            "version": "3.127"
+            "version": "3.129"
           },
           {
             "licenses": [
@@ -317,7 +317,7 @@
               "BSD2CLAUSE"
             ],
             "name": "dav1d",
-            "version": "1.5.3_1"
+            "version": "1.5.4"
           },
           {
             "licenses": [
@@ -331,7 +331,7 @@
               "MIT"
             ],
             "name": "expat",
-            "version": "2.8.3"
+            "version": "2.8.4"
           },
           {
             "licenses": [
@@ -339,7 +339,7 @@
               "LGPL3+"
             ],
             "name": "ffmpeg",
-            "version": "8.1.2_3,1"
+            "version": "9.0.1,1"
           },
           {
             "licenses": [
@@ -444,7 +444,7 @@
               "GPLv2+"
             ],
             "name": "hwdata",
-            "version": "0.410,1"
+            "version": "0.411,1"
           },
           {
             "licenses": [
@@ -502,7 +502,7 @@
               "APACHE20"
             ],
             "name": "lerc",
-            "version": "4.1.1"
+            "version": "4.2.0"
           },
           {
             "licenses": [
@@ -635,7 +635,7 @@
               "MIT"
             ],
             "name": "libdeflate",
-            "version": "1.25"
+            "version": "1.26"
           },
           {
             "licenses": [
@@ -692,7 +692,7 @@
               "LGPL21+"
             ],
             "name": "libgcrypt",
-            "version": "1.12.2"
+            "version": "1.12.3_2"
           },
           {
             "licenses": [
@@ -715,7 +715,7 @@
               "LGPL3+"
             ],
             "name": "libheif",
-            "version": "1.22.2_1"
+            "version": "1.22.2_2"
           },
           {
             "licenses": [
@@ -736,7 +736,7 @@
               "GPLv3+"
             ],
             "name": "libimagequant",
-            "version": "4.4.1_6"
+            "version": "4.4.1_7"
           },
           {
             "licenses": [
@@ -795,7 +795,7 @@
               "LGPL20"
             ],
             "name": "librsvg2-rust",
-            "version": "2.62.3_1"
+            "version": "2.62.3_2"
           },
           {
             "licenses": [
@@ -918,7 +918,7 @@
               "MIT"
             ],
             "name": "libxml2",
-            "version": "2.15.3"
+            "version": "2.15.4"
           },
           {
             "licenses": [
@@ -972,7 +972,7 @@
               "MIT"
             ],
             "name": "mesa-libs",
-            "version": "26.2.1"
+            "version": "26.2.2"
           },
           {
             "licenses": [
@@ -1029,7 +1029,7 @@
               "BSD3CLAUSE"
             ],
             "name": "openexr",
-            "version": "3.4.15"
+            "version": "3.4.15_1"
           },
           {
             "licenses": [
@@ -1050,7 +1050,7 @@
               "BSD2CLAUSE"
             ],
             "name": "openjph",
-            "version": "0.30.1"
+            "version": "0.31.0"
           },
           {
             "licenses": [
@@ -1092,7 +1092,7 @@
               "BSD3CLAUSE"
             ],
             "name": "pcre2",
-            "version": "10.47_1"
+            "version": "10.48"
           },
           {
             "licenses": [
@@ -1150,7 +1150,7 @@
               "APACHE20"
             ],
             "name": "py312-packaging",
-            "version": "26.2"
+            "version": "26.3"
           },
           {
             "licenses": [
@@ -1213,7 +1213,7 @@
               "NCSA"
             ],
             "name": "spirv-llvm-translator-llvm19",
-            "version": "19.1.21"
+            "version": "19.1.22"
           },
           {
             "licenses": [
@@ -1386,7 +1386,7 @@
           {
             "name": "RapidFuzz",
             "purl": "",
-            "version": "3.14.5"
+            "version": "3.14.6"
           },
           {
             "name": "aiofiles",
@@ -1396,7 +1396,7 @@
           {
             "name": "alembic",
             "purl": "",
-            "version": "1.16.3"
+            "version": "1.17.0"
           },
           {
             "name": "annotated-doc",
@@ -1406,12 +1406,12 @@
           {
             "name": "annotated-types",
             "purl": "",
-            "version": "0.7.0"
+            "version": "0.8.0"
           },
           {
             "name": "anyio",
             "purl": "",
-            "version": "4.14.2"
+            "version": "4.15.1"
           },
           {
             "name": "apprise",
@@ -1421,12 +1421,22 @@
           {
             "name": "authlib",
             "purl": "",
-            "version": "1.7.2"
+            "version": "1.8.0"
+          },
+          {
+            "name": "autocommand",
+            "purl": "",
+            "version": "2.2.2"
           },
           {
             "name": "babel",
             "purl": "",
             "version": "2.18.0"
+          },
+          {
+            "name": "backports.tarfile",
+            "purl": "",
+            "version": "1.2.0"
           },
           {
             "name": "bcrypt",
@@ -1474,9 +1484,19 @@
             "version": "8.3.1"
           },
           {
+            "name": "cloudpickle",
+            "purl": "",
+            "version": "3.1.2"
+          },
+          {
             "name": "cryptography",
             "purl": "",
-            "version": "49.0.0"
+            "version": "50.0.1"
+          },
+          {
+            "name": "curl_cffi",
+            "purl": "",
+            "version": "0.16.3"
           },
           {
             "name": "defusedxml",
@@ -1521,7 +1541,7 @@
           {
             "name": "greenlet",
             "purl": "",
-            "version": "3.5.3"
+            "version": "3.5.5"
           },
           {
             "name": "h11",
@@ -1531,7 +1551,7 @@
           {
             "name": "h2",
             "purl": "",
-            "version": "4.3.0"
+            "version": "4.4.1"
           },
           {
             "name": "hpack",
@@ -1561,7 +1581,7 @@
           {
             "name": "httpcore2",
             "purl": "",
-            "version": "2.9.1"
+            "version": "2.12.0"
           },
           {
             "name": "httpx",
@@ -1569,9 +1589,14 @@
             "version": "0.28.1"
           },
           {
+            "name": "httpx-curl-cffi",
+            "purl": "",
+            "version": "0.1.5"
+          },
+          {
             "name": "httpx2",
             "purl": "",
-            "version": "2.9.1"
+            "version": "2.12.0"
           },
           {
             "name": "hyperframe",
@@ -1581,7 +1606,12 @@
           {
             "name": "idna",
             "purl": "",
-            "version": "3.18"
+            "version": "3.19"
+          },
+          {
+            "name": "importlib_metadata",
+            "purl": "",
+            "version": "8.7.1"
           },
           {
             "name": "ingredient_parser_nlp",
@@ -1599,6 +1629,21 @@
             "version": "2.2.0"
           },
           {
+            "name": "jaraco.context",
+            "purl": "",
+            "version": "6.1.0"
+          },
+          {
+            "name": "jaraco.functools",
+            "purl": "",
+            "version": "4.4.0"
+          },
+          {
+            "name": "jaraco.text",
+            "purl": "",
+            "version": "4.0.0"
+          },
+          {
             "name": "jiter",
             "purl": "",
             "version": "0.16.0"
@@ -1606,12 +1651,12 @@
           {
             "name": "joblib",
             "purl": "",
-            "version": "1.5.1"
+            "version": "1.6.0"
           },
           {
             "name": "joserfc",
             "purl": "",
-            "version": "1.7.3"
+            "version": "1.7.5"
           },
           {
             "name": "jstyleson",
@@ -1621,7 +1666,7 @@
           {
             "name": "lxml",
             "purl": "",
-            "version": "6.1.1"
+            "version": "6.1.3"
           },
           {
             "name": "lxml-html-clean",
@@ -1646,12 +1691,17 @@
           {
             "name": "mealie",
             "purl": "",
-            "version": "3.25.1"
+            "version": "3.26.0"
           },
           {
             "name": "mf2py",
             "purl": "",
             "version": "2.0.1"
+          },
+          {
+            "name": "more-itertools",
+            "purl": "",
+            "version": "10.8.0"
           },
           {
             "name": "mutagen",
@@ -1686,7 +1736,7 @@
           {
             "name": "openai",
             "purl": "",
-            "version": "2.53.0"
+            "version": "3.8.0"
           },
           {
             "name": "orjson",
@@ -1696,7 +1746,7 @@
           {
             "name": "packaging",
             "purl": "",
-            "version": "26.2"
+            "version": "26.0"
           },
           {
             "name": "paho-mqtt",
@@ -1711,7 +1761,7 @@
           {
             "name": "pillow",
             "purl": "",
-            "version": "11.3.0"
+            "version": "12.3.0"
           },
           {
             "name": "pillow-heif",
@@ -1721,7 +1771,7 @@
           {
             "name": "pint",
             "purl": "",
-            "version": "0.25.3"
+            "version": "0.26.1"
           },
           {
             "name": "pip",
@@ -1731,7 +1781,7 @@
           {
             "name": "platformdirs",
             "purl": "",
-            "version": "4.10.0"
+            "version": "4.11.8"
           },
           {
             "name": "pyasn1",
@@ -1756,7 +1806,7 @@
           {
             "name": "pydantic",
             "purl": "",
-            "version": "2.13.4"
+            "version": "2.13.5"
           },
           {
             "name": "pydantic-settings",
@@ -1766,7 +1816,7 @@
           {
             "name": "pydantic_core",
             "purl": "",
-            "version": "2.46.4"
+            "version": "2.46.5"
           },
           {
             "name": "pyhumps",
@@ -1776,7 +1826,7 @@
           {
             "name": "pyjwt",
             "purl": "",
-            "version": "2.13.0"
+            "version": "2.14.0"
           },
           {
             "name": "pyparsing",
@@ -1801,12 +1851,12 @@
           {
             "name": "python-dotenv",
             "purl": "",
-            "version": "1.2.2"
+            "version": "1.2.3"
           },
           {
             "name": "python-ldap",
             "purl": "",
-            "version": "3.4.4"
+            "version": "3.4.7"
           },
           {
             "name": "python-multipart",
@@ -1816,7 +1866,7 @@
           {
             "name": "python-slugify",
             "purl": "",
-            "version": "8.0.4"
+            "version": "9.0.0"
           },
           {
             "name": "pytz",
@@ -1856,7 +1906,7 @@
           {
             "name": "setuptools",
             "purl": "",
-            "version": "63.1.0"
+            "version": "84.0.0"
           },
           {
             "name": "six",
@@ -1891,7 +1941,7 @@
           {
             "name": "starlette",
             "purl": "",
-            "version": "1.3.1"
+            "version": "1.6.0"
           },
           {
             "name": "text-unidecode",
@@ -1904,9 +1954,14 @@
             "version": "3.12.14"
           },
           {
+            "name": "tomli",
+            "purl": "",
+            "version": "2.4.0"
+          },
+          {
             "name": "tqdm",
             "purl": "",
-            "version": "4.68.4"
+            "version": "4.70.0"
           },
           {
             "name": "truststore",
@@ -1916,7 +1971,7 @@
           {
             "name": "typing-inspection",
             "purl": "",
-            "version": "0.4.2"
+            "version": "0.4.4"
           },
           {
             "name": "typing_extensions",
@@ -1936,12 +1991,12 @@
           {
             "name": "uvicorn",
             "purl": "",
-            "version": "0.51.0"
+            "version": "0.52.4"
           },
           {
             "name": "w3lib",
             "purl": "",
-            "version": "1.21.0"
+            "version": "2.4.1"
           },
           {
             "name": "webencodings",
@@ -1951,17 +2006,22 @@
           {
             "name": "websockets",
             "purl": "",
-            "version": "17.0.1"
+            "version": "17.1"
           },
           {
             "name": "wheel",
             "purl": "",
-            "version": "0.48.0"
+            "version": "0.46.3"
           },
           {
             "name": "yt-dlp-ejs",
             "purl": "",
             "version": "0.8.0"
+          },
+          {
+            "name": "zipp",
+            "purl": "",
+            "version": "3.23.0"
           }
         ],
         "ruby": [],
@@ -1975,10 +2035,10 @@
         "java": 0,
         "node": 11,
         "php": 0,
-        "python": 117,
+        "python": 129,
         "ruby": 0,
         "rust": 0,
-        "total": 310
+        "total": 322
       }
     }
   }
