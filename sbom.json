@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-14T14:24:27Z",
+  "generated": "2026-09-17T14:07:46Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.26.0",
+      "app_version": "v3.27.0",
       "arch": "amd64",
-      "generated": "2026-09-14T14:22:04Z",
+      "generated": "2026-09-17T14:05:19Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -63,6 +63,13 @@
               "BSD2CLAUSE"
             ],
             "name": "FreeBSD-devmatch",
+            "version": "15.1"
+          },
+          {
+            "licenses": [
+              "BSD-3-Clause"
+            ],
+            "name": "FreeBSD-dhclient",
             "version": "15.1"
           },
           {
@@ -182,6 +189,13 @@
               "BSD2CLAUSE"
             ],
             "name": "FreeBSD-rc",
+            "version": "15.1"
+          },
+          {
+            "licenses": [
+              "BSD2CLAUSE"
+            ],
+            "name": "FreeBSD-resolvconf",
             "version": "15.1"
           },
           {
@@ -621,7 +635,7 @@
               "LGPL21"
             ],
             "name": "libbluray",
-            "version": "1.5.0,1"
+            "version": "1.5.1,1"
           },
           {
             "licenses": [
@@ -1057,7 +1071,7 @@
               "OPENLDAP"
             ],
             "name": "openldap26-client",
-            "version": "2.6.14"
+            "version": "2.6.15"
           },
           {
             "licenses": [
@@ -1192,7 +1206,7 @@
               "APACHE20"
             ],
             "name": "shaderc",
-            "version": "2026.3"
+            "version": "2026.4"
           },
           {
             "licenses": [
@@ -1646,7 +1660,7 @@
           {
             "name": "jiter",
             "purl": "",
-            "version": "0.16.0"
+            "version": "0.17.0"
           },
           {
             "name": "joblib",
@@ -1691,7 +1705,7 @@
           {
             "name": "mealie",
             "purl": "",
-            "version": "3.26.0"
+            "version": "3.27.0"
           },
           {
             "name": "mf2py",
@@ -1811,7 +1825,7 @@
           {
             "name": "pydantic-settings",
             "purl": "",
-            "version": "2.14.2"
+            "version": "2.15.0"
           },
           {
             "name": "pydantic_core",
@@ -1961,7 +1975,7 @@
           {
             "name": "tqdm",
             "purl": "",
-            "version": "4.70.0"
+            "version": "4.70.1"
           },
           {
             "name": "truststore",
@@ -1981,7 +1995,7 @@
           {
             "name": "tzdata",
             "purl": "",
-            "version": "2026.3"
+            "version": "2026.4"
           },
           {
             "name": "urllib3",
@@ -2030,7 +2044,7 @@
       "source": "upstream",
       "summary": {
         "dotnet": 0,
-        "freebsd": 182,
+        "freebsd": 184,
         "go": 0,
         "java": 0,
         "node": 11,
@@ -2038,7 +2052,7 @@
         "python": 129,
         "ruby": 0,
         "rust": 0,
-        "total": 322
+        "total": 324
       }
     }
   }
