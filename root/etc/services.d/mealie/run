@@ -10,6 +10,13 @@ if [ -n "$DB_ENGINE" ] && [ "$DB_ENGINE" = "postgres" ]; then
     echo "PostgreSQL is ready"
 fi
 
+# Mealie expects the entrypoint to load the contents of OIDC_CLIENT_SECRET_FILE
+# into OIDC_CLIENT_SECRET. It does not read the file.
+if [ -f "$OIDC_CLIENT_SECRET_FILE" ]; then
+        OIDC_CLIENT_SECRET=$(cat "$OIDC_CLIENT_SECRET_FILE")
+        export OIDC_CLIENT_SECRET
+fi
+
 cd /app/mealie
 
 # Run as bsd user using the mealie command (handles migrations internally)
