@@ -7,18 +7,7 @@ RUN pkg update && \
     FreeBSD-clibs-dev FreeBSD-runtime-dev FreeBSD-libexecinfo-dev \
     FreeBSD-bmake FreeBSD-clang FreeBSD-clang-dev FreeBSD-toolchain \
     FreeBSD-utilities-dev FreeBSD-zlib-dev FreeBSD-audit-dev \
-    python312 py312-pip py312-setuptools py312-wheel py312-sqlite3 \
-    py312-Jinja2 py312-pyyaml py312-aiofiles py312-alembic py312-apprise \
-    py312-bcrypt py312-beautifulsoup4 py312-extruct py312-fastapi \
-    py312-greenlet py312-html2text py312-httpx py312-joblib py312-lxml py312-mako \
-    py312-openai py312-orjson py312-pillow py312-pillow-heif \
-    py312-psycopg2 py312-pydantic2 py312-pydantic-core \
-    py312-pydantic-settings py312-python-dateutil py312-python-dotenv \
-    py312-python-ldap py312-python-multipart py312-python-slugify \
-    py312-regex py312-requests py312-sqlalchemy20 py312-tzdata py312-isodate \
-    py312-text-unidecode py312-rapidfuzz py312-authlib \
-    py312-pyjwt py312-typing-extensions py312-itsdangerous py312-uvicorn \
-    py312-yt-dlp py312-pint \
+    python314 py314-sqlite3 \
     rust gmake cmake pkgconf \
     libffi webp libxslt libxml2 libjpeg-turbo libheif openjpeg \
     lcms2 freetype2 harfbuzz openldap26-client postgresql17-client openssl libuv \
@@ -54,21 +43,27 @@ RUN cd /app/frontend && \
     yarn install && yarn generate && \
     rm -rf node_modules .yarn /root/.cache/yarn /root/.npm /usr/local/share/.cache
 
-# Create venv, copy ports packages, pip install only packages that are missing
-# from FreeBSD ports or where the port currently lags Mealie's pinned version.
-RUN rm -rf /usr/local/lib/python3.12/site-packages/html5lib* && \
-    python3.12 -m venv /opt/mealie && \
-    cp -a /usr/local/lib/python3.12/site-packages/* /opt/mealie/lib/python3.12/site-packages/ && \
-    /opt/mealie/bin/pip install --no-cache-dir \
-    recipe-scrapers==15.11.0 paho-mqtt==1.6.1 pyhumps==3.8.0 \
-    ingredient-parser-nlp==2.7.0 && \
-    /opt/mealie/bin/pip install --no-deps --no-cache-dir /app
+# Mealie 3.28+ requires Python 3.14, and FreeBSD packages py* modules only for
+# its default Python (3.12), so pip builds Mealie's pinned dependencies from
+# source (orjson, pydantic-core, bcrypt, jiter, watchfiles need Rust). Two are
+# handled separately: pillow-heif >= 1.5 needs libheif >= 1.23.1 and FreeBSD
+# has 1.22.2, so it is held at 1.4.0 (the FreeBSD port's version), and
+# httpx-curl-cffi needs the patched curl_cffi built below. The pgsql extra's
+# psycopg2-binary has no FreeBSD wheel, so its pin installs as plain psycopg2.
+ARG PILLOW_HEIF_VERSION=1.4.0
+RUN python3.14 -m venv /opt/mealie && \
+    /opt/mealie/bin/pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    /opt/mealie/bin/python -c "import tomllib; p = tomllib.load(open('/app/pyproject.toml', 'rb'))['project']; deps = [d for d in p['dependencies'] if not d.lower().startswith(('pillow-heif', 'httpx-curl-cffi'))]; deps += [d.replace('psycopg2-binary', 'psycopg2') for d in p['optional-dependencies']['pgsql']]; print('\\n'.join(deps))" > /tmp/requirements.txt && \
+    cat /tmp/requirements.txt && \
+    /opt/mealie/bin/pip install --no-cache-dir -r /tmp/requirements.txt \
+      pillow-heif==${PILLOW_HEIF_VERSION} && \
+    /opt/mealie/bin/pip install --no-deps --no-cache-dir /app && \
+    rm -rf /tmp/requirements.txt /root/.cargo /root/.cache
 
 # curl_cffi (mealie.pkgs.safehttp) publishes no FreeBSD wheel, but upstream does
 # ship a FreeBSD libcurl-impersonate, so the sdist builds once the patch adds the
 # libs.json row and the libc++ link flag. Version-pinned so an upstream reshuffle
 # fails the build instead of silently dropping impersonation.
-# --upgrade: the ports setuptools the venv inherits rejects PEP 639 licenses.
 ARG CURL_CFFI_VERSION=0.16.3
 COPY patches/ /tmp/patches/
 RUN fetch -qo /tmp/curl_cffi.tar.gz \
@@ -89,7 +84,7 @@ RUN mkdir -p /nltk_data && \
 ARG BASE_VERSION
 FROM ghcr.io/daemonless/base:${BASE_VERSION}
 ARG FREEBSD_ARCH=amd64
-ARG PACKAGES="python312 py312-sqlite3 libffi webp tiff libxslt libxml2 libxcb libjpeg-turbo libheif libimagequant libavif openjpeg lcms2 freetype2 libraqm harfbuzz openldap26-client postgresql17-client openssl libuv ca_root_nss"
+ARG PACKAGES="python314 py314-sqlite3 libffi webp tiff libxslt libxml2 libxcb libjpeg-turbo libheif libimagequant libavif openjpeg lcms2 freetype2 libraqm harfbuzz openldap26-client postgresql17-client openssl libuv ca_root_nss"
 ARG UPSTREAM_URL="https://api.github.com/repos/mealie-recipes/mealie/releases/latest"
 ARG UPSTREAM_JQ=".tag_name"
 {%- if ports %}
