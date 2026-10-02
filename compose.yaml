@@ -13,50 +13,6 @@ x-daemonless:
   upstream_binary: true
   appjail: true
   notes: |
-    ## Using PostgreSQL
-
-    By default, Mealie uses SQLite. For better performance with multiple users, use PostgreSQL:
-
-    ```yaml
-    services:
-      mealie:
-        image: ghcr.io/daemonless/mealie:latest
-        container_name: mealie
-        environment:
-          - BASE_URL=http://localhost:@MEALIE_PORT@
-          - PUID=@PUID@
-          - PGID=@PGID@
-          - TZ=@TZ@
-          - DB_ENGINE=postgres
-          - POSTGRES_USER=mealie
-          - POSTGRES_PASSWORD=changeme
-          - POSTGRES_SERVER=localhost
-          - POSTGRES_PORT=5432
-          - POSTGRES_DB=mealie
-        volumes:
-          - "@CONTAINER_CONFIG_ROOT@/@MEALIE_CONFIG_PATH@:/config"
-        ports:
-          - "@MEALIE_PORT@:9000"
-        depends_on:
-          - postgres
-        network_mode: host
-        restart: unless-stopped
-
-      postgres:
-        image: ghcr.io/daemonless/postgres:latest
-        container_name: mealie-postgres
-        environment:
-          - POSTGRES_USER=mealie
-          - POSTGRES_PASSWORD=changeme
-          - POSTGRES_DB=mealie
-        volumes:
-          - "@CONTAINER_CONFIG_ROOT@/mealie-postgres:/config"
-        network_mode: host
-        restart: unless-stopped
-    ```
-
-    **Note:** With `network_mode: host`, use `localhost` for `POSTGRES_SERVER`.
-
     ## Migrating from Linux
 
     **SQLite:** No issues, just copy your data.
@@ -73,12 +29,33 @@ x-daemonless:
 
     See [daemonless/postgres README](https://github.com/daemonless/postgres#migrating-from-linux) for details.
 
+  # SQLite is the default and needs nothing else; PostgreSQL is a second
+  # container dbuild supplies, or one you already run.
+  choices:
+    database:
+      kind: database
+      offers: [sqlite, postgres, external]
+      default: sqlite
+      env:
+        type: DB_ENGINE
+        host: POSTGRES_SERVER
+        port: POSTGRES_PORT
+        user: POSTGRES_USER
+        password: POSTGRES_PASSWORD
+        name: POSTGRES_DB
+
   docs:
     env:
       PUID: "User ID for the application process"
       PGID: "Group ID for the application process"
       TZ: "Timezone for the container"
       BASE_URL: "The base URL for the application (e.g. https://mealie.example.com)"
+      DB_ENGINE: "sqlite or postgres -- set by the Database choice"
+      POSTGRES_SERVER: "PostgreSQL host (the PostgreSQL choice fills this in)"
+      POSTGRES_PORT: "PostgreSQL port"
+      POSTGRES_USER: "PostgreSQL user"
+      POSTGRES_PASSWORD: "PostgreSQL password"
+      POSTGRES_DB: "PostgreSQL database name"
     volumes:
       /config: "Data directory (database, images)"
     ports:
@@ -95,6 +72,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=UTC
+      # The database, from the Database choice; sqlite needs nothing else.
+      - DB_ENGINE=${DB_ENGINE:-sqlite}
+      - POSTGRES_SERVER=${POSTGRES_SERVER:-}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_USER=${POSTGRES_USER:-}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-}
+      - POSTGRES_DB=${POSTGRES_DB:-}
 
     volumes:
       - /path/to/containers/mealie:/config
