@@ -30,27 +30,176 @@ Before deploying, ensure your host environment is ready. See the [Quick Start Gu
 
 ### Podman Compose
 
-```yaml
-services:
-  mealie:
-    image: "ghcr.io/daemonless/mealie:latest"
-    container_name: mealie
-    environment:
-      - BASE_URL=http://localhost:9000  # The base URL for the application (e.g. https://mealie.example.com)
-      - PUID=1000  # User ID for the application process
-      - PGID=1000  # Group ID for the application process
-      - TZ=UTC  # Timezone for the container
-    volumes:
-      - "/path/to/containers/mealie:/config"
-    ports:
-      - "9000:9000"
-    # always (not unless-stopped) so FreeBSD's podman rc.d auto-starts it at boot
-    restart: always
+**Database.** Where the app keeps its data. The default needs nothing else running.
+
+#### SQLite (default)
+
+A file in the app's config folder. Right for one person, nothing extra to run.
+
+**1.** Save as `.env` and fill in what is empty:
+
+```env { data-zip-bundle="mealie-podman" data-zip-filename=".env" }
+PUID=1000
+PGID=1000
+TZ=UTC
 ```
 
-Save as `compose.yaml`, then run `podman-compose up -d`.
+**2.** Save as `compose.yaml`:
+
+```yaml { data-zip-bundle="mealie-podman" data-zip-filename="compose.yaml" }
+name: mealie
+
+services:
+  mealie:
+    image: ghcr.io/daemonless/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+
+    environment:
+      - BASE_URL=http://localhost:9000
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      # The database, from the Database choice; sqlite needs nothing else.
+      - DB_ENGINE=${DB_ENGINE:-sqlite}
+      - POSTGRES_SERVER=${POSTGRES_SERVER:-}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_USER=${POSTGRES_USER:-}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-}
+      - POSTGRES_DB=${POSTGRES_DB:-}
+
+    volumes:
+      - /path/to/containers/mealie:/config
+
+    ports:
+      - "9000:9000"
+```
+
+Then run `podman-compose up -d`.
+
+#### PostgreSQL
+
+One more container, its data in its own folder. For a household, or an app that wants it.
+
+**1.** Save as `.env` and fill in what is empty:
+
+```env { data-zip-bundle="mealie-podman-postgres" data-zip-filename=".env" }
+PUID=1000
+PGID=1000
+TZ=UTC
+
+# Database: PostgreSQL
+DB_ENGINE=postgres
+POSTGRES_SERVER=postgres
+POSTGRES_PORT=5432
+POSTGRES_USER=mealie
+POSTGRES_PASSWORD=  # set one
+POSTGRES_DB=mealie
+DATABASE_LOCATION=/containers/mealie/postgres
+```
+
+**2.** Save as `compose.yaml`:
+
+```yaml { data-zip-bundle="mealie-podman-postgres" data-zip-filename="compose.yaml" }
+name: mealie
+
+services:
+  mealie:
+    depends_on: [postgres]
+    image: ghcr.io/daemonless/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+
+    environment:
+      - BASE_URL=http://localhost:9000
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      # The database, from the Database choice; sqlite needs nothing else.
+      - DB_ENGINE=${DB_ENGINE:-sqlite}
+      - POSTGRES_SERVER=${POSTGRES_SERVER:-}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_USER=${POSTGRES_USER:-}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-}
+      - POSTGRES_DB=${POSTGRES_DB:-}
+
+    volumes:
+      - /path/to/containers/mealie:/config
+
+    ports:
+      - "9000:9000"
+  postgres:
+    image: ghcr.io/daemonless/postgres:17
+    restart: always
+    annotations:
+      org.freebsd.jail.allow.sysvipc: "true"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - "${DATABASE_LOCATION}:/var/lib/postgresql/data"
+```
+
+Then run `podman-compose up -d`.
+
+#### Your own
+
+A database you already run, here or on another machine. Nothing extra runs; you give the address and the account.
+
+**1.** Save as `.env` and fill in Kind, Host, Port, User, Password, Database:
+
+```env { data-zip-bundle="mealie-podman-external" data-zip-filename=".env" }
+PUID=1000
+PGID=1000
+TZ=UTC
+
+# Database: Your own
+DB_ENGINE=  # Kind: postgres
+POSTGRES_SERVER=  # Host
+POSTGRES_PORT=  # Port
+POSTGRES_USER=  # User
+POSTGRES_PASSWORD=  # Password
+POSTGRES_DB=  # Database
+```
+
+**2.** Save as `compose.yaml`:
+
+```yaml { data-zip-bundle="mealie-podman-external" data-zip-filename="compose.yaml" }
+name: mealie
+
+services:
+  mealie:
+    image: ghcr.io/daemonless/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+
+    environment:
+      - BASE_URL=http://localhost:9000
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      # The database, from the Database choice; sqlite needs nothing else.
+      - DB_ENGINE=${DB_ENGINE:-sqlite}
+      - POSTGRES_SERVER=${POSTGRES_SERVER:-}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_USER=${POSTGRES_USER:-}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-}
+      - POSTGRES_DB=${POSTGRES_DB:-}
+
+    volumes:
+      - /path/to/containers/mealie:/config
+
+    ports:
+      - "9000:9000"
+```
+
+Then run `podman-compose up -d`.
 
 ### AppJail Director
+
+#### SQLite (default)
+
 **.env**:
 
 ```
@@ -61,6 +210,12 @@ BASE_URL=http://localhost:9000
 PUID=1000
 PGID=1000
 TZ=UTC
+DB_ENGINE=sqlite
+POSTGRES_SERVER=
+POSTGRES_PORT=5432
+POSTGRES_USER=
+POSTGRES_PASSWORD=<POSTGRES_PASSWORD>
+POSTGRES_DB=
 ```
 
 **appjail-director.yml**:
@@ -84,11 +239,17 @@ services:
         - PUID: !ENV '${PUID}'
         - PGID: !ENV '${PGID}'
         - TZ: !ENV '${TZ}'
+        - DB_ENGINE: !ENV '${DB_ENGINE}'
+        - POSTGRES_SERVER: !ENV '${POSTGRES_SERVER}'
+        - POSTGRES_PORT: !ENV '${POSTGRES_PORT}'
+        - POSTGRES_USER: !ENV '${POSTGRES_USER}'
+        - POSTGRES_PASSWORD: !ENV '${POSTGRES_PASSWORD}'
+        - POSTGRES_DB: !ENV '${POSTGRES_DB}'
     volumes:
       - mealie: /config
 volumes:
   mealie:
-    device: '/path/to/containers/mealie'
+    device: '/containers/mealie'
 ```
 
 **Makejail**:
@@ -105,107 +266,175 @@ OPTION from=ghcr.io/daemonless/mealie:${tag}
 
 Save the files above, then run `appjail-director up`.
 
+#### PostgreSQL
 
-> [!WARNING]
-> Exposing ports in AppJail means that your service can be reached from remote hosts. If that is not your intention, do not expose the ports and communicate with the service using the jail's IPv4 address or hostname assigned by the virtual network.
->
-> To avoid exposing ports, just remove the `expose` option in your `appjail-director.yml` or from your command-line arguments.
+**.env**:
 
-### Podman CLI
+```
+# .env
 
-```bash
-podman run -d --name mealie \
-  -p 9000:9000 \
-  -e BASE_URL=http://localhost:9000 \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=UTC \
-  -v /path/to/containers/mealie:/config \
-  ghcr.io/daemonless/mealie:latest
+DIRECTOR_PROJECT=mealie
+BASE_URL=http://localhost:9000
+PUID=1000
+PGID=1000
+TZ=UTC
+DB_ENGINE=postgres
+POSTGRES_SERVER=mealie_postgres
+POSTGRES_PORT=5432
+POSTGRES_USER=mealie
+POSTGRES_PASSWORD=
+POSTGRES_DB=mealie
+DATABASE_LOCATION=/containers/mealie/postgres
 ```
 
-Save as `run.sh`, then run `sh run.sh`.
-
-### AppJail
-
-
-```bash
-appjail oci run -Pd \
-  -o overwrite=force \
-  -o container="args:--pull" \
-  -o virtualnet=":<random> default" \
-  -o nat \
-  -o expose="9000:9000 proto:tcp" \
-  -e BASE_URL=http://localhost:9000 \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=UTC \
-  -o fstab="/path/to/containers/mealie /config <pseudofs>" \
-  ghcr.io/daemonless/mealie:latest mealie
-```
-
-Save the files above, then run `sh run.sh`.
-
-
-> [!WARNING]
-> Exposing ports in AppJail means that your service can be reached from remote hosts. If that is not your intention, do not expose the ports and communicate with the service using the jail's IPv4 address or hostname assigned by the virtual network.
->
-> To avoid exposing ports, just remove the `expose` option in your `appjail-director.yml` or from your command-line arguments.
-
-### Bastille
-
-> [!WARNING]
-> Bastille's OCI support is **experimental**. It requires `buildah` and shares the host network stack (`inherit`). Mount volumes with `--volume HOST JAIL`; without it, image-declared volumes are stored under `${bastille_volumesdir}/${jail}`.
+**appjail-director.yml**:
 
 ```yaml
+# appjail-director.yml
+
+options:
+  - virtualnet: ':<random> default'
+  - nat:
 services:
   mealie:
     name: mealie
-    image: "ghcr.io/daemonless/mealie:latest"
-    network:
-      - mode: host
-    environment:
-      - BASE_URL=http://localhost:9000
-      - PUID=1000
-      - PGID=1000
-      - TZ=UTC
+    options:
+      - container: 'args:--pull'
+      - expose: '9000:9000 proto:tcp'
+    oci:
+      user: root
+      environment:
+        - BASE_URL: !ENV '${BASE_URL}'
+        - PUID: !ENV '${PUID}'
+        - PGID: !ENV '${PGID}'
+        - TZ: !ENV '${TZ}'
+        - DB_ENGINE: !ENV '${DB_ENGINE}'
+        - POSTGRES_SERVER: !ENV '${POSTGRES_SERVER}'
+        - POSTGRES_PORT: !ENV '${POSTGRES_PORT}'
+        - POSTGRES_USER: !ENV '${POSTGRES_USER}'
+        - POSTGRES_PASSWORD: !ENV '${POSTGRES_PASSWORD}'
+        - POSTGRES_DB: !ENV '${POSTGRES_DB}'
     volumes:
-      - "/path/to/containers/mealie:/config"
+      - mealie: /config
+  mealie-postgres:
+    name: mealie_postgres
+    priority: 10
+    options:
+      - from: ghcr.io/daemonless/postgres:17
+      - template: !ENV '${PWD}/postgres-template.conf'
+    oci:
+      environment:
+        - POSTGRES_USER: !ENV '${POSTGRES_USER}'
+        - POSTGRES_PASSWORD: !ENV '${POSTGRES_PASSWORD}'
+        - POSTGRES_DB: !ENV '${POSTGRES_DB}'
+    volumes:
+      - database: /var/lib/postgresql/data
+volumes:
+  mealie:
+    device: '/containers/mealie'
+  database:
+    device: !ENV '${DATABASE_LOCATION}'
 ```
 
-Save as `bastille-compose.yml`, then run `bastille up`. Or via CLI:
+**Makejail**:
 
-```bash
-bastille create -O \
-  --env BASE_URL=http://localhost:9000 \
-  --env PUID=1000 \
-  --env PGID=1000 \
-  --env TZ=UTC \
-  --volume /path/to/containers/mealie /config \
-  mealie ghcr.io/daemonless/mealie:latest inherit
+```
+# Makejail
+
+ARG tag=latest
+
+OPTION container=boot
+OPTION overwrite=force
+OPTION from=ghcr.io/daemonless/mealie:${tag}
 ```
 
-### Ansible
+**postgres-template.conf**:
+
+```
+# The jail PostgreSQL runs in: SysV shared memory, which a jail does not
+# get by default. ip4/ip6 are set here because the director's ip4_inherit
+# option is a no-op in AppJail 5.5.0.
+
+exec.start: "/bin/sh /etc/rc"
+exec.stop: "/bin/sh /etc/rc.shutdown jail"
+sysvmsg: new
+sysvsem: new
+sysvshm: new
+mount.devfs
+persist
+ip4: inherit
+ip6: inherit
+```
+
+Save the files above, then run `appjail-director up`.
+
+#### Your own
+
+**.env**:
+
+```
+# .env
+
+DIRECTOR_PROJECT=mealie
+BASE_URL=http://localhost:9000
+PUID=1000
+PGID=1000
+TZ=UTC
+DB_ENGINE=
+POSTGRES_SERVER=
+POSTGRES_PORT=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
+```
+
+**appjail-director.yml**:
 
 ```yaml
-- name: Deploy mealie
-  containers.podman.podman_container:
+# appjail-director.yml
+
+options:
+  - virtualnet: ':<random> default'
+  - nat:
+services:
+  mealie:
     name: mealie
-    image: "ghcr.io/daemonless/mealie:latest"
-    state: started
-    restart_policy: always
-    env:
-      BASE_URL: "http://localhost:9000"
-      PUID: "1000"
-      PGID: "1000"
-      TZ: "UTC"
-    ports:
-      - "9000:9000"
+    options:
+      - container: 'args:--pull'
+      - expose: '9000:9000 proto:tcp'
+    oci:
+      user: root
+      environment:
+        - BASE_URL: !ENV '${BASE_URL}'
+        - PUID: !ENV '${PUID}'
+        - PGID: !ENV '${PGID}'
+        - TZ: !ENV '${TZ}'
+        - DB_ENGINE: !ENV '${DB_ENGINE}'
+        - POSTGRES_SERVER: !ENV '${POSTGRES_SERVER}'
+        - POSTGRES_PORT: !ENV '${POSTGRES_PORT}'
+        - POSTGRES_USER: !ENV '${POSTGRES_USER}'
+        - POSTGRES_PASSWORD: !ENV '${POSTGRES_PASSWORD}'
+        - POSTGRES_DB: !ENV '${POSTGRES_DB}'
     volumes:
-      - "/path/to/containers/mealie:/config"
+      - mealie: /config
+volumes:
+  mealie:
+    device: '/containers/mealie'
 ```
 
-Save as `mealie-deploy.yaml`, then run `ansible-playbook mealie-deploy.yaml`.
+**Makejail**:
+
+```
+# Makejail
+
+ARG tag=latest
+
+OPTION container=boot
+OPTION overwrite=force
+OPTION from=ghcr.io/daemonless/mealie:${tag}
+```
+
+Save the files above, then run `appjail-director up`.
 
 Access at: `http://localhost:9000`
 
@@ -219,6 +448,12 @@ Access at: `http://localhost:9000`
 | `PUID` | `1000` | User ID for the application process |
 | `PGID` | `1000` | Group ID for the application process |
 | `TZ` | `UTC` | Timezone for the container |
+| `DB_ENGINE` | `sqlite` | sqlite or postgres -- set by the Database choice |
+| `POSTGRES_SERVER` | `` | PostgreSQL host (the PostgreSQL choice fills this in) |
+| `POSTGRES_PORT` | `5432` | PostgreSQL port |
+| `POSTGRES_USER` | `` | PostgreSQL user |
+| `POSTGRES_PASSWORD` | `<POSTGRES_PASSWORD>` | PostgreSQL password |
+| `POSTGRES_DB` | `` | PostgreSQL database name |
 
 ### Volumes
 
@@ -231,50 +466,6 @@ Access at: `http://localhost:9000`
 | Port | Protocol | Description |
 |------|----------|-------------|
 | `9000` | TCP | Web UI |
-
-## Using PostgreSQL
-
-By default, Mealie uses SQLite. For better performance with multiple users, use PostgreSQL:
-
-```yaml
-services:
-  mealie:
-    image: ghcr.io/daemonless/mealie:latest
-    container_name: mealie
-    environment:
-      - BASE_URL=http://localhost:@MEALIE_PORT@
-      - PUID=@PUID@
-      - PGID=@PGID@
-      - TZ=@TZ@
-      - DB_ENGINE=postgres
-      - POSTGRES_USER=mealie
-      - POSTGRES_PASSWORD=changeme
-      - POSTGRES_SERVER=localhost
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=mealie
-    volumes:
-      - "@CONTAINER_CONFIG_ROOT@/@MEALIE_CONFIG_PATH@:/config"
-    ports:
-      - "@MEALIE_PORT@:9000"
-    depends_on:
-      - postgres
-    network_mode: host
-    restart: unless-stopped
-
-  postgres:
-    image: ghcr.io/daemonless/postgres:latest
-    container_name: mealie-postgres
-    environment:
-      - POSTGRES_USER=mealie
-      - POSTGRES_PASSWORD=changeme
-      - POSTGRES_DB=mealie
-    volumes:
-      - "@CONTAINER_CONFIG_ROOT@/mealie-postgres:/config"
-    network_mode: host
-    restart: unless-stopped
-```
-
-**Note:** With `network_mode: host`, use `localhost` for `POSTGRES_SERVER`.
 
 ## Migrating from Linux
 
