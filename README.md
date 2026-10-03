@@ -83,7 +83,7 @@ One more container, its data in its own folder. For a household, or an app that 
 
 **1.** Save as `.env` and fill in what is empty:
 
-```env { data-zip-bundle="mealie-podman-postgres" data-zip-filename=".env" }
+```env { data-zip-bundle="mealie-podman-database-postgres" data-zip-filename=".env" }
 PUID=1000
 PGID=1000
 TZ=UTC
@@ -100,7 +100,7 @@ DATABASE_LOCATION=/containers/mealie/postgres
 
 **2.** Save as `compose.yaml`:
 
-```yaml { data-zip-bundle="mealie-podman-postgres" data-zip-filename="compose.yaml" }
+```yaml { data-zip-bundle="mealie-podman-database-postgres" data-zip-filename="compose.yaml" }
 name: mealie
 
 services:
@@ -149,7 +149,7 @@ A database you already run, here or on another machine. Nothing extra runs; you 
 
 **1.** Save as `.env` and fill in Kind, Host, Port, User, Password, Database:
 
-```env { data-zip-bundle="mealie-podman-external" data-zip-filename=".env" }
+```env { data-zip-bundle="mealie-podman-database-external" data-zip-filename=".env" }
 PUID=1000
 PGID=1000
 TZ=UTC
@@ -165,7 +165,7 @@ POSTGRES_DB=  # Database
 
 **2.** Save as `compose.yaml`:
 
-```yaml { data-zip-bundle="mealie-podman-external" data-zip-filename="compose.yaml" }
+```yaml { data-zip-bundle="mealie-podman-database-external" data-zip-filename="compose.yaml" }
 name: mealie
 
 services:

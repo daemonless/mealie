@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-02T21:25:14Z",
+  "generated": "2026-10-03T11:46:52Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.28.0",
       "arch": "amd64",
-      "generated": "2026-10-02T21:22:13Z",
+      "generated": "2026-10-03T11:44:25Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -1427,7 +1427,7 @@
           {
             "name": "MarkupSafe",
             "purl": "",
-            "version": "3.0.3"
+            "version": "3.0.4"
           },
           {
             "name": "Pint",
