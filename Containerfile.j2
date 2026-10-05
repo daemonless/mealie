@@ -121,7 +121,12 @@ LABEL org.opencontainers.image.title="{{ title }}" \
       io.daemonless.packages="${PACKAGES}"
 
 RUN pkg update && pkg install -y ${PACKAGES} && \
-    pkg clean -ay && rm -rf /var/cache/pkg/* /var/db/pkg/repos/*
+    pkg clean -ay && rm -rf /var/cache/pkg/* /var/db/pkg/repos/* && \
+    find /usr/local -name '*.a' -delete && \
+    rm -rf /usr/local/share/doc /usr/local/share/man /usr/local/include /usr/local/llvm19/include /usr/local/llvm19/bin && \
+    rm -rf /usr/local/libexec/gcc14 /usr/local/bin/*-portbld-freebsd* /usr/local/*-portbld-freebsd* && \
+    rm -f /usr/local/bin/gcc* /usr/local/bin/g++* /usr/local/bin/gfortran* /usr/local/bin/cpp* /usr/local/bin/c++* && \
+    rm -f /usr/local/lib/libopcodes* /usr/local/lib/libbfd*
 
 COPY --from=builder --chown=bsd:bsd /opt/mealie /opt/mealie
 COPY --from=builder --chown=bsd:bsd /nltk_data /nltk_data
