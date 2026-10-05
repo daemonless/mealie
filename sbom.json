@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-03T11:46:52Z",
+  "generated": "2026-10-05T08:13:34Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.28.0",
       "arch": "amd64",
-      "generated": "2026-10-03T11:44:25Z",
+      "generated": "2026-10-05T08:11:54Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -266,7 +266,7 @@
               "BSD3CLAUSE"
             ],
             "name": "Imath",
-            "version": "3.2.3"
+            "version": "3.2.3_1"
           },
           {
             "licenses": [
@@ -295,7 +295,7 @@
               "BSL"
             ],
             "name": "boost-libs",
-            "version": "1.91.0"
+            "version": "1.92.0"
           },
           {
             "licenses": [
@@ -1078,7 +1078,7 @@
               "APACHE20"
             ],
             "name": "openssl",
-            "version": "3.0.22,1"
+            "version": "3.5.9,1"
           },
           {
             "licenses": [
@@ -1106,7 +1106,7 @@
               "BSD3CLAUSE"
             ],
             "name": "pcre2",
-            "version": "10.48"
+            "version": "10.49"
           },
           {
             "licenses": [
@@ -1149,7 +1149,7 @@
               "BSL"
             ],
             "name": "py312-boost-libs",
-            "version": "1.91.0"
+            "version": "1.92.0"
           },
           {
             "licenses": [
@@ -1340,63 +1340,7 @@
         ],
         "go": [],
         "java": [],
-        "node": [
-          {
-            "name": "@jupyterlite/app",
-            "purl": "",
-            "version": "0.5.1"
-          },
-          {
-            "name": "@jupyterlite/app-consoles",
-            "purl": "",
-            "version": "0.5.1"
-          },
-          {
-            "name": "@jupyterlite/app-edit",
-            "purl": "",
-            "version": "0.5.1"
-          },
-          {
-            "name": "@jupyterlite/app-lab",
-            "purl": "",
-            "version": "0.5.1"
-          },
-          {
-            "name": "@jupyterlite/app-notebooks",
-            "purl": "",
-            "version": "0.5.1"
-          },
-          {
-            "name": "@jupyterlite/app-repl",
-            "purl": "",
-            "version": "0.5.1"
-          },
-          {
-            "name": "@jupyterlite/app-tree",
-            "purl": "",
-            "version": "0.5.1"
-          },
-          {
-            "name": "@jupyterlite/pyodide-kernel-extension",
-            "purl": "",
-            "version": "0.5.2"
-          },
-          {
-            "name": "MathJax-grunt-cleaner",
-            "purl": "",
-            "version": "0.1.0"
-          },
-          {
-            "name": "jupyterlab-jupytext",
-            "purl": "",
-            "version": "1.4.5"
-          },
-          {
-            "name": "jupyterlab_pygments",
-            "purl": "",
-            "version": "0.3.0"
-          }
-        ],
+        "node": [],
         "php": [],
         "python": [
           {
@@ -1997,7 +1941,7 @@
           {
             "name": "websockets",
             "purl": "",
-            "version": "17.1"
+            "version": "17.2"
           },
           {
             "name": "wheel",
@@ -2024,12 +1968,12 @@
         "freebsd": 185,
         "go": 0,
         "java": 0,
-        "node": 11,
+        "node": 0,
         "php": 0,
         "python": 123,
         "ruby": 0,
         "rust": 0,
-        "total": 319
+        "total": 308
       }
     }
   }
