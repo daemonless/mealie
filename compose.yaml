@@ -31,6 +31,12 @@ x-daemonless:
 
   # SQLite is the default and needs nothing else; PostgreSQL is a second
   # container dbuild supplies, or one you already run.
+  # mealie is the one people open; the database the Database choice adds
+  # stays on the stack's private network.
+  networking:
+    mealie: default
+    "*": private
+
   choices:
     database:
       kind: database
