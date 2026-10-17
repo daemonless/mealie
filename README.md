@@ -316,7 +316,7 @@ services:
         - POSTGRES_DB: !ENV '${POSTGRES_DB}'
     volumes:
       - mealie: /config
-  mealie-postgres:
+  postgres:
     name: mealie_postgres
     priority: 10
     options:
