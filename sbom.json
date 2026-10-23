@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-23T08:53:15Z",
+  "generated": "2026-10-23T10:51:20Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.29.0",
       "arch": "amd64",
-      "generated": "2026-10-23T08:51:49Z",
+      "generated": "2026-10-23T10:50:01Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
