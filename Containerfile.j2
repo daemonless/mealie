@@ -1,5 +1,5 @@
 ARG BASE_VERSION=15.1-latest
-FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
+FROM ghcr.io/daemonless/base-exec:${BASE_VERSION} AS builder
 
 # Install build dependencies
 RUN pkg update && \
