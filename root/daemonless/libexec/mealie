@@ -1,5 +1,5 @@
 #!/bin/sh
-# Mealie s6 service
+# Start mealie; /init has already dropped to the run user.
 
 # Wait for database to be ready (if configured)
 if [ -n "$DB_ENGINE" ] && [ "$DB_ENGINE" = "postgres" ]; then
@@ -20,4 +20,4 @@ fi
 cd /app/mealie
 
 # Run as bsd user using the mealie command (handles migrations internally)
-exec /usr/local/bin/s6-setuidgid bsd /opt/mealie/bin/mealie
+exec /opt/mealie/bin/mealie

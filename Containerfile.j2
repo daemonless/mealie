@@ -82,7 +82,7 @@ RUN mkdir -p /nltk_data && \
 
 # Production image
 ARG BASE_VERSION
-FROM ghcr.io/daemonless/base:${BASE_VERSION}
+FROM ghcr.io/daemonless/base-exec:${BASE_VERSION}
 ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="python314 py314-sqlite3 libffi webp tiff libxslt libxml2 libxcb libjpeg-turbo libheif libimagequant libavif openjpeg lcms2 freetype2 libraqm harfbuzz openldap26-client postgresql17-client openssl libuv ca_root_nss"
 ARG UPSTREAM_URL="https://api.github.com/repos/mealie-recipes/mealie/releases/latest"
@@ -140,7 +140,9 @@ RUN mkdir -p /config /run/secrets && \
     chown -R bsd:bsd /app /config /run/secrets
 
 COPY root/ /
-RUN chmod +x /etc/services.d/*/run /etc/cont-init.d/* 2>/dev/null || true
+RUN chmod +x /daemonless/libexec/mealie /daemonless/init.d/*
+
+CMD ["/daemonless/libexec/mealie"]
 
 ENV MEALIE_HOME="/app" \
     PYTHONPATH=/app \
