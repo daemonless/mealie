@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-17T17:22:07Z",
+  "generated": "2026-10-23T08:53:15Z",
   "image": "mealie",
   "tags": {
     "latest": {
       "app_version": "v3.29.0",
       "arch": "amd64",
-      "generated": "2026-10-17T17:20:37Z",
+      "generated": "2026-10-23T08:51:49Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -203,7 +203,7 @@
               "BSD2CLAUSE"
             ],
             "name": "FreeBSD-runtime",
-            "version": "15.1p4"
+            "version": "15.1p5"
           },
           {
             "licenses": [
@@ -252,7 +252,7 @@
               "PD"
             ],
             "name": "FreeBSD-zoneinfo",
-            "version": "15.1p4"
+            "version": "15.1p5"
           },
           {
             "licenses": [
@@ -332,13 +332,6 @@
             ],
             "name": "dav1d",
             "version": "1.5.4"
-          },
-          {
-            "licenses": [
-              "ISCL"
-            ],
-            "name": "execline",
-            "version": "2.9.8.1"
           },
           {
             "licenses": [
@@ -443,7 +436,7 @@
               "MIT"
             ],
             "name": "harfbuzz",
-            "version": "14.2.1"
+            "version": "14.6.0"
           },
           {
             "licenses": [
@@ -523,7 +516,7 @@
               "MIT"
             ],
             "name": "libX11",
-            "version": "1.8.13_1,1"
+            "version": "1.8.14,1"
           },
           {
             "licenses": [
@@ -586,7 +579,7 @@
               "MIT"
             ],
             "name": "libXi",
-            "version": "1.8.3,1"
+            "version": "1.8.4,1"
           },
           {
             "licenses": [
@@ -600,7 +593,7 @@
               "MIT"
             ],
             "name": "libXrender",
-            "version": "0.9.12"
+            "version": "0.9.13"
           },
           {
             "licenses": [
@@ -729,7 +722,7 @@
               "LGPL3+"
             ],
             "name": "libheif",
-            "version": "1.22.2_5"
+            "version": "1.23.6"
           },
           {
             "licenses": [
@@ -750,7 +743,7 @@
               "GPLv3+"
             ],
             "name": "libimagequant",
-            "version": "4.4.1_7"
+            "version": "4.4.1_8"
           },
           {
             "licenses": [
@@ -809,7 +802,7 @@
               "LGPL20"
             ],
             "name": "librsvg2-rust",
-            "version": "2.62.3_2"
+            "version": "2.62.3_3"
           },
           {
             "licenses": [
@@ -1050,7 +1043,7 @@
               "BSD2CLAUSE"
             ],
             "name": "openh264",
-            "version": "2.6.0,2"
+            "version": "2.6.0_1,2"
           },
           {
             "licenses": [
@@ -1171,21 +1164,21 @@
               "PSFL"
             ],
             "name": "py314-sqlite3",
-            "version": "3.14.7_10"
+            "version": "3.14.8_10"
           },
           {
             "licenses": [
               "PSFL"
             ],
             "name": "python312",
-            "version": "3.12.14_1"
+            "version": "3.12.15"
           },
           {
             "licenses": [
               "PSFL"
             ],
             "name": "python314",
-            "version": "3.14.7"
+            "version": "3.14.8"
           },
           {
             "licenses": [
@@ -1193,13 +1186,6 @@
             ],
             "name": "readline",
             "version": "8.3.6"
-          },
-          {
-            "licenses": [
-              "ISCL"
-            ],
-            "name": "s6",
-            "version": "2.14.0.1"
           },
           {
             "licenses": [
@@ -1221,13 +1207,6 @@
             ],
             "name": "shared-mime-info",
             "version": "2.4_2"
-          },
-          {
-            "licenses": [
-              "ISCL"
-            ],
-            "name": "skalibs",
-            "version": "2.14.5.1"
           },
           {
             "licenses": [
@@ -1366,7 +1345,7 @@
           {
             "name": "Markdown",
             "purl": "",
-            "version": "3.11.1"
+            "version": "3.11.2"
           },
           {
             "name": "MarkupSafe",
@@ -1446,7 +1425,7 @@
           {
             "name": "certifi",
             "purl": "",
-            "version": "2026.6.17"
+            "version": "2026.10.19"
           },
           {
             "name": "cffi",
@@ -1551,7 +1530,7 @@
           {
             "name": "httpcore2",
             "purl": "",
-            "version": "2.13.1"
+            "version": "2.16.0"
           },
           {
             "name": "httptools",
@@ -1571,7 +1550,7 @@
           {
             "name": "httpx2",
             "purl": "",
-            "version": "2.13.1"
+            "version": "2.16.0"
           },
           {
             "name": "idna",
@@ -1626,7 +1605,7 @@
           {
             "name": "joserfc",
             "purl": "",
-            "version": "1.7.5"
+            "version": "1.7.7"
           },
           {
             "name": "jstyleson",
@@ -1666,7 +1645,7 @@
           {
             "name": "nltk",
             "purl": "",
-            "version": "3.10.3"
+            "version": "3.10.4"
           },
           {
             "name": "numpy",
@@ -1696,7 +1675,7 @@
           {
             "name": "packaging",
             "purl": "",
-            "version": "26.0"
+            "version": "26.2"
           },
           {
             "name": "paho-mqtt",
@@ -1716,7 +1695,7 @@
           {
             "name": "pip",
             "purl": "",
-            "version": "26.2.1"
+            "version": "26.2.2"
           },
           {
             "name": "platformdirs",
@@ -1741,7 +1720,7 @@
           {
             "name": "pycparser",
             "purl": "",
-            "version": "3.11"
+            "version": "3.12"
           },
           {
             "name": "pydantic",
@@ -1861,17 +1840,17 @@
           {
             "name": "soupsieve",
             "purl": "",
-            "version": "3.0.3"
+            "version": "3.0.4"
           },
           {
             "name": "sqlite3",
             "purl": "",
-            "version": "3.14.7"
+            "version": "3.14.8"
           },
           {
             "name": "starlette",
             "purl": "",
-            "version": "1.8.0"
+            "version": "1.9.0"
           },
           {
             "name": "text-unidecode",
@@ -1946,7 +1925,7 @@
           {
             "name": "websockets",
             "purl": "",
-            "version": "17.2"
+            "version": "17.3"
           },
           {
             "name": "wheel",
@@ -1970,7 +1949,7 @@
       "source": "upstream",
       "summary": {
         "dotnet": 0,
-        "freebsd": 185,
+        "freebsd": 182,
         "go": 0,
         "java": 0,
         "node": 0,
@@ -1978,7 +1957,7 @@
         "python": 124,
         "ruby": 0,
         "rust": 0,
-        "total": 309
+        "total": 306
       }
     }
   }
