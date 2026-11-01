@@ -435,8 +435,7 @@ OPTION from=ghcr.io/daemonless/mealie:${tag}
 ```
 
 Save the files above, then run `appjail-director up`.
-
-Access at: `http://localhost:9000`
+Open `http://<server>:9000` from another machine (the server's own browser can't use a published port).
 
 ## Parameters
 

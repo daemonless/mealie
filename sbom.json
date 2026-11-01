@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-23T10:51:20Z",
+  "generated": "2026-11-01T08:56:58Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.29.0",
+      "app_version": "v3.30.0",
       "arch": "amd64",
-      "generated": "2026-10-23T10:50:01Z",
+      "generated": "2026-11-01T08:55:25Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -203,7 +203,7 @@
               "BSD2CLAUSE"
             ],
             "name": "FreeBSD-runtime",
-            "version": "15.1p5"
+            "version": "15.1p6"
           },
           {
             "licenses": [
@@ -273,7 +273,7 @@
               "BSD2CLAUSE"
             ],
             "name": "aom",
-            "version": "3.15.1"
+            "version": "3.15.2"
           },
           {
             "licenses": [
@@ -302,14 +302,14 @@
               "MIT"
             ],
             "name": "brotli",
-            "version": "1.2.0,1"
+            "version": "1.2.1,1"
           },
           {
             "licenses": [
               "MPL20"
             ],
             "name": "ca_root_nss",
-            "version": "3.131"
+            "version": "3.132"
           },
           {
             "licenses": [
@@ -317,7 +317,7 @@
               "MPL11"
             ],
             "name": "cairo",
-            "version": "1.18.2,3"
+            "version": "1.18.6,3"
           },
           {
             "licenses": [
@@ -331,7 +331,7 @@
               "BSD2CLAUSE"
             ],
             "name": "dav1d",
-            "version": "1.5.4"
+            "version": "1.5.4_1"
           },
           {
             "licenses": [
@@ -346,7 +346,7 @@
               "LGPL3+"
             ],
             "name": "ffmpeg",
-            "version": "9.0.2_2,1"
+            "version": "9.0.2_3,1"
           },
           {
             "licenses": [
@@ -788,7 +788,7 @@
               "LGPL21+"
             ],
             "name": "libplacebo",
-            "version": "7.360.1"
+            "version": "7.387.0"
           },
           {
             "licenses": [
@@ -861,7 +861,7 @@
               "MIT"
             ],
             "name": "libuv",
-            "version": "1.52.1"
+            "version": "1.52.1_1"
           },
           {
             "licenses": [
@@ -1064,7 +1064,7 @@
               "OPENLDAP"
             ],
             "name": "openldap26-client",
-            "version": "2.6.15_1"
+            "version": "2.6.16"
           },
           {
             "licenses": [
@@ -1325,7 +1325,7 @@
           {
             "name": "Authlib",
             "purl": "",
-            "version": "1.8.0"
+            "version": "1.9.1"
           },
           {
             "name": "CacheControl",
@@ -1355,7 +1355,7 @@
           {
             "name": "Pint",
             "purl": "",
-            "version": "0.26.1"
+            "version": "0.26.2"
           },
           {
             "name": "PyJWT",
@@ -1375,12 +1375,12 @@
           {
             "name": "SQLAlchemy",
             "purl": "",
-            "version": "2.0.54"
+            "version": "2.1.6"
           },
           {
             "name": "alembic",
             "purl": "",
-            "version": "1.20.0"
+            "version": "1.20.1"
           },
           {
             "name": "annotated-doc",
@@ -1400,7 +1400,7 @@
           {
             "name": "apprise",
             "purl": "",
-            "version": "2.0.1"
+            "version": "2.1.0"
           },
           {
             "name": "autocommand",
@@ -1485,7 +1485,7 @@
           {
             "name": "fastapi",
             "purl": "",
-            "version": "0.143.0"
+            "version": "0.162.0"
           },
           {
             "name": "flexcache",
@@ -1496,11 +1496,6 @@
             "name": "flexparser",
             "purl": "",
             "version": "0.4"
-          },
-          {
-            "name": "greenlet",
-            "purl": "",
-            "version": "3.5.6"
           },
           {
             "name": "h11",
@@ -1565,7 +1560,7 @@
           {
             "name": "ingredient_parser_nlp",
             "purl": "",
-            "version": "2.8.0"
+            "version": "2.9.1"
           },
           {
             "name": "isodate",
@@ -1595,7 +1590,7 @@
           {
             "name": "jiter",
             "purl": "",
-            "version": "0.17.0"
+            "version": "0.18.0"
           },
           {
             "name": "joblib",
@@ -1620,12 +1615,12 @@
           {
             "name": "lxml_html_clean",
             "purl": "",
-            "version": "0.4.5"
+            "version": "0.4.6"
           },
           {
             "name": "mealie",
             "purl": "",
-            "version": "3.29.0"
+            "version": "3.30.0"
           },
           {
             "name": "mf2py",
@@ -1655,17 +1650,17 @@
           {
             "name": "oauthlib",
             "purl": "",
-            "version": "4.0.0"
+            "version": "4.0.1"
           },
           {
             "name": "openai",
             "purl": "",
-            "version": "3.29.0"
+            "version": "3.39.0"
           },
           {
             "name": "opentelemetry-api",
             "purl": "",
-            "version": "1.45.1"
+            "version": "1.45.2"
           },
           {
             "name": "orjson",
@@ -1685,7 +1680,7 @@
           {
             "name": "pillow",
             "purl": "",
-            "version": "12.3.0"
+            "version": "13.0.0"
           },
           {
             "name": "pillow_heif",
@@ -1710,7 +1705,7 @@
           {
             "name": "pyasn1",
             "purl": "",
-            "version": "0.6.4"
+            "version": "0.6.5"
           },
           {
             "name": "pyasn1_modules",
@@ -1730,7 +1725,7 @@
           {
             "name": "pydantic-settings",
             "purl": "",
-            "version": "2.15.0"
+            "version": "2.16.1"
           },
           {
             "name": "pydantic_core",
@@ -1765,7 +1760,7 @@
           {
             "name": "python-dateutil",
             "purl": "",
-            "version": "2.9.0.post0"
+            "version": "3.0.0"
           },
           {
             "name": "python-dotenv",
@@ -1795,7 +1790,7 @@
           {
             "name": "recipe_scrapers",
             "purl": "",
-            "version": "15.12.0"
+            "version": "15.13.0"
           },
           {
             "name": "regex",
@@ -1850,7 +1845,7 @@
           {
             "name": "starlette",
             "purl": "",
-            "version": "1.9.0"
+            "version": "1.10.0"
           },
           {
             "name": "text-unidecode",
@@ -1925,7 +1920,7 @@
           {
             "name": "websockets",
             "purl": "",
-            "version": "17.3"
+            "version": "17.4"
           },
           {
             "name": "wheel",
@@ -1935,7 +1930,7 @@
           {
             "name": "yt-dlp",
             "purl": "",
-            "version": "2026.8.19"
+            "version": "2026.10.21"
           },
           {
             "name": "zipp",
@@ -1954,10 +1949,10 @@
         "java": 0,
         "node": 0,
         "php": 0,
-        "python": 124,
+        "python": 123,
         "ruby": 0,
         "rust": 0,
-        "total": 306
+        "total": 305
       }
     }
   }
