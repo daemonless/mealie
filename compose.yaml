@@ -55,7 +55,9 @@ x-daemonless:
       PUID: "User ID for the application process"
       PGID: "Group ID for the application process"
       TZ: "Timezone for the container"
-      BASE_URL: "The base URL for the application (e.g. https://mealie.example.com)"
+      BASE_URL:
+        desc: "Address you open Mealie at, e.g. https://mealie.example.com (used in links it sends)"
+        public_url: true
       DB_ENGINE: "sqlite or postgres -- set by the Database choice"
       POSTGRES_SERVER: "PostgreSQL host (the PostgreSQL choice fills this in)"
       POSTGRES_PORT: "PostgreSQL port"
