@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-04T13:39:46Z",
+  "generated": "2026-11-13T11:51:28Z",
   "image": "mealie",
   "tags": {
     "latest": {
-      "app_version": "v3.30.0",
+      "app_version": "v3.31.0",
       "arch": "amd64",
-      "generated": "2026-11-04T13:38:11Z",
+      "generated": "2026-11-13T11:50:03Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -273,7 +273,7 @@
               "BSD2CLAUSE"
             ],
             "name": "aom",
-            "version": "3.15.2"
+            "version": "3.15.3"
           },
           {
             "licenses": [
@@ -284,11 +284,11 @@
           },
           {
             "licenses": [
-              "LGPL3",
-              "GPLv3"
+              "GPLv3",
+              "LGPL3"
             ],
             "name": "binutils",
-            "version": "2.44,1"
+            "version": "2.44_1,1"
           },
           {
             "licenses": [
@@ -338,12 +338,12 @@
               "MIT"
             ],
             "name": "expat",
-            "version": "2.9.0"
+            "version": "2.10.0"
           },
           {
             "licenses": [
-              "GPLv3+",
-              "LGPL3+"
+              "LGPL3+",
+              "GPLv3+"
             ],
             "name": "ffmpeg",
             "version": "9.0.2_3,1"
@@ -387,8 +387,8 @@
           },
           {
             "licenses": [
-              "GPLv3+",
-              "LGPL21+"
+              "LGPL21+",
+              "GPLv3+"
             ],
             "name": "gettext-runtime",
             "version": "1.0_1"
@@ -416,8 +416,8 @@
           },
           {
             "licenses": [
-              "GPLv3+",
-              "LGPL21+"
+              "LGPL21+",
+              "GPLv3+"
             ],
             "name": "gnutls",
             "version": "3.8.13"
@@ -451,7 +451,7 @@
               "GPLv2+"
             ],
             "name": "hwdata",
-            "version": "0.412,1"
+            "version": "0.413,1"
           },
           {
             "licenses": [
@@ -806,8 +806,8 @@
           },
           {
             "licenses": [
-              "LGPL21+",
-              "GPLv3"
+              "GPLv3",
+              "LGPL21+"
             ],
             "name": "libtasn1",
             "version": "4.21.0"
@@ -958,7 +958,7 @@
               "REGEX"
             ],
             "name": "llvm19",
-            "version": "19.1.7_4"
+            "version": "19.1.7_5"
           },
           {
             "licenses": [
@@ -1036,7 +1036,7 @@
               "BSD3CLAUSE"
             ],
             "name": "openexr",
-            "version": "3.4.16"
+            "version": "3.4.17"
           },
           {
             "licenses": [
@@ -1121,7 +1121,7 @@
               "BSD2CLAUSE"
             ],
             "name": "pkg",
-            "version": "2.8.4"
+            "version": "2.9.0"
           },
           {
             "licenses": [
@@ -1213,7 +1213,7 @@
               "NCSA"
             ],
             "name": "spirv-llvm-translator-llvm19",
-            "version": "19.1.23"
+            "version": "19.1.24"
           },
           {
             "licenses": [
@@ -1243,7 +1243,7 @@
               "BSD3CLAUSE"
             ],
             "name": "svt-av1",
-            "version": "4.2.0"
+            "version": "4.3.0"
           },
           {
             "licenses": [
@@ -1264,7 +1264,7 @@
               "APACHE20"
             ],
             "name": "vulkan-loader",
-            "version": "1.4.365"
+            "version": "1.4.368"
           },
           {
             "licenses": [
@@ -1310,8 +1310,8 @@
           },
           {
             "licenses": [
-              "GPLv2",
-              "BSD3CLAUSE"
+              "BSD3CLAUSE",
+              "GPLv2"
             ],
             "name": "zstd",
             "version": "1.5.7_2"
@@ -1325,7 +1325,7 @@
           {
             "name": "Authlib",
             "purl": "",
-            "version": "1.9.1"
+            "version": "1.9.5"
           },
           {
             "name": "CacheControl",
@@ -1345,7 +1345,7 @@
           {
             "name": "Markdown",
             "purl": "",
-            "version": "3.11.2"
+            "version": "3.11.3"
           },
           {
             "name": "MarkupSafe",
@@ -1375,7 +1375,7 @@
           {
             "name": "SQLAlchemy",
             "purl": "",
-            "version": "2.1.6"
+            "version": "2.1.8"
           },
           {
             "name": "alembic",
@@ -1385,7 +1385,7 @@
           {
             "name": "annotated-doc",
             "purl": "",
-            "version": "0.0.5"
+            "version": "0.0.6"
           },
           {
             "name": "annotated-types",
@@ -1440,7 +1440,7 @@
           {
             "name": "click",
             "purl": "",
-            "version": "8.5.0"
+            "version": "8.5.1"
           },
           {
             "name": "cloudpickle",
@@ -1485,7 +1485,7 @@
           {
             "name": "fastapi",
             "purl": "",
-            "version": "0.162.0"
+            "version": "0.162.2"
           },
           {
             "name": "flexcache",
@@ -1496,6 +1496,21 @@
             "name": "flexparser",
             "purl": "",
             "version": "0.4"
+          },
+          {
+            "name": "fonttools",
+            "purl": "",
+            "version": "4.68.0"
+          },
+          {
+            "name": "fpdf2",
+            "purl": "",
+            "version": "2.9.0"
+          },
+          {
+            "name": "frostwork",
+            "purl": "",
+            "version": "0.2.2"
           },
           {
             "name": "h11",
@@ -1560,7 +1575,7 @@
           {
             "name": "ingredient_parser_nlp",
             "purl": "",
-            "version": "2.9.1"
+            "version": "2.9.2"
           },
           {
             "name": "isodate",
@@ -1590,7 +1605,7 @@
           {
             "name": "jiter",
             "purl": "",
-            "version": "0.18.0"
+            "version": "0.19.0"
           },
           {
             "name": "joblib",
@@ -1620,7 +1635,7 @@
           {
             "name": "mealie",
             "purl": "",
-            "version": "3.30.0"
+            "version": "3.31.0"
           },
           {
             "name": "mf2py",
@@ -1655,7 +1670,7 @@
           {
             "name": "openai",
             "purl": "",
-            "version": "3.39.0"
+            "version": "3.46.0"
           },
           {
             "name": "opentelemetry-api",
@@ -1675,7 +1690,7 @@
           {
             "name": "paho-mqtt",
             "purl": "",
-            "version": "1.6.1"
+            "version": "2.2.0"
           },
           {
             "name": "pillow",
@@ -1720,17 +1735,17 @@
           {
             "name": "pydantic",
             "purl": "",
-            "version": "2.14.1"
+            "version": "2.14.3"
           },
           {
             "name": "pydantic-settings",
             "purl": "",
-            "version": "2.16.1"
+            "version": "2.16.2"
           },
           {
             "name": "pydantic_core",
             "purl": "",
-            "version": "2.50.1"
+            "version": "2.50.4"
           },
           {
             "name": "pygments",
@@ -1760,7 +1775,7 @@
           {
             "name": "python-dateutil",
             "purl": "",
-            "version": "3.0.0"
+            "version": "4.0.0"
           },
           {
             "name": "python-dotenv",
@@ -1775,7 +1790,7 @@
           {
             "name": "python-multipart",
             "purl": "",
-            "version": "0.0.32"
+            "version": "0.0.33"
           },
           {
             "name": "python-slugify",
@@ -1795,7 +1810,7 @@
           {
             "name": "regex",
             "purl": "",
-            "version": "2026.9.29"
+            "version": "2026.11.9"
           },
           {
             "name": "requests",
@@ -1835,7 +1850,7 @@
           {
             "name": "soupsieve",
             "purl": "",
-            "version": "4.0"
+            "version": "4.1"
           },
           {
             "name": "sqlite3",
@@ -1875,7 +1890,7 @@
           {
             "name": "typing-inspection",
             "purl": "",
-            "version": "0.4.4"
+            "version": "0.4.5"
           },
           {
             "name": "typing_extensions",
@@ -1885,7 +1900,7 @@
           {
             "name": "tzdata",
             "purl": "",
-            "version": "2026.5"
+            "version": "2026.6"
           },
           {
             "name": "urllib3",
@@ -1905,7 +1920,7 @@
           {
             "name": "w3lib",
             "purl": "",
-            "version": "2.5.0"
+            "version": "2.6.0"
           },
           {
             "name": "watchfiles",
@@ -1930,7 +1945,7 @@
           {
             "name": "yt-dlp",
             "purl": "",
-            "version": "2026.10.21"
+            "version": "2026.10.26"
           },
           {
             "name": "zipp",
@@ -1949,10 +1964,10 @@
         "java": 0,
         "node": 0,
         "php": 0,
-        "python": 123,
+        "python": 126,
         "ruby": 0,
         "rust": 0,
-        "total": 305
+        "total": 308
       }
     }
   }

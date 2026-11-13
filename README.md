@@ -443,7 +443,7 @@ Open `http://<server>:9000` from another machine (the server's own browser can't
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `BASE_URL` | `http://localhost:9000` | The base URL for the application (e.g. https://mealie.example.com) |
+| `BASE_URL` | `http://localhost:9000` | Address you open Mealie at, e.g. https://mealie.example.com (used in links it sends) |
 | `PUID` | `1000` | User ID for the application process |
 | `PGID` | `1000` | Group ID for the application process |
 | `TZ` | `UTC` | Timezone for the container |
